@@ -1,0 +1,3 @@
+# Install PyTorch for your accelerator first.
+-r continual/requirements.txt
+

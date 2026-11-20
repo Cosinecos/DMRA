@@ -1,0 +1,104 @@
+{
+  "STBP": {
+    "repository": "Aoyu-Liu/STBP",
+    "revision": "e3dc4c11b0c24ff3d98ad840b4ed7160ac75c6b2",
+    "namespace": "stbp",
+    "files": {
+      "src/model/model.py": {
+        "sha256_lf": "e714fba5cdc3bf58fc964e0e9e107b7cf60b721bd63779882ee8cd638538f2c9",
+        "relative_gcn_import": false
+      }
+    }
+  },
+  "EAC": {
+    "repository": "Onedean/EAC",
+    "revision": "0a99297e01e484d56b2dfc845eacbbcf733efd1b",
+    "namespace": "eac",
+    "files": {
+      "src/model/model.py": {
+        "sha256_lf": "b6ed742c860e93d1ed545f33765db073a9ed6b837b74fdde333e98543bfe1c12",
+        "relative_gcn_import": true
+      },
+      "src/model/gcn_conv.py": {
+        "sha256_lf": "995c7ef49120f330d7611dd60e46bcb0e48e55eb22eb6b922a0e222d9acfe549",
+        "relative_gcn_import": false
+      }
+    }
+  },
+  "STKEC": {
+    "repository": "UnderReview24/STKEC",
+    "revision": "11a761a641d3798a8c678e14366e61adea04fb06",
+    "namespace": "stkec",
+    "files": {
+      "src/model/STKEC_model.py": {
+        "sha256_lf": "1add592cfa2ca8c4daaed446f0f8c14dfdf3075d71256e9d2f9644896ec13472",
+        "relative_gcn_import": true
+      },
+      "src/model/gcn_conv.py": {
+        "sha256_lf": "1dc1d6537eb3e36de35fd073481bb0e46d93ebdda63383d20ca6df2a3a47b9b2",
+        "relative_gcn_import": false
+      },
+      "src/model/stkec_ewc.py": {
+        "sha256_lf": "c21c47407b2e83d3294599cb154bc56b4d45ed988e361e64282487f9d456e2ed",
+        "relative_gcn_import": false
+      }
+    }
+  },
+  "PECPM": {
+    "repository": "UnderReview24/PECPM",
+    "revision": "fb8fe6aacf45bc3b269e8623ecc71338192d58b4",
+    "namespace": "pecpm",
+    "files": {
+      "src/model/model.py": {
+        "sha256_lf": "30faf8938543271c295952999b9653dc96d5e5035cde122f75b4c350f2e4a05e",
+        "relative_gcn_import": true
+      },
+      "src/model/gcn_conv.py": {
+        "sha256_lf": "5633ab34c5d5d342ec3e4d1b4b21770865ee67954b26946a8656b67b4b90e948",
+        "relative_gcn_import": false
+      }
+    }
+  },
+  "TS": {
+    "repository": "AprLie/TrafficStream",
+    "revision": "ac341bbf5ebc16ec28d673723e655325eee64523",
+    "namespace": "trafficstream",
+    "files": {
+      "src/model/model.py": {
+        "sha256_lf": "5b1c40fa146de4b2f4b02257dd95b9e7f0a7f32ea8275466ed508aaeb900e144",
+        "relative_gcn_import": true
+      },
+      "src/model/gcn_conv.py": {
+        "sha256_lf": "1dc1d6537eb3e36de35fd073481bb0e46d93ebdda63383d20ca6df2a3a47b9b2",
+        "relative_gcn_import": false
+      }
+    }
+  },
+  "STRAP": {
+    "repository": "HoweyZ/STRAP",
+    "revision": "8dc0c07905e9031b91ad8daa436d83b8bcd8bc26",
+    "namespace": "strap",
+    "files": {
+      "src/model/model.py": {
+        "sha256_lf": "0a99185dd2d9dfaadeff4f179b87f4c27fa3a5f604765c95a8bcf5b314b2dbcc",
+        "relative_gcn_import": false
+      },
+      "src/model/gcn_conv.py": {
+        "sha256_lf": "0549a505252b0c7248f9be4c37a656a922a1dfe983b7905ecfe333e7ca10025c",
+        "relative_gcn_import": false
+      },
+      "src/model/STRAP.py": {
+        "sha256_lf": "128b363fe3c66156f3b08b9318d13f555904a01fb9cae7247cc5d07054d71da2",
+        "relative_gcn_import": false
+      },
+      "src/model/pattern_features.py": {
+        "sha256_lf": "9dda4893ee55f896b45482e9aa3b7d1d1e086528b8a7cf8d8b7e02dfd003cf5a",
+        "relative_gcn_import": false
+      },
+      "src/model/ewc.py": {
+        "sha256_lf": "a647a272b2d7315c8e29d5a2ee628118fc15e75f829ff1a6b61cb9461836e844",
+        "relative_gcn_import": false
+      }
+    }
+  }
+}

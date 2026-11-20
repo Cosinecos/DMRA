@@ -1,0 +1,9 @@
+{
+  "begin_year": 2022,
+  "end_year": 2026,
+  "raw_data_path": "data/Madrid-2022-2026-MMD/RawData",
+  "graph_path": "data/Madrid-2022-2026-MMD/graph",
+  "batch_size": 128,
+  "steps_per_day": 96,
+  "pems_days": 31
+}

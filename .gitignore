@@ -1,0 +1,13 @@
+/data/
+/logs/
+/cache/
+/runs*/
+*.zip
+*.pkl
+*.pt
+*.pth
+*.py[cod]
+__pycache__/
+.venv/
+.pytest_cache/
+

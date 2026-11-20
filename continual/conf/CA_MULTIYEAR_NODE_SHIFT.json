@@ -1,0 +1,16 @@
+{
+  "begin_year": 0,
+  "end_year": 4,
+  "lr": 0.005,
+  "batch_size": 128,
+  "y_len": 12,
+  "x_len": 12,
+  "steps_per_day": 288,
+  "raw_data_path": "data/CA-MultiYearNodeShift/RawData/",
+  "save_data_path": "cache/CA_MULTIYEAR_NODE_SHIFT/",
+  "graph_path": "data/CA-MultiYearNodeShift/graph/",
+  "pems_days": 31,
+  "train_rate": 0.6,
+  "val_rate": 0.2,
+  "test_rate": 0.2
+}
