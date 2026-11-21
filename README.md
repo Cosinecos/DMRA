@@ -65,7 +65,7 @@ Horizons 3, 6, and 12 cover all steps up to that horizon. Within each stage, Avg
 
 [Archived full-data scores for DMRA, TS, STKEC, PECPM, EAC, and STBP (seed 42)](results/full.csv)
 
-The [`logs/`](logs/) directory contains 79 historical full-data training logs, each saved as `train.log` in its original run directory. DMRA logs are under [`logs/runs_integrated_shared_kv/`](logs/runs_integrated_shared_kv/). The run index gives the path for each run. [Run index](results/run_index.csv) · [Training log SHA-256 hashes](results/log_files.csv)
+The [`logs/`](logs/) directory contains historical full-data training logs, each saved as `train.log` in its original run directory. DMRA logs are under [`logs/runs_integrated_shared_kv/`](logs/runs_integrated_shared_kv/). The run index gives the path for each run. [Run index](results/run_index.csv) · [Training log SHA-256 hashes](results/log_files.csv)
 
 ## Ablations
 

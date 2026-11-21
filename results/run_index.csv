@@ -48,11 +48,9 @@ EAC,Madrid,raw,baseline,5,logs/runs_madrid_continual_baselines/EAC/MADRID_2022_2
 PECPM,Madrid,raw,baseline,5,logs/runs_madrid_continual_baselines/PECPM/MADRID_2022_2026_MMD/raw/20261114_000702_seed42_b8e826
 STKEC,Madrid,raw,baseline,5,logs/runs_madrid_continual_baselines/STKEC/MADRID_2022_2026_MMD/raw/20261114_001550_seed42_cfd2da
 TS,Madrid,raw,baseline,5,logs/runs_madrid_continual_baselines/TS/MADRID_2022_2026_MMD/raw/20261114_002322_seed42_8dfb1d
-no_lora,AIR,raw,ablation,4,logs/runs_sharedkv_ablations/full/no_lora/raw/AIR/20261112_050021_seed42_a3dccc
 no_lora,CA-M,raw,ablation,5,logs/runs_sharedkv_ablations/full/no_lora/raw/CA_MULTIYEAR_NODE_SHIFT/20261115_040427_seed42_66164a
 no_lora,CA-S,raw,ablation,4,logs/runs_sharedkv_ablations/full/no_lora/raw/CA_NODE_SHIFT/20261115_034823_seed42_dc92f8
 no_lora,Madrid,raw,ablation,5,logs/runs_sharedkv_ablations/full/no_lora/raw/MADRID_2022_2026_MMD/20261115_043837_seed42_3e23a5
-no_lora,PEMS,raw,ablation,7,logs/runs_sharedkv_ablations/full/no_lora/raw/PEMS/20261112_042756_seed42_22421c
 no_node_bank,AIR,raw,ablation,4,logs/runs_sharedkv_ablations/full/no_node_bank/raw/AIR/20261112_023105_seed42_10e6e4
 no_node_bank,CA-M,raw,ablation,5,logs/runs_sharedkv_ablations/full/no_node_bank/raw/CA_MULTIYEAR_NODE_SHIFT/20261115_001428_seed42_b808e0
 no_node_bank,CA-S,raw,ablation,4,logs/runs_sharedkv_ablations/full/no_node_bank/raw/CA_NODE_SHIFT/20261114_235926_seed42_d23cb0
@@ -61,9 +59,7 @@ no_node_bank,PEMS,raw,ablation,7,logs/runs_sharedkv_ablations/full/no_node_bank/
 no_pattern_bank,AIR,raw,ablation,4,logs/runs_sharedkv_ablations/full/no_pattern_bank/raw/AIR/20261112_032226_seed42_cd203c
 no_pattern_bank,CA-M,raw,ablation,5,logs/runs_sharedkv_ablations/full/no_pattern_bank/raw/CA_MULTIYEAR_NODE_SHIFT/20261115_013156_seed42_4d9386
 no_pattern_bank,CA-S,raw,ablation,4,logs/runs_sharedkv_ablations/full/no_pattern_bank/raw/CA_NODE_SHIFT/20261115_011526_seed42_c38150
-no_pattern_bank,Madrid,raw,ablation,5,logs/runs_sharedkv_ablations/full/no_pattern_bank/raw/MADRID_2022_2026_MMD/20261115_015934_seed42_f00788
 no_pattern_bank,PEMS,raw,ablation,7,logs/runs_sharedkv_ablations/full/no_pattern_bank/raw/PEMS/20261112_025213_seed42_96d29d
-no_season,AIR,raw,ablation,4,logs/runs_sharedkv_ablations/full/no_season/raw/AIR/20261112_041227_seed42_6baeb5
 no_season,CA-M,raw,ablation,5,logs/runs_sharedkv_ablations/full/no_season/raw/CA_MULTIYEAR_NODE_SHIFT/20261115_023800_seed42_5a27e6
 no_season,CA-S,raw,ablation,4,logs/runs_sharedkv_ablations/full/no_season/raw/CA_NODE_SHIFT/20261115_021431_seed42_6f9944
 no_season,Madrid,raw,ablation,5,logs/runs_sharedkv_ablations/full/no_season/raw/MADRID_2022_2026_MMD/20261115_033112_seed42_8c86fe
@@ -71,7 +67,6 @@ no_season,PEMS,raw,ablation,7,logs/runs_sharedkv_ablations/full/no_season/raw/PE
 no_dynamic_graph,AIR,raw,ablation,4,logs/runs_sharedkv_extra_ablations/full/no_dynamic_graph/raw/AIR/20261114_083323_seed42_9382b3
 no_dynamic_graph,CA-M,raw,ablation,5,logs/runs_sharedkv_extra_ablations/full/no_dynamic_graph/raw/CA_MULTIYEAR_NODE_SHIFT/20261115_055410_seed42_f334c7
 no_dynamic_graph,CA-S,raw,ablation,4,logs/runs_sharedkv_extra_ablations/full/no_dynamic_graph/raw/CA_NODE_SHIFT/20261115_054133_seed42_6c33e8
-no_dynamic_graph,Madrid,raw,ablation,5,logs/runs_sharedkv_extra_ablations/full/no_dynamic_graph/raw/MADRID_2022_2026_MMD/20261115_062417_seed42_798a4f
 no_dynamic_graph,PEMS,raw,ablation,7,logs/runs_sharedkv_extra_ablations/full/no_dynamic_graph/raw/PEMS/20261114_080918_seed42_58bd02
 reuse_history_stats,AIR,raw,ablation,4,logs/runs_sharedkv_extra_ablations/full/reuse_history_stats/raw/AIR/20261114_075834_seed42_c123bd
 reuse_history_stats,CA-M,raw,ablation,5,logs/runs_sharedkv_extra_ablations/full/reuse_history_stats/raw/CA_MULTIYEAR_NODE_SHIFT/20261115_050508_seed42_01cfdb
