@@ -26,6 +26,10 @@ case "$dataset" in
   PEMS|AIR) datasets=("$dataset");;
   *) echo "Unknown dataset: $dataset" >&2; exit 2;;
 esac
+prepare=true
+for arg in "$@"; do
+  if [[ $arg == --help || $arg == -h ]]; then prepare=false; fi
+done
 for method in "${models[@]}"; do
   for ds in "${datasets[@]}"; do
     if [[ $ds == MADRID && $method == STRAP ]]; then
@@ -38,6 +42,10 @@ for method in "${models[@]}"; do
     if [[ ! -d continual/_upstream/$namespace ]]; then
       echo "Install the $method predictor first: $python_bin continual/install_upstream.py $method" >&2
       exit 2
+    fi
+    if [[ $prepare == true ]]; then
+      "$python_bin" prepare_data.py
+      prepare=false
     fi
     batch=128
     lr=0.005

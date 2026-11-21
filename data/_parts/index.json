@@ -1,0 +1,171 @@
+{
+  "files": [
+    {
+      "path": "data/PEMS/RawData/2011.npz",
+      "bytes": 79983616,
+      "sha256": "dce281cc93c719f5e87f87da0c46662954897bf55a54280caf701aac7ae531c4",
+      "parts": [
+        "data/_parts/PEMS/RawData/2011.npz/001.bin",
+        "data/_parts/PEMS/RawData/2011.npz/002.bin",
+        "data/_parts/PEMS/RawData/2011.npz/003.bin"
+      ]
+    },
+    {
+      "path": "data/PEMS/RawData/2012.npz",
+      "bytes": 87310336,
+      "sha256": "2efbfea783abd2fb526d58018724ccf3ce3abb3dc81d199b7e8ed1ccf6597a32",
+      "parts": [
+        "data/_parts/PEMS/RawData/2012.npz/001.bin",
+        "data/_parts/PEMS/RawData/2012.npz/002.bin",
+        "data/_parts/PEMS/RawData/2012.npz/003.bin"
+      ]
+    },
+    {
+      "path": "data/PEMS/RawData/2013.npz",
+      "bytes": 95980288,
+      "sha256": "66eef4cb0197e24d492ec129a09fb1459ea144c3b138505e14d20663b32fdc08",
+      "parts": [
+        "data/_parts/PEMS/RawData/2013.npz/001.bin",
+        "data/_parts/PEMS/RawData/2013.npz/002.bin",
+        "data/_parts/PEMS/RawData/2013.npz/003.bin"
+      ]
+    },
+    {
+      "path": "data/PEMS/RawData/2014.npz",
+      "bytes": 100376320,
+      "sha256": "17688a3c442563c0aa87778a8d3ceba5e2d307121cf1d789e00e15e5787e514d",
+      "parts": [
+        "data/_parts/PEMS/RawData/2014.npz/001.bin",
+        "data/_parts/PEMS/RawData/2014.npz/002.bin",
+        "data/_parts/PEMS/RawData/2014.npz/003.bin"
+      ]
+    },
+    {
+      "path": "data/PEMS/RawData/2015.npz",
+      "bytes": 101841664,
+      "sha256": "2b80b99fa526661ce23484713f297dcb022e5100ef894610043c6b185fb8100f",
+      "parts": [
+        "data/_parts/PEMS/RawData/2015.npz/001.bin",
+        "data/_parts/PEMS/RawData/2015.npz/002.bin",
+        "data/_parts/PEMS/RawData/2015.npz/003.bin"
+      ]
+    },
+    {
+      "path": "data/PEMS/RawData/2016.npz",
+      "bytes": 103795456,
+      "sha256": "74ed9eb0430adb5c0de4b6eb343dec99b9f4a1eca556c135afd5de8f4eba9227",
+      "parts": [
+        "data/_parts/PEMS/RawData/2016.npz/001.bin",
+        "data/_parts/PEMS/RawData/2016.npz/002.bin",
+        "data/_parts/PEMS/RawData/2016.npz/003.bin"
+      ]
+    },
+    {
+      "path": "data/PEMS/RawData/2017.npz",
+      "bytes": 106359808,
+      "sha256": "8b4ec7869a635fc83eb292dde2c3ed638b9f86e831651b46eccb5787ee0656ad",
+      "parts": [
+        "data/_parts/PEMS/RawData/2017.npz/001.bin",
+        "data/_parts/PEMS/RawData/2017.npz/002.bin",
+        "data/_parts/PEMS/RawData/2017.npz/003.bin"
+      ]
+    },
+    {
+      "path": "data/AIR/graph/2016_adj.npz",
+      "bytes": 9452808,
+      "sha256": "a08d95f7f3a909951fa2881cccef67b70ab6f4dffd0e23bf1adfa154d4105eef",
+      "parts": [
+        "data/_parts/AIR/graph/2016_adj.npz/001.bin"
+      ]
+    },
+    {
+      "path": "data/AIR/graph/2017_adj.npz",
+      "bytes": 10653984,
+      "sha256": "12678e565ee5b6ae4231a7fd68054473f164befc707dfcdd71961b41fa00b62e",
+      "parts": [
+        "data/_parts/AIR/graph/2017_adj.npz/001.bin"
+      ]
+    },
+    {
+      "path": "data/AIR/graph/2018_adj.npz",
+      "bytes": 11386248,
+      "sha256": "369daa07b54d83f9e94bee022c8c6f4e9e9b6ad4b9aa0675b2d83d95ad83dbf6",
+      "parts": [
+        "data/_parts/AIR/graph/2018_adj.npz/001.bin"
+      ]
+    },
+    {
+      "path": "data/AIR/graph/2019_adj.npz",
+      "bytes": 11558688,
+      "sha256": "d507a1902330d7b06f641038fd58d85fe7d901630deb24e21558febf88ac4621",
+      "parts": [
+        "data/_parts/AIR/graph/2019_adj.npz/001.bin"
+      ]
+    },
+    {
+      "path": "data/AIR/RawData/2016.npz",
+      "bytes": 74594544,
+      "sha256": "0da66c89adabc2971eac688611ad20e50011f6a60bdfb23263a6f14223b2d14f",
+      "parts": [
+        "data/_parts/AIR/RawData/2016.npz/001.bin",
+        "data/_parts/AIR/RawData/2016.npz/002.bin"
+      ]
+    },
+    {
+      "path": "data/AIR/RawData/2017.npz",
+      "bytes": 79570864,
+      "sha256": "3f31035a5b533942f0bae1b1c32543a12a6d67d3999f5d37c1e9836193914461",
+      "parts": [
+        "data/_parts/AIR/RawData/2017.npz/001.bin",
+        "data/_parts/AIR/RawData/2017.npz/002.bin"
+      ]
+    },
+    {
+      "path": "data/AIR/RawData/2018.npz",
+      "bytes": 79959888,
+      "sha256": "48a2bb2a3856185b341ebd244a3f112089d29818c45014fe9bc1d331e2dec8b9",
+      "parts": [
+        "data/_parts/AIR/RawData/2018.npz/001.bin",
+        "data/_parts/AIR/RawData/2018.npz/002.bin"
+      ]
+    },
+    {
+      "path": "data/AIR/RawData/2019.npz",
+      "bytes": 81640096,
+      "sha256": "1591c4b63135824a980937954fca0d1541c923654252d3e6f5d9b775a91fa49e",
+      "parts": [
+        "data/_parts/AIR/RawData/2019.npz/001.bin",
+        "data/_parts/AIR/RawData/2019.npz/002.bin"
+      ]
+    },
+    {
+      "path": "data/CA-NodeShift/RawData/3.npz",
+      "bytes": 12707246,
+      "sha256": "c07cb212593ab80a3ae08e3e59178ed49f27370c1c7955428a4bff3edbe7d16d",
+      "parts": [
+        "data/_parts/CA-NodeShift/RawData/3.npz/001.bin",
+        "data/_parts/CA-NodeShift/RawData/3.npz/002.bin"
+      ]
+    },
+    {
+      "path": "data/CA-MultiYearNodeShift/RawData/3.npz",
+      "bytes": 12021576,
+      "sha256": "ac2b1beeadaabe711a4e7a0970ac67627074770bf8c63fddf40408c3d2f5fdc3",
+      "parts": [
+        "data/_parts/CA-MultiYearNodeShift/RawData/3.npz/001.bin",
+        "data/_parts/CA-MultiYearNodeShift/RawData/3.npz/002.bin"
+      ]
+    },
+    {
+      "path": "data/CA-MultiYearNodeShift/RawData/4.npz",
+      "bytes": 25236312,
+      "sha256": "3f5bc472d79d0de0bd633f0cf37816d7c8a397b8681da998ddb58ebf28dcb7de",
+      "parts": [
+        "data/_parts/CA-MultiYearNodeShift/RawData/4.npz/001.bin",
+        "data/_parts/CA-MultiYearNodeShift/RawData/4.npz/002.bin",
+        "data/_parts/CA-MultiYearNodeShift/RawData/4.npz/003.bin",
+        "data/_parts/CA-MultiYearNodeShift/RawData/4.npz/004.bin"
+      ]
+    }
+  ]
+}

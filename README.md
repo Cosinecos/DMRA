@@ -14,28 +14,21 @@ DMRA forecasts existing and newly deployed sensors as a network evolves. Given a
 
 ## Datasets
 
-The release includes the stage observations, physical graphs, and Madrid’s observation masks and month-selection metadata. Each stage uses its first 60% for training, the next 20% for validation, and the final 20% for testing. All experiments below use a 12-step history to predict the next 12 steps.
+The repository includes all five datasets under [`data/`](data/), with stage observations, physical graphs, and Madrid’s observation masks and month-selection metadata. Each stage uses its first 60% for training, the next 20% for validation, and the final 20% for testing. All experiments below use a 12-step history to predict the next 12 steps.
 
 | Dataset | Observations | Stage dates | Nodes per stage | Sampling |
 | --- | --- | --- | --- | --- |
-| PEMS | Traffic | 2011, 2012, 2013, 2014, 2015, 2016, 2017 | 655, 715, 786, 822, 834, 850, 871 | 5 min |
-| AIR | Air quality | 2016, 2017, 2018, 2019 | 1,087, 1,154, 1,193, 1,202 | 1 h |
-| CA-S | California traffic, single year | Feb, Apr, Oct, Dec 2020 | 128, 256, 512, 1,024 | 5 min |
-| CA-M | California traffic, multiple years | Jan 2017, Apr 2018, Dec 2019, Apr 2020, Jul 2021 | 128, 256, 512, 1,024, 2,048 | 5 min |
-| Madrid | Madrid traffic | Feb 2022, Aug 2023, Apr 2024, Aug 2025, Jun 2026 | 256, 320, 384, 448, 499 | 15 min |
+| [PEMS](data/PEMS/) | Traffic | 2011, 2012, 2013, 2014, 2015, 2016, 2017 | 655, 715, 786, 822, 834, 850, 871 | 5 min |
+| [AIR](data/_parts/AIR/) | Air quality | 2016, 2017, 2018, 2019 | 1,087, 1,154, 1,193, 1,202 | 1 h |
+| [CA-S](data/CA-NodeShift/) | California traffic, single year | Feb, Apr, Oct, Dec 2020 | 128, 256, 512, 1,024 | 5 min |
+| [CA-M](data/CA-MultiYearNodeShift/) | California traffic, multiple years | Jan 2017, Apr 2018, Dec 2019, Apr 2020, Jul 2021 | 128, 256, 512, 1,024, 2,048 | 5 min |
+| [Madrid](data/Madrid-2022-2026-MMD/) | Madrid traffic | Feb 2022, Aug 2023, Apr 2024, Aug 2025, Jun 2026 | 256, 320, 384, 448, 499 | 15 min |
 
-PEMS and AIR follow the released continual forecasting benchmarks. The two California streams are derived from LargeST. The Madrid stream uses traffic intensity and measurement-point coordinates published by Ayuntamiento de Madrid under CC BY 4.0. The dataset archive retains the original Madrid attribution and processing manifest. [EAC benchmarks](https://github.com/Onedean/EAC) · [LargeST](https://github.com/liuxu77/LargeST) · [Madrid traffic data](https://datos.madrid.es/dataset/208627-0-transporte-ptomedida-historico) · [Madrid measurement points](https://datos.madrid.es/dataset/202468-0-intensidad-trafico)
+PEMS and AIR follow the released continual forecasting benchmarks. The two California streams are derived from LargeST. The Madrid stream uses traffic intensity and measurement-point coordinates published by Ayuntamiento de Madrid under CC BY 4.0. The Madrid dataset directory includes the original attribution and processing manifest. [EAC benchmarks](https://github.com/Onedean/EAC) · [LargeST](https://github.com/liuxu77/LargeST) · [Madrid traffic data](https://datos.madrid.es/dataset/208627-0-transporte-ptomedida-historico) · [Madrid measurement points](https://datos.madrid.es/dataset/202468-0-intensidad-trafico)
 
 ## Quick start
 
-Clone the repository and extract the dataset at its root. The training logs are a separate download and are optional for training.
-
-```bash
-git clone https://github.com/Cosinecos/DMRA.git
-cd DMRA
-curl -fL --retry 3 -O https://github.com/Cosinecos/DMRA/releases/download/v1.0.0/dmra-data.zip
-unzip -q dmra-data.zip
-```
+Download the repository ZIP or clone this repository, then open the directory containing `run_dmra.sh`. Both downloads include the data and historical logs. Larger input files are stored as [compressed parts](data/_parts/) of at most 7 MB each. The training launchers reassemble them automatically on first use. To prepare the data separately, run `python prepare_data.py` from the repository root. File sizes and SHA-256 hashes are listed in the [dataset manifest](results/dataset_files.csv).
 
 Use Python 3.11 and install PyTorch for your hardware. The following example uses PyTorch 2.2.1 with CUDA 12.1 on Linux.
 
@@ -70,15 +63,9 @@ Horizons 3, 6, and 12 cover all steps up to that horizon. Within each stage, Avg
 
 [![Table 2 from the manuscript. Full-data forecasting results for eleven methods on PEMS, AIR, CA-S, CA-M, and Madrid.](figures/full_data_results.png)](figures/full_data_results.png)
 
-The manuscript uses illustrative values for the four conventional baselines, STRAP, and all standard deviations. [Measured results](results/full.csv) · [Training logs](https://github.com/Cosinecos/DMRA/releases/download/v1.0.0/dmra-training-logs.zip)
+The manuscript uses illustrative values for the four conventional baselines, STRAP, and all standard deviations. [Measured results](results/full.csv)
 
-```bash
-curl -fL --retry 3 -O https://github.com/Cosinecos/DMRA/releases/download/v1.0.0/dmra-training-logs.zip
-sha256sum -c results/SHA256SUMS
-unzip -q dmra-training-logs.zip
-```
-
-The archive includes the training log, configuration, stage results, and summary for each run. In the archived paths, `runs_integrated_shared_kv` identifies DMRA. The index distinguishes the paper’s raw-input experiments from the additional full-data baseline runs with input normalization. [Run index](results/run_index.csv)
+The [`logs/`](logs/) directory contains 79 historical full-data training logs, each saved as `train.log` in its original run directory. DMRA logs are under [`logs/runs_integrated_shared_kv/`](logs/runs_integrated_shared_kv/). The run index gives the path for each run and distinguishes the paper’s raw-input experiments from the additional full-data baseline runs with input normalization. [Run index](results/run_index.csv) · [Training log SHA-256 hashes](results/log_files.csv)
 
 ## Ablations
 
