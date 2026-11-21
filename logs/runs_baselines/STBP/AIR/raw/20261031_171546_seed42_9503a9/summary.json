@@ -1,0 +1,51 @@
+{
+  "baseline": "STBP",
+  "dataset": "AIR",
+  "variant": "raw",
+  "run": "/root/autodl-tmp/autodl_psrag_trend/runs_baselines/STBP/AIR/raw/20261031_171546_seed42_9503a9",
+  "smoke": false,
+  "tasks": [
+    "2016",
+    "2017",
+    "2018",
+    "2019"
+  ],
+  "average": {
+    "3": {
+      "MAE": 12.651758002925229,
+      "RMSE": 22.55537567173989,
+      "MAPE": 17.384741087936188
+    },
+    "6": {
+      "MAE": 16.292049106027672,
+      "RMSE": 28.242187066587903,
+      "MAPE": 22.58725861490852
+    },
+    "12": {
+      "MAE": 20.139821736319618,
+      "RMSE": 33.83318226164585,
+      "MAPE": 28.419754593744315
+    },
+    "Avg": {
+      "MAE": 15.868624915460066,
+      "RMSE": 27.40389617355294,
+      "MAPE": 22.114031805818243
+    }
+  },
+  "protocol": {
+    "split": "chronological_per_task",
+    "rates": [
+      0.6,
+      0.2,
+      0.2
+    ],
+    "targets": "source",
+    "input_preprocessing": "source_x",
+    "normalization_scope": null,
+    "validation": "masked_MAE_batch_mean",
+    "test": "global_masked_prefix_metrics",
+    "old_task_backtesting": false,
+    "method_training_loss": "upstream_specific"
+  },
+  "fidelity_status": "local_source_predictor_and_native_pattern_tuning"
+}

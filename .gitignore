@@ -1,5 +1,3 @@
-/data/
-/logs/
 /cache/
 /runs*/
 *.zip
@@ -11,3 +9,22 @@ __pycache__/
 .venv/
 .pytest_cache/
 
+# Locally restored arrays; the tracked compressed parts are under data/_parts/.
+/data/PEMS/RawData/2011.npz
+/data/PEMS/RawData/2012.npz
+/data/PEMS/RawData/2013.npz
+/data/PEMS/RawData/2014.npz
+/data/PEMS/RawData/2015.npz
+/data/PEMS/RawData/2016.npz
+/data/PEMS/RawData/2017.npz
+/data/AIR/graph/2016_adj.npz
+/data/AIR/graph/2017_adj.npz
+/data/AIR/graph/2018_adj.npz
+/data/AIR/graph/2019_adj.npz
+/data/AIR/RawData/2016.npz
+/data/AIR/RawData/2017.npz
+/data/AIR/RawData/2018.npz
+/data/AIR/RawData/2019.npz
+/data/CA-NodeShift/RawData/3.npz
+/data/CA-MultiYearNodeShift/RawData/3.npz
+/data/CA-MultiYearNodeShift/RawData/4.npz

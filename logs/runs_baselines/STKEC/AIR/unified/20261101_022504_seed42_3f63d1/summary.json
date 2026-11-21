@@ -1,0 +1,51 @@
+{
+  "baseline": "STKEC",
+  "dataset": "AIR",
+  "variant": "unified",
+  "run": "/root/autodl-tmp/autodl_psrag_trend/runs_baselines/STKEC/AIR/unified/20261101_022504_seed42_3f63d1",
+  "smoke": false,
+  "tasks": [
+    "2016",
+    "2017",
+    "2018",
+    "2019"
+  ],
+  "average": {
+    "3": {
+      "MAE": 18.32579990744283,
+      "RMSE": 27.999538368173763,
+      "MAPE": 23.31903820434358
+    },
+    "6": {
+      "MAE": 21.116547358639416,
+      "RMSE": 33.31173712478943,
+      "MAPE": 26.929125826514888
+    },
+    "12": {
+      "MAE": 24.42039191651252,
+      "RMSE": 38.89908946848684,
+      "MAPE": 31.657780670219022
+    },
+    "Avg": {
+      "MAE": 20.978197858903997,
+      "RMSE": 32.750153244430386,
+      "MAPE": 26.942680793566065
+    }
+  },
+  "protocol": {
+    "split": "chronological_per_task",
+    "rates": [
+      0.6,
+      0.2,
+      0.2
+    ],
+    "targets": "source",
+    "input_preprocessing": "standardized_x",
+    "normalization_scope": "split",
+    "validation": "masked_MAE_batch_mean",
+    "test": "global_masked_prefix_metrics",
+    "old_task_backtesting": false,
+    "method_training_loss": "upstream_specific"
+  },
+  "fidelity_status": "pinned_official_predictor_repaired_preprocessing_and_cluster_supervision"
+}

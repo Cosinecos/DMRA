@@ -6,4 +6,8 @@
 *.csv text eol=lf
 *.png binary
 *.pdf binary
+*.npz binary
+*.bin binary
+/data/** -text
+/logs/** -text
 

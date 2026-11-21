@@ -1,0 +1,57 @@
+{
+  "model": "PECPM",
+  "dataset": "MADRID_2022_2026_MMD",
+  "variant": "raw",
+  "run": "/root/autodl-tmp/autodl_psrag_trend/runs_madrid_continual_baselines/PECPM/MADRID_2022_2026_MMD/raw/20261114_000702_seed42_b8e826",
+  "smoke": false,
+  "tasks": [
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+    "2026"
+  ],
+  "average": {
+    "3": {
+      "MAE": 43.8479872431457,
+      "RMSE": 93.19424097928115,
+      "MAPE": 30.460964768143022
+    },
+    "6": {
+      "MAE": 51.823792339502276,
+      "RMSE": 113.73381024844532,
+      "MAPE": 34.72024832272199
+    },
+    "12": {
+      "MAE": 66.14353868010915,
+      "RMSE": 148.15247086259512,
+      "MAPE": 42.940771660287545
+    },
+    "Avg": {
+      "MAE": 52.794453235414416,
+      "RMSE": 115.47891579886115,
+      "MAPE": 35.464499414428374
+    }
+  },
+  "manifest_sha256": "e84655386b662ab5d82e275d5accea8067a0ac2f22ef96c20ef523fc17554ec5",
+  "protocol": {
+    "name": "psrag_madrid_full_continual_60_20_20_v1",
+    "split": "chronological_per_task",
+    "rates": [
+      0.6,
+      0.2,
+      0.2
+    ],
+    "training_fraction_of_entire_task": 0.6,
+    "strategy": "native_continual_weight_inheritance",
+    "model_reinitialized_each_stage": false,
+    "validation": "global_observed_MAE",
+    "test": "global_observed_prefix_metrics",
+    "targets": "source",
+    "input_preprocessing": "source_x",
+    "normalization_scope": "train",
+    "method_training_loss": "upstream_specific",
+    "old_task_backtesting": false,
+    "storage": "zero_copy_sliding_window_views_no_window_cache"
+  }
+}

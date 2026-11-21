@@ -1,0 +1,52 @@
+{
+  "baseline": "STBP",
+  "dataset": "CA_MULTIYEAR_NODE_SHIFT",
+  "variant": "raw",
+  "run": "/root/autodl-tmp/autodl_psrag_trend/runs_baselines/STBP/CA_MULTIYEAR_NODE_SHIFT/raw/20261031_174025_seed42_259295",
+  "smoke": false,
+  "tasks": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "average": {
+    "3": {
+      "MAE": 17.696976579248208,
+      "RMSE": 27.339575814338367,
+      "MAPE": 9.978089802096395
+    },
+    "6": {
+      "MAE": 18.693359467424916,
+      "RMSE": 29.032371744909142,
+      "MAPE": 10.551958603337367
+    },
+    "12": {
+      "MAE": 20.34913136556056,
+      "RMSE": 31.70972863647671,
+      "MAPE": 11.534156720352437
+    },
+    "Avg": {
+      "MAE": 18.730178415794253,
+      "RMSE": 29.066773774956783,
+      "MAPE": 10.58146309860329
+    }
+  },
+  "protocol": {
+    "split": "chronological_per_task",
+    "rates": [
+      0.6,
+      0.2,
+      0.2
+    ],
+    "targets": "source",
+    "input_preprocessing": "source_x",
+    "normalization_scope": null,
+    "validation": "masked_MAE_batch_mean",
+    "test": "global_masked_prefix_metrics",
+    "old_task_backtesting": false,
+    "method_training_loss": "upstream_specific"
+  },
+  "fidelity_status": "local_source_predictor_and_native_pattern_tuning"
+}

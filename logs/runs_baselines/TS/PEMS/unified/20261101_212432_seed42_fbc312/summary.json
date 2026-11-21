@@ -1,0 +1,54 @@
+{
+  "baseline": "TS",
+  "dataset": "PEMS",
+  "variant": "unified",
+  "run": "/root/autodl-tmp/autodl_psrag_trend/runs_baselines/TS/PEMS/unified/20261101_212432_seed42_fbc312",
+  "smoke": false,
+  "tasks": [
+    "2011",
+    "2012",
+    "2013",
+    "2014",
+    "2015",
+    "2016",
+    "2017"
+  ],
+  "average": {
+    "3": {
+      "MAE": 12.750664418112683,
+      "RMSE": 20.64004151816877,
+      "MAPE": 17.18689944897063
+    },
+    "6": {
+      "MAE": 13.897294745770862,
+      "RMSE": 22.73865106507286,
+      "MAPE": 18.755818347873664
+    },
+    "12": {
+      "MAE": 16.204876331096376,
+      "RMSE": 26.71279169042785,
+      "MAPE": 22.364677165204977
+    },
+    "Avg": {
+      "MAE": 14.065309119462913,
+      "RMSE": 22.971727109250363,
+      "MAPE": 19.117645007250285
+    }
+  },
+  "protocol": {
+    "split": "chronological_per_task",
+    "rates": [
+      0.6,
+      0.2,
+      0.2
+    ],
+    "targets": "source",
+    "input_preprocessing": "standardized_x",
+    "normalization_scope": "split",
+    "validation": "masked_MAE_batch_mean",
+    "test": "global_masked_prefix_metrics",
+    "old_task_backtesting": false,
+    "method_training_loss": "upstream_specific"
+  },
+  "fidelity_status": "official_network_and_incremental_algorithm_train_only_detection"
+}

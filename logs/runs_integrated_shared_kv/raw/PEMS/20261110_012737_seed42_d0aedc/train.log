@@ -1,0 +1,668 @@
+2026-11-10 01:27:37,592 device=cuda:0 run=/root/autodl-tmp/autodl_psrag_trend/runs_integrated_shared_kv/raw/PEMS/20261110_012737_seed42_d0aedc settings={'embedding_variant': 'integrated_shared_kv', 'bank_temperature': 0.3, 'bank_qk_norm_eps': 1e-08, 'week_interaction_rank': 16, 'gcn_adapter_rank': 16, 'gcn_adapter_lora_rank': 4, 'use_gcn_adapter_lora': True, 'seed': 42, 'gpuid': 0, 'num_workers': 4, 'normalize_x': False, 'normalization_scope': 'split', 'use_residual_norm': True, 'use_mae_loss': True, 'use_freq_loss': False, 'use_bank_ortho_loss': False, 'use_node_stability_loss': False, 'use_distillation_loss': False, 'lambda_mae': 1.0, 'lambda_freq': 0.005, 'lambda_bank_ortho': 0.0, 'lambda_u': 0.001, 'lambda_dist': 0.01, 'freq_remove_dc': True, 'ablate_v6_scale_head': False, 'ablate_v6_season': False, 'ablate_v6_time_features': False, 'ablate_v6_node_graph': False, 'learnable_node_graph_scale': True, 'steps_per_day': 288, 'pems_days': 31, 'train_rate': 0.6, 'val_rate': 0.2, 'test_rate': 0.2, 'val_test_mix': False, 'cache_data': True, 'data_process': True, 'init': True, 'train': True, 'use_lora': True, 'retrain_match_capacity': False, 'load_first_year': False, 'first_year_model_path': '', 'checkpoint_path': '', 'profile_v6_parts': False, 'profile_v6_epoch': -1, 'pred_dump': False, 'pred_dump_interval': 10, 'pred_dump_samples': 2, 'pred_dump_nodes': 5, 'pred_dump_plots': True, 'smoke': False, 'patience': 30, 'paral': 0, 'res_norm_eps': 1e-05, 'model': {'in_channel': 12, 'out_channel': 12, 'hidden_channel': 192}, 'begin_year': 2011, 'end_year': 2017, 'dropout': 0.0, 'lr': 0.01, 'batch_size': 64, 'epoch': 200, 'y_len': 12, 'x_len': 12, 'raw_data_path': 'data/PEMS/RawData/', 'save_data_path': 'cache/PEMS/', 'graph_path': 'data/PEMS/graph/', 'model_path': 'runs_integrated_shared_kv/raw/PEMS', 'season_rank': 24, 'gate_rank': 24, 'res_scale_clip': 2.0, 'node_graph_topk': 32, 'node_graph_scale': 1.0, 'standard_gcn_tcn_kernel_size': 3, 'standard_gcn_tcn_dilation': 1, 'lora_rank': 4, 'lora_mlp_layers': 3, 'trend_bank_size': 64, 'trend_future_layers': 3, 'method': 'PSRAG_REFINE_V6_STANDARD_GCN_DYN_FRETS_LORA_TREND_QKNORM_WEEK_SHARED_KV_GCN_ADAPTER_LORA', 'logname': 'PSRAG_INTEGRATED_SHARED_KV_PEMS', 'dataset': 'PEMS'}
+2026-11-10 01:27:37,592 embedding=integrated_shared_kv bank_retrieval=cosine_shared_key_value week_interaction=new_embeddings gcn_terminal_adapter=true adapter_annual_matrix_lora=true calendar=task_relative_phase; explicit natural weekday alignment is not changed
+2026-11-10 01:27:38,925 task=2011 nodes=655 samples={'train': 5332, 'val': 1762, 'test': 1762}
+2026-11-10 01:27:38,937 Total Parameters: 534412
+2026-11-10 01:27:38,937 Trainable Parameters: 534412
+2026-11-10 01:27:38,937 teacher=False residual_norm=True normalize_x=False normalization_scope=split lora_enabled=True lora_years=[] retrain_match_capacity=False
+2026-11-10 01:27:44,458 task=2011 epoch=0 train=21.077021 val_mae=13.969762 loss_components={'mae': 21.077020985739573}
+2026-11-10 01:27:49,265 task=2011 epoch=1 train=13.409966 val_mae=13.313541 loss_components={'mae': 13.409965787615095}
+2026-11-10 01:27:53,961 task=2011 epoch=2 train=12.881818 val_mae=13.220284 loss_components={'mae': 12.881817931220645}
+2026-11-10 01:27:58,573 task=2011 epoch=3 train=12.134314 val_mae=12.418696 loss_components={'mae': 12.134313583374023}
+2026-11-10 01:28:03,219 task=2011 epoch=4 train=11.855834 val_mae=12.759617 loss_components={'mae': 11.855834029969715}
+2026-11-10 01:28:07,982 task=2011 epoch=5 train=11.521259 val_mae=12.062168 loss_components={'mae': 11.521259466807047}
+2026-11-10 01:28:12,704 task=2011 epoch=6 train=11.538964 val_mae=12.041090 loss_components={'mae': 11.538964237485613}
+2026-11-10 01:28:17,520 task=2011 epoch=7 train=11.163892 val_mae=12.140200 loss_components={'mae': 11.163891815003895}
+2026-11-10 01:28:22,249 task=2011 epoch=8 train=11.178647 val_mae=11.875119 loss_components={'mae': 11.178647313799177}
+2026-11-10 01:28:27,067 task=2011 epoch=9 train=11.053558 val_mae=11.782375 loss_components={'mae': 11.053557600293841}
+2026-11-10 01:28:31,846 task=2011 epoch=10 train=10.929798 val_mae=11.706251 loss_components={'mae': 10.929798012688046}
+2026-11-10 01:28:36,602 task=2011 epoch=11 train=10.915138 val_mae=11.665495 loss_components={'mae': 10.915137620199294}
+2026-11-10 01:28:41,420 task=2011 epoch=12 train=10.868480 val_mae=11.580247 loss_components={'mae': 10.868479581106277}
+2026-11-10 01:28:46,464 task=2011 epoch=13 train=10.787426 val_mae=11.824543 loss_components={'mae': 10.787426244644891}
+2026-11-10 01:28:51,570 task=2011 epoch=14 train=10.806158 val_mae=11.597612 loss_components={'mae': 10.806157736551194}
+2026-11-10 01:28:56,839 task=2011 epoch=15 train=10.747128 val_mae=11.530051 loss_components={'mae': 10.747128236861457}
+2026-11-10 01:29:02,030 task=2011 epoch=16 train=10.795591 val_mae=11.636244 loss_components={'mae': 10.795590627761115}
+2026-11-10 01:29:07,384 task=2011 epoch=17 train=10.731148 val_mae=11.601748 loss_components={'mae': 10.731147913705735}
+2026-11-10 01:29:12,799 task=2011 epoch=18 train=10.777957 val_mae=11.828117 loss_components={'mae': 10.777956690107073}
+2026-11-10 01:29:17,785 task=2011 epoch=19 train=10.691225 val_mae=11.442218 loss_components={'mae': 10.691225324358259}
+2026-11-10 01:29:22,784 task=2011 epoch=20 train=10.640392 val_mae=11.751906 loss_components={'mae': 10.640391554151263}
+2026-11-10 01:29:28,166 task=2011 epoch=21 train=10.670205 val_mae=11.444479 loss_components={'mae': 10.67020454860869}
+2026-11-10 01:29:33,469 task=2011 epoch=22 train=10.602939 val_mae=11.549067 loss_components={'mae': 10.60293864068531}
+2026-11-10 01:29:38,736 task=2011 epoch=23 train=10.617567 val_mae=11.364226 loss_components={'mae': 10.61756696019854}
+2026-11-10 01:29:43,950 task=2011 epoch=24 train=10.517027 val_mae=11.373151 loss_components={'mae': 10.517027480261666}
+2026-11-10 01:29:49,193 task=2011 epoch=25 train=10.561282 val_mae=11.377645 loss_components={'mae': 10.561281726473855}
+2026-11-10 01:29:54,308 task=2011 epoch=26 train=10.564478 val_mae=11.505641 loss_components={'mae': 10.564477784293038}
+2026-11-10 01:29:59,417 task=2011 epoch=27 train=10.562466 val_mae=11.525279 loss_components={'mae': 10.562465985616049}
+2026-11-10 01:30:04,517 task=2011 epoch=28 train=10.541954 val_mae=11.509587 loss_components={'mae': 10.541954097293672}
+2026-11-10 01:30:09,850 task=2011 epoch=29 train=10.498383 val_mae=11.613257 loss_components={'mae': 10.498383476620628}
+2026-11-10 01:30:14,851 task=2011 epoch=30 train=10.529865 val_mae=11.276030 loss_components={'mae': 10.52986504918053}
+2026-11-10 01:30:19,992 task=2011 epoch=31 train=10.520352 val_mae=11.554085 loss_components={'mae': 10.520352443059286}
+2026-11-10 01:30:25,263 task=2011 epoch=32 train=10.482383 val_mae=11.401337 loss_components={'mae': 10.482383103597732}
+2026-11-10 01:30:30,495 task=2011 epoch=33 train=10.460269 val_mae=11.325388 loss_components={'mae': 10.460269462494622}
+2026-11-10 01:30:35,872 task=2011 epoch=34 train=10.461187 val_mae=11.264185 loss_components={'mae': 10.461187090192523}
+2026-11-10 01:30:41,213 task=2011 epoch=35 train=10.481918 val_mae=11.362992 loss_components={'mae': 10.481918334960938}
+2026-11-10 01:30:46,280 task=2011 epoch=36 train=10.465772 val_mae=11.540820 loss_components={'mae': 10.465772424425397}
+2026-11-10 01:30:51,480 task=2011 epoch=37 train=10.407458 val_mae=11.342783 loss_components={'mae': 10.407457907994589}
+2026-11-10 01:30:56,596 task=2011 epoch=38 train=10.420927 val_mae=11.270252 loss_components={'mae': 10.420927411033993}
+2026-11-10 01:31:01,513 task=2011 epoch=39 train=10.435111 val_mae=11.297653 loss_components={'mae': 10.435110943658012}
+2026-11-10 01:31:06,421 task=2011 epoch=40 train=10.406972 val_mae=11.394058 loss_components={'mae': 10.406972090403238}
+2026-11-10 01:31:11,408 task=2011 epoch=41 train=10.418948 val_mae=11.292771 loss_components={'mae': 10.418948184876214}
+2026-11-10 01:31:16,274 task=2011 epoch=42 train=10.391376 val_mae=11.794549 loss_components={'mae': 10.39137559845334}
+2026-11-10 01:31:20,839 task=2011 epoch=43 train=10.432533 val_mae=11.224315 loss_components={'mae': 10.432533275513421}
+2026-11-10 01:31:25,407 task=2011 epoch=44 train=10.423250 val_mae=11.240541 loss_components={'mae': 10.423249630700974}
+2026-11-10 01:31:30,264 task=2011 epoch=45 train=10.381997 val_mae=11.406489 loss_components={'mae': 10.381996518089657}
+2026-11-10 01:31:35,104 task=2011 epoch=46 train=10.376467 val_mae=11.242618 loss_components={'mae': 10.376467159816197}
+2026-11-10 01:31:39,943 task=2011 epoch=47 train=10.327362 val_mae=11.250163 loss_components={'mae': 10.327361538296653}
+2026-11-10 01:31:44,655 task=2011 epoch=48 train=10.421169 val_mae=11.256626 loss_components={'mae': 10.421169110706874}
+2026-11-10 01:31:49,603 task=2011 epoch=49 train=10.395155 val_mae=11.196262 loss_components={'mae': 10.39515495300293}
+2026-11-10 01:31:54,488 task=2011 epoch=50 train=10.353961 val_mae=11.282664 loss_components={'mae': 10.353961331503731}
+2026-11-10 01:31:59,338 task=2011 epoch=51 train=10.398155 val_mae=11.249523 loss_components={'mae': 10.398154712858654}
+2026-11-10 01:32:04,161 task=2011 epoch=52 train=10.382436 val_mae=11.192413 loss_components={'mae': 10.382436320895241}
+2026-11-10 01:32:09,141 task=2011 epoch=53 train=10.302423 val_mae=11.177129 loss_components={'mae': 10.302423261460804}
+2026-11-10 01:32:14,142 task=2011 epoch=54 train=10.304499 val_mae=11.235243 loss_components={'mae': 10.304499172029042}
+2026-11-10 01:32:18,869 task=2011 epoch=55 train=10.309649 val_mae=11.249717 loss_components={'mae': 10.309649376642136}
+2026-11-10 01:32:23,578 task=2011 epoch=56 train=10.319142 val_mae=11.227181 loss_components={'mae': 10.319142159961519}
+2026-11-10 01:32:28,452 task=2011 epoch=57 train=10.332418 val_mae=11.199402 loss_components={'mae': 10.332417715163459}
+2026-11-10 01:32:33,484 task=2011 epoch=58 train=10.309419 val_mae=11.289979 loss_components={'mae': 10.309419404892694}
+2026-11-10 01:32:38,268 task=2011 epoch=59 train=10.289513 val_mae=11.270895 loss_components={'mae': 10.289512793223063}
+2026-11-10 01:32:42,966 task=2011 epoch=60 train=10.305826 val_mae=11.170659 loss_components={'mae': 10.305825789769491}
+2026-11-10 01:32:47,574 task=2011 epoch=61 train=10.322083 val_mae=11.298626 loss_components={'mae': 10.322083041781472}
+2026-11-10 01:32:52,147 task=2011 epoch=62 train=10.308041 val_mae=11.177586 loss_components={'mae': 10.308040743782406}
+2026-11-10 01:32:56,925 task=2011 epoch=63 train=10.288501 val_mae=11.154893 loss_components={'mae': 10.288501285371327}
+2026-11-10 01:33:01,657 task=2011 epoch=64 train=10.288544 val_mae=11.211040 loss_components={'mae': 10.288544371014549}
+2026-11-10 01:33:06,076 task=2011 epoch=65 train=10.270686 val_mae=11.185983 loss_components={'mae': 10.270686217716761}
+2026-11-10 01:33:10,884 task=2011 epoch=66 train=10.260096 val_mae=11.215715 loss_components={'mae': 10.260096050444103}
+2026-11-10 01:33:15,717 task=2011 epoch=67 train=10.300115 val_mae=11.213053 loss_components={'mae': 10.300115324202038}
+2026-11-10 01:33:20,477 task=2011 epoch=68 train=10.230994 val_mae=11.139912 loss_components={'mae': 10.230993531999134}
+2026-11-10 01:33:25,321 task=2011 epoch=69 train=10.253899 val_mae=11.200522 loss_components={'mae': 10.253899017969767}
+2026-11-10 01:33:30,074 task=2011 epoch=70 train=10.274006 val_mae=11.189001 loss_components={'mae': 10.274005651473999}
+2026-11-10 01:33:34,760 task=2011 epoch=71 train=10.223762 val_mae=11.233114 loss_components={'mae': 10.223761978603545}
+2026-11-10 01:33:39,466 task=2011 epoch=72 train=10.228302 val_mae=11.191252 loss_components={'mae': 10.228302444730486}
+2026-11-10 01:33:44,123 task=2011 epoch=73 train=10.251293 val_mae=11.176485 loss_components={'mae': 10.251293193726312}
+2026-11-10 01:33:48,689 task=2011 epoch=74 train=10.281055 val_mae=11.136558 loss_components={'mae': 10.281054939542498}
+2026-11-10 01:33:53,555 task=2011 epoch=75 train=10.232880 val_mae=11.181674 loss_components={'mae': 10.232880001976376}
+2026-11-10 01:33:58,168 task=2011 epoch=76 train=10.251534 val_mae=11.158225 loss_components={'mae': 10.251533769425892}
+2026-11-10 01:34:02,889 task=2011 epoch=77 train=10.217896 val_mae=11.199697 loss_components={'mae': 10.217895791644143}
+2026-11-10 01:34:07,773 task=2011 epoch=78 train=10.230084 val_mae=11.465402 loss_components={'mae': 10.230083919706798}
+2026-11-10 01:34:12,505 task=2011 epoch=79 train=10.235754 val_mae=11.182887 loss_components={'mae': 10.235754296893166}
+2026-11-10 01:34:17,161 task=2011 epoch=80 train=10.348161 val_mae=11.203381 loss_components={'mae': 10.348161072958083}
+2026-11-10 01:34:21,954 task=2011 epoch=81 train=10.168342 val_mae=11.149380 loss_components={'mae': 10.168341602597918}
+2026-11-10 01:34:26,642 task=2011 epoch=82 train=10.191082 val_mae=11.153589 loss_components={'mae': 10.19108155795506}
+2026-11-10 01:34:31,410 task=2011 epoch=83 train=10.214427 val_mae=11.171476 loss_components={'mae': 10.214427391688028}
+2026-11-10 01:34:36,027 task=2011 epoch=84 train=10.202985 val_mae=11.120499 loss_components={'mae': 10.202984980174474}
+2026-11-10 01:34:40,706 task=2011 epoch=85 train=10.146305 val_mae=11.135539 loss_components={'mae': 10.14630509558178}
+2026-11-10 01:34:45,416 task=2011 epoch=86 train=10.178579 val_mae=11.130511 loss_components={'mae': 10.178579182851882}
+2026-11-10 01:34:49,907 task=2011 epoch=87 train=10.167903 val_mae=11.109848 loss_components={'mae': 10.167902526401338}
+2026-11-10 01:34:54,661 task=2011 epoch=88 train=10.134156 val_mae=11.166004 loss_components={'mae': 10.134155761627923}
+2026-11-10 01:34:59,290 task=2011 epoch=89 train=10.148840 val_mae=11.185710 loss_components={'mae': 10.148840427398682}
+2026-11-10 01:35:03,849 task=2011 epoch=90 train=10.175739 val_mae=11.236813 loss_components={'mae': 10.175738879612513}
+2026-11-10 01:35:08,412 task=2011 epoch=91 train=10.141283 val_mae=11.126443 loss_components={'mae': 10.141282569794427}
+2026-11-10 01:35:13,024 task=2011 epoch=92 train=10.140488 val_mae=11.103897 loss_components={'mae': 10.140488125029064}
+2026-11-10 01:35:17,927 task=2011 epoch=93 train=10.125007 val_mae=11.107741 loss_components={'mae': 10.125006732486543}
+2026-11-10 01:35:22,434 task=2011 epoch=94 train=10.132235 val_mae=11.113295 loss_components={'mae': 10.132234743663243}
+2026-11-10 01:35:27,057 task=2011 epoch=95 train=10.115803 val_mae=11.085147 loss_components={'mae': 10.115802640006656}
+2026-11-10 01:35:32,105 task=2011 epoch=96 train=10.130924 val_mae=11.197291 loss_components={'mae': 10.130923623130435}
+2026-11-10 01:35:36,896 task=2011 epoch=97 train=10.143386 val_mae=11.301026 loss_components={'mae': 10.143385523841495}
+2026-11-10 01:35:41,600 task=2011 epoch=98 train=10.249172 val_mae=11.076106 loss_components={'mae': 10.249172415052142}
+2026-11-10 01:35:46,362 task=2011 epoch=99 train=10.147888 val_mae=11.090827 loss_components={'mae': 10.147888058707828}
+2026-11-10 01:35:51,040 task=2011 epoch=100 train=10.138987 val_mae=11.166405 loss_components={'mae': 10.138987053008307}
+2026-11-10 01:35:55,730 task=2011 epoch=101 train=10.121696 val_mae=11.117873 loss_components={'mae': 10.121695904504685}
+2026-11-10 01:36:00,378 task=2011 epoch=102 train=10.162024 val_mae=11.082696 loss_components={'mae': 10.162023987088885}
+2026-11-10 01:36:05,146 task=2011 epoch=103 train=10.116308 val_mae=11.156104 loss_components={'mae': 10.116308200927008}
+2026-11-10 01:36:09,676 task=2011 epoch=104 train=10.096039 val_mae=11.047316 loss_components={'mae': 10.096038534527732}
+2026-11-10 01:36:14,306 task=2011 epoch=105 train=10.071322 val_mae=11.107897 loss_components={'mae': 10.071321578252883}
+2026-11-10 01:36:19,132 task=2011 epoch=106 train=10.079808 val_mae=11.134688 loss_components={'mae': 10.079807565325783}
+2026-11-10 01:36:23,662 task=2011 epoch=107 train=10.110204 val_mae=11.102480 loss_components={'mae': 10.110203901926676}
+2026-11-10 01:36:28,750 task=2011 epoch=108 train=10.102945 val_mae=11.249926 loss_components={'mae': 10.102944794155302}
+2026-11-10 01:36:33,714 task=2011 epoch=109 train=10.065344 val_mae=11.080725 loss_components={'mae': 10.065344220116025}
+2026-11-10 01:36:38,766 task=2011 epoch=110 train=10.071628 val_mae=11.076254 loss_components={'mae': 10.071628264018468}
+2026-11-10 01:36:43,316 task=2011 epoch=111 train=10.051790 val_mae=11.133408 loss_components={'mae': 10.051790248780023}
+2026-11-10 01:36:47,418 task=2011 epoch=112 train=10.083430 val_mae=11.099498 loss_components={'mae': 10.08343041510809}
+2026-11-10 01:36:52,116 task=2011 epoch=113 train=10.067146 val_mae=11.126413 loss_components={'mae': 10.067146006084624}
+2026-11-10 01:36:57,239 task=2011 epoch=114 train=10.070563 val_mae=11.122316 loss_components={'mae': 10.070562896274385}
+2026-11-10 01:37:02,338 task=2011 epoch=115 train=10.033394 val_mae=11.092330 loss_components={'mae': 10.033393666857766}
+2026-11-10 01:37:07,359 task=2011 epoch=116 train=10.044419 val_mae=11.075142 loss_components={'mae': 10.044419072923207}
+2026-11-10 01:37:12,318 task=2011 epoch=117 train=10.077152 val_mae=11.091260 loss_components={'mae': 10.07715216137114}
+2026-11-10 01:37:17,331 task=2011 epoch=118 train=10.061487 val_mae=11.205413 loss_components={'mae': 10.061486698332287}
+2026-11-10 01:37:22,109 task=2011 epoch=119 train=10.070301 val_mae=11.173810 loss_components={'mae': 10.070301214853922}
+2026-11-10 01:37:26,905 task=2011 epoch=120 train=10.064398 val_mae=11.143968 loss_components={'mae': 10.064397698356991}
+2026-11-10 01:37:31,459 task=2011 epoch=121 train=10.040680 val_mae=11.066043 loss_components={'mae': 10.040680306298393}
+2026-11-10 01:37:36,012 task=2011 epoch=122 train=10.079748 val_mae=11.251662 loss_components={'mae': 10.07974836939857}
+2026-11-10 01:37:40,584 task=2011 epoch=123 train=10.117479 val_mae=11.176491 loss_components={'mae': 10.117478711264473}
+2026-11-10 01:37:45,115 task=2011 epoch=124 train=10.033618 val_mae=11.104446 loss_components={'mae': 10.0336180187407}
+2026-11-10 01:37:49,645 task=2011 epoch=125 train=10.056295 val_mae=11.066340 loss_components={'mae': 10.056295224598475}
+2026-11-10 01:37:54,152 task=2011 epoch=126 train=10.013627 val_mae=11.062702 loss_components={'mae': 10.013626541410174}
+2026-11-10 01:37:58,749 task=2011 epoch=127 train=10.001142 val_mae=11.052297 loss_components={'mae': 10.001141593569802}
+2026-11-10 01:38:03,274 task=2011 epoch=128 train=10.016833 val_mae=11.153857 loss_components={'mae': 10.016832601456414}
+2026-11-10 01:38:07,860 task=2011 epoch=129 train=10.036644 val_mae=11.143649 loss_components={'mae': 10.036643902460733}
+2026-11-10 01:38:12,392 task=2011 epoch=130 train=10.002364 val_mae=11.103206 loss_components={'mae': 10.002364067804246}
+2026-11-10 01:38:16,855 task=2011 epoch=131 train=9.999787 val_mae=11.086414 loss_components={'mae': 9.999787319274176}
+2026-11-10 01:38:21,476 task=2011 epoch=132 train=10.037430 val_mae=11.073631 loss_components={'mae': 10.037430354527064}
+2026-11-10 01:38:25,995 task=2011 epoch=133 train=10.019387 val_mae=11.075590 loss_components={'mae': 10.019387006759644}
+2026-11-10 01:38:30,626 task=2011 epoch=134 train=10.009554 val_mae=11.187197 loss_components={'mae': 10.009553523290725}
+2026-11-10 01:38:35,190 task=2011 epoch=135 train=10.041138 val_mae=11.193053 loss_components={'mae': 10.041138274329048}
+2026-11-10 01:38:35,192 [*] load from /root/autodl-tmp/autodl_psrag_trend/runs_integrated_shared_kv/raw/PEMS/20261110_012737_seed42_d0aedc/2011/11.04731611.pkl
+2026-11-10 01:38:42,540 test task=2011 prefix=3 {'MAE': 10.468559265136719, 'RMSE': 16.02239567249347, 'MAPE': 14.119531214237213}
+2026-11-10 01:38:42,541 test task=2011 prefix=6 {'MAE': 10.743066787719727, 'RMSE': 16.53081617164686, 'MAPE': 14.424507319927216}
+2026-11-10 01:38:42,541 test task=2011 prefix=12 {'MAE': 11.100494384765625, 'RMSE': 17.183480531424014, 'MAPE': 14.895376563072205}
+2026-11-10 01:38:42,541 test task=2011 prefix=Avg {'MAE': 10.714229583740234, 'RMSE': 16.481270832144386, 'MAPE': 14.4125667711099}
+2026-11-10 01:38:43,892 task=2012 nodes=715 samples={'train': 5332, 'val': 1762, 'test': 1762}
+2026-11-10 01:38:43,894 [*] load from /root/autodl-tmp/autodl_psrag_trend/runs_integrated_shared_kv/raw/PEMS/20261110_012737_seed42_d0aedc/2011/11.04731611.pkl
+2026-11-10 01:38:43,945 Total Parameters: 555444
+2026-11-10 01:38:43,945 Trainable Parameters: 223514
+2026-11-10 01:38:43,945 teacher=False residual_norm=True normalize_x=False normalization_scope=split lora_enabled=True lora_years=[2012] retrain_match_capacity=False
+2026-11-10 01:38:48,687 task=2012 epoch=0 train=12.915061 val_mae=11.273942 loss_components={'mae': 12.915060633704776}
+2026-11-10 01:38:53,388 task=2012 epoch=1 train=10.870084 val_mae=10.654215 loss_components={'mae': 10.870084421975273}
+2026-11-10 01:38:58,027 task=2012 epoch=2 train=10.350517 val_mae=10.441495 loss_components={'mae': 10.350517204829625}
+2026-11-10 01:39:02,729 task=2012 epoch=3 train=10.182210 val_mae=10.390011 loss_components={'mae': 10.182209945860363}
+2026-11-10 01:39:07,452 task=2012 epoch=4 train=10.104575 val_mae=10.383449 loss_components={'mae': 10.10457520257859}
+2026-11-10 01:39:12,039 task=2012 epoch=5 train=10.052135 val_mae=10.343459 loss_components={'mae': 10.052135104224796}
+2026-11-10 01:39:16,866 task=2012 epoch=6 train=10.028573 val_mae=10.346968 loss_components={'mae': 10.028573365438552}
+2026-11-10 01:39:21,641 task=2012 epoch=7 train=10.007071 val_mae=10.356641 loss_components={'mae': 10.007071131751651}
+2026-11-10 01:39:26,268 task=2012 epoch=8 train=9.987008 val_mae=10.357921 loss_components={'mae': 9.987007867722284}
+2026-11-10 01:39:31,270 task=2012 epoch=9 train=9.975480 val_mae=10.345863 loss_components={'mae': 9.975480034237815}
+2026-11-10 01:39:36,176 task=2012 epoch=10 train=9.956037 val_mae=10.335044 loss_components={'mae': 9.9560371921176}
+2026-11-10 01:39:40,880 task=2012 epoch=11 train=9.953317 val_mae=10.336816 loss_components={'mae': 9.95331657500494}
+2026-11-10 01:39:45,779 task=2012 epoch=12 train=9.932309 val_mae=10.344378 loss_components={'mae': 9.932309218815394}
+2026-11-10 01:39:50,659 task=2012 epoch=13 train=9.930236 val_mae=10.344742 loss_components={'mae': 9.930236350922357}
+2026-11-10 01:39:55,710 task=2012 epoch=14 train=9.927254 val_mae=10.350939 loss_components={'mae': 9.927254268101283}
+2026-11-10 01:40:00,758 task=2012 epoch=15 train=9.921743 val_mae=10.315691 loss_components={'mae': 9.921742995580038}
+2026-11-10 01:40:05,869 task=2012 epoch=16 train=9.911355 val_mae=10.343325 loss_components={'mae': 9.911354541778564}
+2026-11-10 01:40:10,869 task=2012 epoch=17 train=9.896113 val_mae=10.325700 loss_components={'mae': 9.896112862087431}
+2026-11-10 01:40:15,888 task=2012 epoch=18 train=9.896903 val_mae=10.344303 loss_components={'mae': 9.896902924492245}
+2026-11-10 01:40:20,809 task=2012 epoch=19 train=9.893187 val_mae=10.346916 loss_components={'mae': 9.893187352589198}
+2026-11-10 01:40:25,861 task=2012 epoch=20 train=9.891590 val_mae=10.332409 loss_components={'mae': 9.891589505331856}
+2026-11-10 01:40:31,121 task=2012 epoch=21 train=9.889383 val_mae=10.337270 loss_components={'mae': 9.889382623490834}
+2026-11-10 01:40:36,315 task=2012 epoch=22 train=9.884657 val_mae=10.357795 loss_components={'mae': 9.88465680394854}
+2026-11-10 01:40:41,317 task=2012 epoch=23 train=9.871734 val_mae=10.339434 loss_components={'mae': 9.87173384711856}
+2026-11-10 01:40:46,495 task=2012 epoch=24 train=9.864145 val_mae=10.331744 loss_components={'mae': 9.864145188104539}
+2026-11-10 01:40:51,707 task=2012 epoch=25 train=9.866392 val_mae=10.324307 loss_components={'mae': 9.866391953967867}
+2026-11-10 01:40:57,161 task=2012 epoch=26 train=9.867287 val_mae=10.333616 loss_components={'mae': 9.867286761601767}
+2026-11-10 01:41:02,365 task=2012 epoch=27 train=9.861693 val_mae=10.329849 loss_components={'mae': 9.861693370909919}
+2026-11-10 01:41:07,542 task=2012 epoch=28 train=9.857387 val_mae=10.341438 loss_components={'mae': 9.857386509577433}
+2026-11-10 01:41:12,765 task=2012 epoch=29 train=9.862698 val_mae=10.329074 loss_components={'mae': 9.862697692144485}
+2026-11-10 01:41:17,875 task=2012 epoch=30 train=9.856570 val_mae=10.366437 loss_components={'mae': 9.856570277895246}
+2026-11-10 01:41:23,179 task=2012 epoch=31 train=9.852580 val_mae=10.356518 loss_components={'mae': 9.85257987749009}
+2026-11-10 01:41:28,304 task=2012 epoch=32 train=9.858268 val_mae=10.345214 loss_components={'mae': 9.85826834042867}
+2026-11-10 01:41:33,800 task=2012 epoch=33 train=9.841290 val_mae=10.322850 loss_components={'mae': 9.841289554323469}
+2026-11-10 01:41:38,874 task=2012 epoch=34 train=9.835022 val_mae=10.356879 loss_components={'mae': 9.83502189318339}
+2026-11-10 01:41:43,459 task=2012 epoch=35 train=9.837438 val_mae=10.330303 loss_components={'mae': 9.83743819736299}
+2026-11-10 01:41:48,536 task=2012 epoch=36 train=9.830138 val_mae=10.316830 loss_components={'mae': 9.830138172422137}
+2026-11-10 01:41:53,225 task=2012 epoch=37 train=9.836594 val_mae=10.330701 loss_components={'mae': 9.836593696049281}
+2026-11-10 01:41:57,967 task=2012 epoch=38 train=9.824665 val_mae=10.346989 loss_components={'mae': 9.824664819808234}
+2026-11-10 01:42:02,538 task=2012 epoch=39 train=9.838897 val_mae=10.329444 loss_components={'mae': 9.838897160121373}
+2026-11-10 01:42:07,305 task=2012 epoch=40 train=9.828038 val_mae=10.317729 loss_components={'mae': 9.828037977218628}
+2026-11-10 01:42:12,319 task=2012 epoch=41 train=9.833734 val_mae=10.328934 loss_components={'mae': 9.8337341490246}
+2026-11-10 01:42:16,891 task=2012 epoch=42 train=9.820375 val_mae=10.322838 loss_components={'mae': 9.820375431151618}
+2026-11-10 01:42:21,485 task=2012 epoch=43 train=9.820597 val_mae=10.346927 loss_components={'mae': 9.820597069604057}
+2026-11-10 01:42:26,199 task=2012 epoch=44 train=9.822342 val_mae=10.334189 loss_components={'mae': 9.822341601053873}
+2026-11-10 01:42:31,032 task=2012 epoch=45 train=9.802800 val_mae=10.334619 loss_components={'mae': 9.802799883342924}
+2026-11-10 01:42:35,798 task=2012 epoch=46 train=9.816991 val_mae=10.331306 loss_components={'mae': 9.816990909122286}
+2026-11-10 01:42:35,799 [*] load from /root/autodl-tmp/autodl_psrag_trend/runs_integrated_shared_kv/raw/PEMS/20261110_012737_seed42_d0aedc/2012/10.31569079.pkl
+2026-11-10 01:42:43,340 test task=2012 prefix=3 {'MAE': 9.739527702331543, 'RMSE': 15.412784946898336, 'MAPE': 13.261686265468597}
+2026-11-10 01:42:43,340 test task=2012 prefix=6 {'MAE': 9.997590065002441, 'RMSE': 15.922288524285257, 'MAPE': 13.599041104316711}
+2026-11-10 01:42:43,340 test task=2012 prefix=12 {'MAE': 10.35669994354248, 'RMSE': 16.58066883758199, 'MAPE': 14.121663570404053}
+2026-11-10 01:42:43,340 test task=2012 prefix=Avg {'MAE': 9.981536944707235, 'RMSE': 15.88172940152485, 'MAPE': 13.599153483907381}
+2026-11-10 01:42:44,844 task=2013 nodes=786 samples={'train': 5332, 'val': 1762, 'test': 1762}
+2026-11-10 01:42:44,846 [*] load from /root/autodl-tmp/autodl_psrag_trend/runs_integrated_shared_kv/raw/PEMS/20261110_012737_seed42_d0aedc/2012/10.31569079.pkl
+2026-11-10 01:42:44,887 Total Parameters: 578588
+2026-11-10 01:42:44,887 Trainable Parameters: 237146
+2026-11-10 01:42:44,887 teacher=False residual_norm=True normalize_x=False normalization_scope=split lora_enabled=True lora_years=[2012, 2013] retrain_match_capacity=False
+2026-11-10 01:42:49,793 task=2013 epoch=0 train=11.586043 val_mae=10.675442 loss_components={'mae': 11.58604257447379}
+2026-11-10 01:42:54,637 task=2013 epoch=1 train=9.972713 val_mae=10.248911 loss_components={'mae': 9.972712675730387}
+2026-11-10 01:42:59,328 task=2013 epoch=2 train=9.709251 val_mae=10.152320 loss_components={'mae': 9.70925135839553}
+2026-11-10 01:43:04,407 task=2013 epoch=3 train=9.627620 val_mae=10.105124 loss_components={'mae': 9.62761958440145}
+2026-11-10 01:43:09,362 task=2013 epoch=4 train=9.571027 val_mae=10.087979 loss_components={'mae': 9.571027415139335}
+2026-11-10 01:43:14,214 task=2013 epoch=5 train=9.551842 val_mae=10.089529 loss_components={'mae': 9.551842258090065}
+2026-11-10 01:43:19,068 task=2013 epoch=6 train=9.523871 val_mae=10.063870 loss_components={'mae': 9.523871467227028}
+2026-11-10 01:43:23,883 task=2013 epoch=7 train=9.508417 val_mae=10.048931 loss_components={'mae': 9.508416913804554}
+2026-11-10 01:43:28,729 task=2013 epoch=8 train=9.509311 val_mae=10.045891 loss_components={'mae': 9.50931091535659}
+2026-11-10 01:43:33,709 task=2013 epoch=9 train=9.492514 val_mae=10.050662 loss_components={'mae': 9.492513963154384}
+2026-11-10 01:43:38,392 task=2013 epoch=10 train=9.472716 val_mae=10.040521 loss_components={'mae': 9.472715548106603}
+2026-11-10 01:43:43,145 task=2013 epoch=11 train=9.467211 val_mae=10.046371 loss_components={'mae': 9.467210746946789}
+2026-11-10 01:43:47,817 task=2013 epoch=12 train=9.447707 val_mae=10.039942 loss_components={'mae': 9.447706881023588}
+2026-11-10 01:43:52,501 task=2013 epoch=13 train=9.446562 val_mae=10.028098 loss_components={'mae': 9.446561960946946}
+2026-11-10 01:43:57,379 task=2013 epoch=14 train=9.451617 val_mae=10.023797 loss_components={'mae': 9.451616775421869}
+2026-11-10 01:44:02,171 task=2013 epoch=15 train=9.443233 val_mae=10.028725 loss_components={'mae': 9.443233353751046}
+2026-11-10 01:44:06,986 task=2013 epoch=16 train=9.424660 val_mae=10.021658 loss_components={'mae': 9.424659763063703}
+2026-11-10 01:44:11,982 task=2013 epoch=17 train=9.412037 val_mae=10.019002 loss_components={'mae': 9.412037111464}
+2026-11-10 01:44:16,727 task=2013 epoch=18 train=9.427925 val_mae=10.015807 loss_components={'mae': 9.427924871444702}
+2026-11-10 01:44:21,561 task=2013 epoch=19 train=9.415135 val_mae=10.011954 loss_components={'mae': 9.415135099774314}
+2026-11-10 01:44:26,369 task=2013 epoch=20 train=9.419023 val_mae=10.015869 loss_components={'mae': 9.419022719065348}
+2026-11-10 01:44:31,071 task=2013 epoch=21 train=9.415635 val_mae=9.996052 loss_components={'mae': 9.415635222480411}
+2026-11-10 01:44:35,749 task=2013 epoch=22 train=9.406865 val_mae=10.011211 loss_components={'mae': 9.406864654450189}
+2026-11-10 01:44:40,574 task=2013 epoch=23 train=9.406816 val_mae=10.004914 loss_components={'mae': 9.406816107886177}
+2026-11-10 01:44:45,330 task=2013 epoch=24 train=9.394923 val_mae=10.016574 loss_components={'mae': 9.394923437209357}
+2026-11-10 01:44:50,054 task=2013 epoch=25 train=9.392572 val_mae=10.013967 loss_components={'mae': 9.39257238024757}
+2026-11-10 01:44:54,934 task=2013 epoch=26 train=9.400951 val_mae=9.994834 loss_components={'mae': 9.400951419557844}
+2026-11-10 01:44:59,551 task=2013 epoch=27 train=9.381888 val_mae=9.989628 loss_components={'mae': 9.38188844635373}
+2026-11-10 01:45:04,254 task=2013 epoch=28 train=9.378589 val_mae=10.001183 loss_components={'mae': 9.37858932358878}
+2026-11-10 01:45:08,977 task=2013 epoch=29 train=9.381206 val_mae=9.989330 loss_components={'mae': 9.381206183206467}
+2026-11-10 01:45:13,735 task=2013 epoch=30 train=9.383885 val_mae=10.000936 loss_components={'mae': 9.383885008948189}
+2026-11-10 01:45:18,511 task=2013 epoch=31 train=9.373817 val_mae=9.998947 loss_components={'mae': 9.373816615059262}
+2026-11-10 01:45:23,448 task=2013 epoch=32 train=9.375174 val_mae=9.978053 loss_components={'mae': 9.375174352100917}
+2026-11-10 01:45:28,557 task=2013 epoch=33 train=9.368496 val_mae=9.973496 loss_components={'mae': 9.368495850335984}
+2026-11-10 01:45:33,343 task=2013 epoch=34 train=9.369841 val_mae=9.999814 loss_components={'mae': 9.36984083766029}
+2026-11-10 01:45:38,181 task=2013 epoch=35 train=9.360908 val_mae=9.982291 loss_components={'mae': 9.360907838458107}
+2026-11-10 01:45:42,860 task=2013 epoch=36 train=9.364465 val_mae=9.975533 loss_components={'mae': 9.364464691707067}
+2026-11-10 01:45:47,526 task=2013 epoch=37 train=9.359106 val_mae=9.981210 loss_components={'mae': 9.35910581407093}
+2026-11-10 01:45:52,632 task=2013 epoch=38 train=9.357656 val_mae=9.966359 loss_components={'mae': 9.357655899865287}
+2026-11-10 01:45:57,435 task=2013 epoch=39 train=9.357826 val_mae=9.978861 loss_components={'mae': 9.35782561983381}
+2026-11-10 01:46:02,348 task=2013 epoch=40 train=9.357518 val_mae=9.986198 loss_components={'mae': 9.357517503556751}
+2026-11-10 01:46:07,072 task=2013 epoch=41 train=9.344604 val_mae=9.986417 loss_components={'mae': 9.344604378654843}
+2026-11-10 01:46:11,895 task=2013 epoch=42 train=9.344455 val_mae=9.977625 loss_components={'mae': 9.344455423809233}
+2026-11-10 01:46:17,062 task=2013 epoch=43 train=9.359316 val_mae=9.974159 loss_components={'mae': 9.359315701893397}
+2026-11-10 01:46:22,326 task=2013 epoch=44 train=9.350059 val_mae=9.983137 loss_components={'mae': 9.350058691842216}
+2026-11-10 01:46:27,679 task=2013 epoch=45 train=9.349423 val_mae=9.972739 loss_components={'mae': 9.349422761372157}
+2026-11-10 01:46:33,113 task=2013 epoch=46 train=9.339925 val_mae=9.984294 loss_components={'mae': 9.33992490314302}
+2026-11-10 01:46:38,287 task=2013 epoch=47 train=9.345007 val_mae=9.966003 loss_components={'mae': 9.345006908689227}
+2026-11-10 01:46:43,427 task=2013 epoch=48 train=9.336177 val_mae=9.991506 loss_components={'mae': 9.336177122025262}
+2026-11-10 01:46:48,638 task=2013 epoch=49 train=9.344349 val_mae=9.968272 loss_components={'mae': 9.34434883935111}
+2026-11-10 01:46:53,899 task=2013 epoch=50 train=9.342707 val_mae=9.969134 loss_components={'mae': 9.342706623531523}
+2026-11-10 01:46:59,037 task=2013 epoch=51 train=9.333132 val_mae=9.991493 loss_components={'mae': 9.333132176172166}
+2026-11-10 01:47:04,166 task=2013 epoch=52 train=9.336512 val_mae=9.977854 loss_components={'mae': 9.336511963889713}
+2026-11-10 01:47:09,464 task=2013 epoch=53 train=9.328716 val_mae=9.963446 loss_components={'mae': 9.32871565364656}
+2026-11-10 01:47:14,787 task=2013 epoch=54 train=9.327274 val_mae=9.981999 loss_components={'mae': 9.327273845672607}
+2026-11-10 01:47:20,048 task=2013 epoch=55 train=9.329547 val_mae=9.981587 loss_components={'mae': 9.329547393889655}
+2026-11-10 01:47:25,220 task=2013 epoch=56 train=9.331614 val_mae=9.973019 loss_components={'mae': 9.331613745008196}
+2026-11-10 01:47:30,188 task=2013 epoch=57 train=9.334192 val_mae=9.981843 loss_components={'mae': 9.334192196528116}
+2026-11-10 01:47:35,041 task=2013 epoch=58 train=9.319647 val_mae=9.985701 loss_components={'mae': 9.319647085098993}
+2026-11-10 01:47:39,965 task=2013 epoch=59 train=9.316030 val_mae=9.980447 loss_components={'mae': 9.316029571351551}
+2026-11-10 01:47:45,140 task=2013 epoch=60 train=9.319884 val_mae=9.956495 loss_components={'mae': 9.319884459177652}
+2026-11-10 01:47:50,149 task=2013 epoch=61 train=9.320237 val_mae=9.957333 loss_components={'mae': 9.32023693266369}
+2026-11-10 01:47:55,029 task=2013 epoch=62 train=9.325943 val_mae=9.958624 loss_components={'mae': 9.325942618506295}
+2026-11-10 01:47:59,991 task=2013 epoch=63 train=9.315101 val_mae=9.968326 loss_components={'mae': 9.31510085151309}
+2026-11-10 01:48:05,088 task=2013 epoch=64 train=9.320168 val_mae=9.978408 loss_components={'mae': 9.320168063754128}
+2026-11-10 01:48:10,454 task=2013 epoch=65 train=9.305117 val_mae=9.976290 loss_components={'mae': 9.305117323285057}
+2026-11-10 01:48:15,659 task=2013 epoch=66 train=9.307127 val_mae=9.958281 loss_components={'mae': 9.307127339499337}
+2026-11-10 01:48:20,756 task=2013 epoch=67 train=9.310586 val_mae=9.966308 loss_components={'mae': 9.310586418424334}
+2026-11-10 01:48:25,773 task=2013 epoch=68 train=9.315092 val_mae=10.001793 loss_components={'mae': 9.315092450096493}
+2026-11-10 01:48:30,916 task=2013 epoch=69 train=9.324206 val_mae=9.973802 loss_components={'mae': 9.324205750510806}
+2026-11-10 01:48:35,931 task=2013 epoch=70 train=9.307752 val_mae=9.974877 loss_components={'mae': 9.307752211888632}
+2026-11-10 01:48:40,862 task=2013 epoch=71 train=9.318637 val_mae=9.969579 loss_components={'mae': 9.318636576334635}
+2026-11-10 01:48:45,658 task=2013 epoch=72 train=9.311425 val_mae=9.966896 loss_components={'mae': 9.311425470170521}
+2026-11-10 01:48:50,471 task=2013 epoch=73 train=9.315739 val_mae=9.964742 loss_components={'mae': 9.315739075342814}
+2026-11-10 01:48:55,663 task=2013 epoch=74 train=9.310607 val_mae=9.958012 loss_components={'mae': 9.310607433319092}
+2026-11-10 01:49:00,784 task=2013 epoch=75 train=9.306430 val_mae=9.968182 loss_components={'mae': 9.30642987432934}
+2026-11-10 01:49:06,034 task=2013 epoch=76 train=9.316868 val_mae=9.953724 loss_components={'mae': 9.316867907842001}
+2026-11-10 01:49:11,211 task=2013 epoch=77 train=9.295114 val_mae=9.968678 loss_components={'mae': 9.29511408578782}
+2026-11-10 01:49:16,483 task=2013 epoch=78 train=9.301515 val_mae=9.962527 loss_components={'mae': 9.30151545433771}
+2026-11-10 01:49:21,531 task=2013 epoch=79 train=9.303600 val_mae=9.964378 loss_components={'mae': 9.303599845795404}
+2026-11-10 01:49:26,463 task=2013 epoch=80 train=9.297501 val_mae=10.000737 loss_components={'mae': 9.297501268840971}
+2026-11-10 01:49:31,471 task=2013 epoch=81 train=9.305108 val_mae=9.952283 loss_components={'mae': 9.30510755947658}
+2026-11-10 01:49:36,613 task=2013 epoch=82 train=9.307064 val_mae=9.956170 loss_components={'mae': 9.307063772564842}
+2026-11-10 01:49:41,727 task=2013 epoch=83 train=9.302882 val_mae=9.969238 loss_components={'mae': 9.302882217225575}
+2026-11-10 01:49:46,710 task=2013 epoch=84 train=9.297495 val_mae=9.974129 loss_components={'mae': 9.297494956425258}
+2026-11-10 01:49:51,772 task=2013 epoch=85 train=9.298050 val_mae=9.951609 loss_components={'mae': 9.298049552100045}
+2026-11-10 01:49:56,758 task=2013 epoch=86 train=9.302979 val_mae=9.954560 loss_components={'mae': 9.30297885622297}
+2026-11-10 01:50:01,785 task=2013 epoch=87 train=9.295057 val_mae=9.959422 loss_components={'mae': 9.295057183220273}
+2026-11-10 01:50:06,885 task=2013 epoch=88 train=9.297829 val_mae=9.974165 loss_components={'mae': 9.297829196566628}
+2026-11-10 01:50:12,005 task=2013 epoch=89 train=9.298766 val_mae=9.954015 loss_components={'mae': 9.298765659332275}
+2026-11-10 01:50:17,167 task=2013 epoch=90 train=9.281455 val_mae=9.973051 loss_components={'mae': 9.28145542598906}
+2026-11-10 01:50:22,295 task=2013 epoch=91 train=9.291467 val_mae=9.980223 loss_components={'mae': 9.29146661077227}
+2026-11-10 01:50:27,383 task=2013 epoch=92 train=9.303792 val_mae=9.957784 loss_components={'mae': 9.30379219282241}
+2026-11-10 01:50:32,290 task=2013 epoch=93 train=9.288899 val_mae=9.964559 loss_components={'mae': 9.288898626963297}
+2026-11-10 01:50:37,218 task=2013 epoch=94 train=9.286437 val_mae=9.959111 loss_components={'mae': 9.28643670536223}
+2026-11-10 01:50:42,366 task=2013 epoch=95 train=9.295038 val_mae=9.968303 loss_components={'mae': 9.295037610190255}
+2026-11-10 01:50:47,543 task=2013 epoch=96 train=9.298858 val_mae=9.971659 loss_components={'mae': 9.298858267920357}
+2026-11-10 01:50:52,691 task=2013 epoch=97 train=9.283843 val_mae=9.969666 loss_components={'mae': 9.283843426477342}
+2026-11-10 01:50:57,887 task=2013 epoch=98 train=9.303826 val_mae=9.988022 loss_components={'mae': 9.303826400211879}
+2026-11-10 01:51:02,939 task=2013 epoch=99 train=9.289997 val_mae=9.964173 loss_components={'mae': 9.289997146243142}
+2026-11-10 01:51:08,025 task=2013 epoch=100 train=9.288311 val_mae=9.952425 loss_components={'mae': 9.288311197644187}
+2026-11-10 01:51:13,005 task=2013 epoch=101 train=9.273527 val_mae=9.964011 loss_components={'mae': 9.27352706023625}
+2026-11-10 01:51:18,012 task=2013 epoch=102 train=9.299410 val_mae=9.948121 loss_components={'mae': 9.299409877686273}
+2026-11-10 01:51:23,166 task=2013 epoch=103 train=9.282061 val_mae=9.971659 loss_components={'mae': 9.282061202185494}
+2026-11-10 01:51:28,375 task=2013 epoch=104 train=9.285990 val_mae=9.965435 loss_components={'mae': 9.285990374428886}
+2026-11-10 01:51:33,770 task=2013 epoch=105 train=9.280621 val_mae=9.968966 loss_components={'mae': 9.280620960962205}
+2026-11-10 01:51:39,208 task=2013 epoch=106 train=9.287737 val_mae=9.966396 loss_components={'mae': 9.287736529395694}
+2026-11-10 01:51:44,336 task=2013 epoch=107 train=9.287565 val_mae=9.959770 loss_components={'mae': 9.287565151850382}
+2026-11-10 01:51:49,309 task=2013 epoch=108 train=9.295632 val_mae=9.955673 loss_components={'mae': 9.295632101240612}
+2026-11-10 01:51:54,466 task=2013 epoch=109 train=9.292878 val_mae=9.949209 loss_components={'mae': 9.29287828717913}
+2026-11-10 01:51:59,765 task=2013 epoch=110 train=9.293027 val_mae=9.937454 loss_components={'mae': 9.293026878720237}
+2026-11-10 01:52:04,878 task=2013 epoch=111 train=9.288259 val_mae=9.964131 loss_components={'mae': 9.288259256453742}
+2026-11-10 01:52:10,052 task=2013 epoch=112 train=9.292159 val_mae=9.949096 loss_components={'mae': 9.292158842086792}
+2026-11-10 01:52:15,131 task=2013 epoch=113 train=9.287139 val_mae=9.974187 loss_components={'mae': 9.287139075142997}
+2026-11-10 01:52:19,895 task=2013 epoch=114 train=9.280579 val_mae=9.949579 loss_components={'mae': 9.280578647341047}
+2026-11-10 01:52:25,176 task=2013 epoch=115 train=9.281563 val_mae=9.956201 loss_components={'mae': 9.28156286194211}
+2026-11-10 01:52:30,018 task=2013 epoch=116 train=9.288958 val_mae=9.954981 loss_components={'mae': 9.288957550412132}
+2026-11-10 01:52:34,517 task=2013 epoch=117 train=9.295355 val_mae=9.960928 loss_components={'mae': 9.295354922612509}
+2026-11-10 01:52:39,081 task=2013 epoch=118 train=9.291798 val_mae=9.968316 loss_components={'mae': 9.291797660645985}
+2026-11-10 01:52:43,920 task=2013 epoch=119 train=9.284786 val_mae=9.951274 loss_components={'mae': 9.284786360604423}
+2026-11-10 01:52:48,937 task=2013 epoch=120 train=9.281268 val_mae=9.945543 loss_components={'mae': 9.281268108458747}
+2026-11-10 01:52:54,003 task=2013 epoch=121 train=9.284267 val_mae=9.944151 loss_components={'mae': 9.284267198471795}
+2026-11-10 01:52:58,983 task=2013 epoch=122 train=9.283594 val_mae=9.986465 loss_components={'mae': 9.283594472067696}
+2026-11-10 01:53:04,008 task=2013 epoch=123 train=9.290044 val_mae=9.971227 loss_components={'mae': 9.290044432594662}
+2026-11-10 01:53:09,070 task=2013 epoch=124 train=9.278434 val_mae=9.960350 loss_components={'mae': 9.278434333347139}
+2026-11-10 01:53:13,945 task=2013 epoch=125 train=9.279326 val_mae=9.970992 loss_components={'mae': 9.27932596206665}
+2026-11-10 01:53:18,970 task=2013 epoch=126 train=9.272758 val_mae=9.962457 loss_components={'mae': 9.27275814328875}
+2026-11-10 01:53:24,028 task=2013 epoch=127 train=9.278440 val_mae=9.960043 loss_components={'mae': 9.278440293811617}
+2026-11-10 01:53:29,046 task=2013 epoch=128 train=9.284914 val_mae=9.996141 loss_components={'mae': 9.28491394860404}
+2026-11-10 01:53:34,128 task=2013 epoch=129 train=9.283732 val_mae=9.981939 loss_components={'mae': 9.283732414245605}
+2026-11-10 01:53:39,294 task=2013 epoch=130 train=9.268765 val_mae=9.955816 loss_components={'mae': 9.268764552615938}
+2026-11-10 01:53:44,562 task=2013 epoch=131 train=9.278605 val_mae=9.964355 loss_components={'mae': 9.278605256761823}
+2026-11-10 01:53:49,691 task=2013 epoch=132 train=9.276384 val_mae=9.989116 loss_components={'mae': 9.276383740561348}
+2026-11-10 01:53:54,842 task=2013 epoch=133 train=9.277081 val_mae=9.969408 loss_components={'mae': 9.277080615361532}
+2026-11-10 01:54:00,021 task=2013 epoch=134 train=9.271734 val_mae=9.968642 loss_components={'mae': 9.271734056018648}
+2026-11-10 01:54:05,345 task=2013 epoch=135 train=9.273262 val_mae=9.965623 loss_components={'mae': 9.273262171518235}
+2026-11-10 01:54:10,468 task=2013 epoch=136 train=9.281846 val_mae=9.978816 loss_components={'mae': 9.281846023741222}
+2026-11-10 01:54:15,551 task=2013 epoch=137 train=9.282024 val_mae=9.957716 loss_components={'mae': 9.282023963474092}
+2026-11-10 01:54:20,743 task=2013 epoch=138 train=9.282574 val_mae=9.942585 loss_components={'mae': 9.282574051902408}
+2026-11-10 01:54:25,942 task=2013 epoch=139 train=9.279639 val_mae=9.957427 loss_components={'mae': 9.279639414378575}
+2026-11-10 01:54:30,991 task=2013 epoch=140 train=9.285827 val_mae=9.963225 loss_components={'mae': 9.285827341533842}
+2026-11-10 01:54:36,108 task=2013 epoch=141 train=9.295617 val_mae=9.962388 loss_components={'mae': 9.295616535913377}
+2026-11-10 01:54:36,109 [*] load from /root/autodl-tmp/autodl_psrag_trend/runs_integrated_shared_kv/raw/PEMS/20261110_012737_seed42_d0aedc/2013/9.93745388.pkl
+2026-11-10 01:54:45,215 test task=2013 prefix=3 {'MAE': 9.554427146911621, 'RMSE': 15.698516017489272, 'MAPE': 13.123184442520142}
+2026-11-10 01:54:45,215 test task=2013 prefix=6 {'MAE': 9.820664405822754, 'RMSE': 16.315493955672263, 'MAPE': 13.433374464511871}
+2026-11-10 01:54:45,215 test task=2013 prefix=12 {'MAE': 10.14179801940918, 'RMSE': 16.99755482759763, 'MAPE': 13.896523416042328}
+2026-11-10 01:54:45,215 test task=2013 prefix=Avg {'MAE': 9.787652969360352, 'RMSE': 16.228965169328948, 'MAPE': 13.427180175979933}
+2026-11-10 01:54:46,743 task=2014 nodes=822 samples={'train': 5332, 'val': 1762, 'test': 1762}
+2026-11-10 01:54:46,744 [*] load from /root/autodl-tmp/autodl_psrag_trend/runs_integrated_shared_kv/raw/PEMS/20261110_012737_seed42_d0aedc/2013/9.93745388.pkl
+2026-11-10 01:54:46,771 Total Parameters: 595012
+2026-11-10 01:54:46,771 Trainable Parameters: 244058
+2026-11-10 01:54:46,771 teacher=False residual_norm=True normalize_x=False normalization_scope=split lora_enabled=True lora_years=[2012, 2013, 2014] retrain_match_capacity=False
+2026-11-10 01:54:51,872 task=2014 epoch=0 train=12.593134 val_mae=11.835180 loss_components={'mae': 12.593134425935292}
+2026-11-10 01:54:56,693 task=2014 epoch=1 train=10.974235 val_mae=11.513240 loss_components={'mae': 10.974235103243874}
+2026-11-10 01:55:01,649 task=2014 epoch=2 train=10.731765 val_mae=11.430982 loss_components={'mae': 10.731764793395996}
+2026-11-10 01:55:06,528 task=2014 epoch=3 train=10.654020 val_mae=11.422076 loss_components={'mae': 10.65402036621457}
+2026-11-10 01:55:11,440 task=2014 epoch=4 train=10.605907 val_mae=11.410885 loss_components={'mae': 10.605906713576545}
+2026-11-10 01:55:16,544 task=2014 epoch=5 train=10.595577 val_mae=11.403010 loss_components={'mae': 10.595576660973686}
+2026-11-10 01:55:21,563 task=2014 epoch=6 train=10.572025 val_mae=11.391071 loss_components={'mae': 10.572025219599405}
+2026-11-10 01:55:26,375 task=2014 epoch=7 train=10.552816 val_mae=11.389707 loss_components={'mae': 10.552815982273646}
+2026-11-10 01:55:31,356 task=2014 epoch=8 train=10.528728 val_mae=11.395842 loss_components={'mae': 10.528728439694358}
+2026-11-10 01:55:36,281 task=2014 epoch=9 train=10.515305 val_mae=11.392517 loss_components={'mae': 10.515304610842751}
+2026-11-10 01:55:41,242 task=2014 epoch=10 train=10.509617 val_mae=11.385340 loss_components={'mae': 10.509617033458891}
+2026-11-10 01:55:45,999 task=2014 epoch=11 train=10.501751 val_mae=11.388456 loss_components={'mae': 10.501750628153482}
+2026-11-10 01:55:50,868 task=2014 epoch=12 train=10.508018 val_mae=11.365620 loss_components={'mae': 10.50801774433681}
+2026-11-10 01:55:55,814 task=2014 epoch=13 train=10.482773 val_mae=11.388056 loss_components={'mae': 10.48277337210519}
+2026-11-10 01:56:00,913 task=2014 epoch=14 train=10.497931 val_mae=11.367455 loss_components={'mae': 10.497930628912789}
+2026-11-10 01:56:06,008 task=2014 epoch=15 train=10.483662 val_mae=11.356785 loss_components={'mae': 10.483662480399722}
+2026-11-10 01:56:10,923 task=2014 epoch=16 train=10.486935 val_mae=11.366272 loss_components={'mae': 10.486935127349128}
+2026-11-10 01:56:15,768 task=2014 epoch=17 train=10.467980 val_mae=11.367381 loss_components={'mae': 10.467980180467878}
+2026-11-10 01:56:20,626 task=2014 epoch=18 train=10.469091 val_mae=11.365681 loss_components={'mae': 10.469090859095255}
+2026-11-10 01:56:25,697 task=2014 epoch=19 train=10.483681 val_mae=11.381494 loss_components={'mae': 10.483680520738874}
+2026-11-10 01:56:30,776 task=2014 epoch=20 train=10.459353 val_mae=11.354205 loss_components={'mae': 10.459353356134324}
+2026-11-10 01:56:35,986 task=2014 epoch=21 train=10.460856 val_mae=11.361748 loss_components={'mae': 10.460855972199212}
+2026-11-10 01:56:40,952 task=2014 epoch=22 train=10.449372 val_mae=11.358236 loss_components={'mae': 10.449371757961455}
+2026-11-10 01:56:46,041 task=2014 epoch=23 train=10.448412 val_mae=11.358392 loss_components={'mae': 10.44841183934893}
+2026-11-10 01:56:51,180 task=2014 epoch=24 train=10.450922 val_mae=11.367373 loss_components={'mae': 10.450922364280338}
+2026-11-10 01:56:56,192 task=2014 epoch=25 train=10.460573 val_mae=11.365427 loss_components={'mae': 10.46057323047093}
+2026-11-10 01:57:01,145 task=2014 epoch=26 train=10.438297 val_mae=11.357186 loss_components={'mae': 10.438297351201376}
+2026-11-10 01:57:06,405 task=2014 epoch=27 train=10.443382 val_mae=11.375997 loss_components={'mae': 10.443382274536859}
+2026-11-10 01:57:11,423 task=2014 epoch=28 train=10.448138 val_mae=11.388221 loss_components={'mae': 10.44813829376584}
+2026-11-10 01:57:16,381 task=2014 epoch=29 train=10.433733 val_mae=11.371745 loss_components={'mae': 10.4337333156949}
+2026-11-10 01:57:21,339 task=2014 epoch=30 train=10.443628 val_mae=11.367659 loss_components={'mae': 10.443627686727615}
+2026-11-10 01:57:26,297 task=2014 epoch=31 train=10.441462 val_mae=11.364207 loss_components={'mae': 10.44146196047465}
+2026-11-10 01:57:31,336 task=2014 epoch=32 train=10.435330 val_mae=11.384056 loss_components={'mae': 10.435329675674438}
+2026-11-10 01:57:36,308 task=2014 epoch=33 train=10.434975 val_mae=11.356024 loss_components={'mae': 10.434974863415672}
+2026-11-10 01:57:41,424 task=2014 epoch=34 train=10.435232 val_mae=11.352320 loss_components={'mae': 10.435232060296196}
+2026-11-10 01:57:46,587 task=2014 epoch=35 train=10.417108 val_mae=11.358010 loss_components={'mae': 10.417107502619425}
+2026-11-10 01:57:51,676 task=2014 epoch=36 train=10.434347 val_mae=11.361087 loss_components={'mae': 10.434346585046677}
+2026-11-10 01:57:56,496 task=2014 epoch=37 train=10.415573 val_mae=11.367732 loss_components={'mae': 10.415572609220233}
+2026-11-10 01:58:01,443 task=2014 epoch=38 train=10.424128 val_mae=11.338490 loss_components={'mae': 10.42412771497454}
+2026-11-10 01:58:06,521 task=2014 epoch=39 train=10.416076 val_mae=11.358470 loss_components={'mae': 10.416075547536215}
+2026-11-10 01:58:11,405 task=2014 epoch=40 train=10.411343 val_mae=11.371270 loss_components={'mae': 10.411343392871675}
+2026-11-10 01:58:16,291 task=2014 epoch=41 train=10.409301 val_mae=11.346113 loss_components={'mae': 10.40930091767084}
+2026-11-10 01:58:21,249 task=2014 epoch=42 train=10.405217 val_mae=11.343437 loss_components={'mae': 10.40521680741083}
+2026-11-10 01:58:26,206 task=2014 epoch=43 train=10.418487 val_mae=11.366236 loss_components={'mae': 10.418486901691981}
+2026-11-10 01:58:31,195 task=2014 epoch=44 train=10.408730 val_mae=11.350468 loss_components={'mae': 10.408730007353283}
+2026-11-10 01:58:36,158 task=2014 epoch=45 train=10.411940 val_mae=11.353932 loss_components={'mae': 10.411939632324945}
+2026-11-10 01:58:41,171 task=2014 epoch=46 train=10.395218 val_mae=11.366988 loss_components={'mae': 10.395218167986188}
+2026-11-10 01:58:46,153 task=2014 epoch=47 train=10.411405 val_mae=11.374767 loss_components={'mae': 10.41140527952285}
+2026-11-10 01:58:51,225 task=2014 epoch=48 train=10.403720 val_mae=11.377465 loss_components={'mae': 10.403720231283279}
+2026-11-10 01:58:56,156 task=2014 epoch=49 train=10.405818 val_mae=11.357561 loss_components={'mae': 10.405817667643229}
+2026-11-10 01:59:01,240 task=2014 epoch=50 train=10.399880 val_mae=11.364519 loss_components={'mae': 10.39987994375683}
+2026-11-10 01:59:06,263 task=2014 epoch=51 train=10.406623 val_mae=11.353649 loss_components={'mae': 10.406622602826072}
+2026-11-10 01:59:11,357 task=2014 epoch=52 train=10.404462 val_mae=11.343236 loss_components={'mae': 10.404462201254708}
+2026-11-10 01:59:16,373 task=2014 epoch=53 train=10.410804 val_mae=11.352652 loss_components={'mae': 10.41080379486084}
+2026-11-10 01:59:21,374 task=2014 epoch=54 train=10.415962 val_mae=11.360129 loss_components={'mae': 10.415961583455404}
+2026-11-10 01:59:26,397 task=2014 epoch=55 train=10.403194 val_mae=11.355615 loss_components={'mae': 10.403193530582246}
+2026-11-10 01:59:31,290 task=2014 epoch=56 train=10.393896 val_mae=11.366877 loss_components={'mae': 10.39389637538365}
+2026-11-10 01:59:36,289 task=2014 epoch=57 train=10.403454 val_mae=11.355477 loss_components={'mae': 10.403453815551032}
+2026-11-10 01:59:41,236 task=2014 epoch=58 train=10.392318 val_mae=11.346416 loss_components={'mae': 10.392317715145293}
+2026-11-10 01:59:46,392 task=2014 epoch=59 train=10.397676 val_mae=11.345648 loss_components={'mae': 10.397675934292021}
+2026-11-10 01:59:51,316 task=2014 epoch=60 train=10.401795 val_mae=11.376693 loss_components={'mae': 10.401794592539469}
+2026-11-10 01:59:56,175 task=2014 epoch=61 train=10.405331 val_mae=11.355461 loss_components={'mae': 10.4053312483288}
+2026-11-10 02:00:01,265 task=2014 epoch=62 train=10.381353 val_mae=11.377469 loss_components={'mae': 10.381353287469773}
+2026-11-10 02:00:06,295 task=2014 epoch=63 train=10.392802 val_mae=11.358195 loss_components={'mae': 10.392801750273932}
+2026-11-10 02:00:11,156 task=2014 epoch=64 train=10.386505 val_mae=11.367193 loss_components={'mae': 10.386505024773735}
+2026-11-10 02:00:16,144 task=2014 epoch=65 train=10.388161 val_mae=11.357077 loss_components={'mae': 10.388160943984985}
+2026-11-10 02:00:20,994 task=2014 epoch=66 train=10.386241 val_mae=11.356775 loss_components={'mae': 10.386241015933809}
+2026-11-10 02:00:25,998 task=2014 epoch=67 train=10.390936 val_mae=11.358136 loss_components={'mae': 10.390936068126134}
+2026-11-10 02:00:31,037 task=2014 epoch=68 train=10.385794 val_mae=11.364541 loss_components={'mae': 10.385793856212072}
+2026-11-10 02:00:35,977 task=2014 epoch=69 train=10.396482 val_mae=11.360605 loss_components={'mae': 10.396482161113195}
+2026-11-10 02:00:35,980 [*] load from /root/autodl-tmp/autodl_psrag_trend/runs_integrated_shared_kv/raw/PEMS/20261110_012737_seed42_d0aedc/2014/11.33848974.pkl
+2026-11-10 02:00:45,036 test task=2014 prefix=3 {'MAE': 10.16567611694336, 'RMSE': 16.496003562830662, 'MAPE': 14.868177473545074}
+2026-11-10 02:00:45,037 test task=2014 prefix=6 {'MAE': 10.393503189086914, 'RMSE': 16.925830382313872, 'MAPE': 15.101458132266998}
+2026-11-10 02:00:45,037 test task=2014 prefix=12 {'MAE': 10.679677963256836, 'RMSE': 17.437981274160396, 'MAPE': 15.45780599117279}
+2026-11-10 02:00:45,037 test task=2014 prefix=Avg {'MAE': 10.366324106852213, 'RMSE': 16.868558882413932, 'MAPE': 15.088499089082083}
+2026-11-10 02:00:46,553 task=2015 nodes=834 samples={'train': 5332, 'val': 1762, 'test': 1762}
+2026-11-10 02:00:46,554 [*] load from /root/autodl-tmp/autodl_psrag_trend/runs_integrated_shared_kv/raw/PEMS/20261110_012737_seed42_d0aedc/2014/11.33848974.pkl
+2026-11-10 02:00:46,579 Total Parameters: 606828
+2026-11-10 02:00:46,579 Trainable Parameters: 246362
+2026-11-10 02:00:46,579 teacher=False residual_norm=True normalize_x=False normalization_scope=split lora_enabled=True lora_years=[2012, 2013, 2014, 2015] retrain_match_capacity=False
+2026-11-10 02:00:51,678 task=2015 epoch=0 train=11.616442 val_mae=11.114810 loss_components={'mae': 11.61644164721171}
+2026-11-10 02:00:56,821 task=2015 epoch=1 train=10.330291 val_mae=10.873023 loss_components={'mae': 10.330291373389107}
+2026-11-10 02:01:01,948 task=2015 epoch=2 train=10.119740 val_mae=10.832770 loss_components={'mae': 10.119739532470703}
+2026-11-10 02:01:07,231 task=2015 epoch=3 train=10.057500 val_mae=10.819978 loss_components={'mae': 10.05749986285255}
+2026-11-10 02:01:12,318 task=2015 epoch=4 train=10.010033 val_mae=10.800505 loss_components={'mae': 10.010032903580438}
+2026-11-10 02:01:17,456 task=2015 epoch=5 train=9.954527 val_mae=10.795084 loss_components={'mae': 9.954527139663696}
+2026-11-10 02:01:22,386 task=2015 epoch=6 train=9.957286 val_mae=10.806273 loss_components={'mae': 9.9572860399882}
+2026-11-10 02:01:27,367 task=2015 epoch=7 train=9.941052 val_mae=10.787220 loss_components={'mae': 9.941051664806547}
+2026-11-10 02:01:32,354 task=2015 epoch=8 train=9.922530 val_mae=10.802027 loss_components={'mae': 9.922530355907622}
+2026-11-10 02:01:37,457 task=2015 epoch=9 train=9.927466 val_mae=10.783814 loss_components={'mae': 9.92746621086484}
+2026-11-10 02:01:42,417 task=2015 epoch=10 train=9.922468 val_mae=10.782394 loss_components={'mae': 9.922467981066022}
+2026-11-10 02:01:47,480 task=2015 epoch=11 train=9.895269 val_mae=10.787193 loss_components={'mae': 9.895269200915383}
+2026-11-10 02:01:52,369 task=2015 epoch=12 train=9.887276 val_mae=10.775211 loss_components={'mae': 9.887275650387718}
+2026-11-10 02:01:57,557 task=2015 epoch=13 train=9.879720 val_mae=10.786005 loss_components={'mae': 9.879719859077817}
+2026-11-10 02:02:02,551 task=2015 epoch=14 train=9.884931 val_mae=10.780784 loss_components={'mae': 9.884930837722052}
+2026-11-10 02:02:07,571 task=2015 epoch=15 train=9.870917 val_mae=10.766584 loss_components={'mae': 9.870917161305746}
+2026-11-10 02:02:12,644 task=2015 epoch=16 train=9.858196 val_mae=10.772097 loss_components={'mae': 9.858195929300217}
+2026-11-10 02:02:17,647 task=2015 epoch=17 train=9.851883 val_mae=10.761505 loss_components={'mae': 9.851883127575828}
+2026-11-10 02:02:22,671 task=2015 epoch=18 train=9.848052 val_mae=10.774588 loss_components={'mae': 9.848051718303136}
+2026-11-10 02:02:27,475 task=2015 epoch=19 train=9.852217 val_mae=10.773606 loss_components={'mae': 9.852216845466977}
+2026-11-10 02:02:32,367 task=2015 epoch=20 train=9.844174 val_mae=10.772714 loss_components={'mae': 9.844174396424066}
+2026-11-10 02:02:37,243 task=2015 epoch=21 train=9.847736 val_mae=10.764143 loss_components={'mae': 9.847736131577264}
+2026-11-10 02:02:42,106 task=2015 epoch=22 train=9.827475 val_mae=10.767849 loss_components={'mae': 9.827475229899088}
+2026-11-10 02:02:47,106 task=2015 epoch=23 train=9.815249 val_mae=10.772367 loss_components={'mae': 9.815248716445197}
+2026-11-10 02:02:52,020 task=2015 epoch=24 train=9.823581 val_mae=10.761691 loss_components={'mae': 9.823580821355185}
+2026-11-10 02:02:57,001 task=2015 epoch=25 train=9.826746 val_mae=10.779898 loss_components={'mae': 9.826745646340507}
+2026-11-10 02:03:02,034 task=2015 epoch=26 train=9.819629 val_mae=10.771914 loss_components={'mae': 9.819629078819638}
+2026-11-10 02:03:06,907 task=2015 epoch=27 train=9.822373 val_mae=10.790881 loss_components={'mae': 9.82237295877366}
+2026-11-10 02:03:11,868 task=2015 epoch=28 train=9.814914 val_mae=10.784788 loss_components={'mae': 9.814914385477701}
+2026-11-10 02:03:16,868 task=2015 epoch=29 train=9.813689 val_mae=10.789031 loss_components={'mae': 9.813688743682135}
+2026-11-10 02:03:21,783 task=2015 epoch=30 train=9.808244 val_mae=10.794389 loss_components={'mae': 9.80824377423241}
+2026-11-10 02:03:26,766 task=2015 epoch=31 train=9.804094 val_mae=10.772424 loss_components={'mae': 9.804094291868664}
+2026-11-10 02:03:31,797 task=2015 epoch=32 train=9.810799 val_mae=10.805172 loss_components={'mae': 9.810798769905453}
+2026-11-10 02:03:36,763 task=2015 epoch=33 train=9.817682 val_mae=10.797328 loss_components={'mae': 9.817682039170037}
+2026-11-10 02:03:41,627 task=2015 epoch=34 train=9.798615 val_mae=10.753638 loss_components={'mae': 9.798615410214378}
+2026-11-10 02:03:46,503 task=2015 epoch=35 train=9.801981 val_mae=10.792204 loss_components={'mae': 9.801981392360869}
+2026-11-10 02:03:51,578 task=2015 epoch=36 train=9.793581 val_mae=10.791999 loss_components={'mae': 9.793580895378476}
+2026-11-10 02:03:56,583 task=2015 epoch=37 train=9.799882 val_mae=10.772280 loss_components={'mae': 9.799881867000035}
+2026-11-10 02:04:01,582 task=2015 epoch=38 train=9.795921 val_mae=10.786582 loss_components={'mae': 9.795920894259499}
+2026-11-10 02:04:06,468 task=2015 epoch=39 train=9.797466 val_mae=10.750841 loss_components={'mae': 9.797466482434954}
+2026-11-10 02:04:11,434 task=2015 epoch=40 train=9.794431 val_mae=10.777508 loss_components={'mae': 9.794431357156663}
+2026-11-10 02:04:16,463 task=2015 epoch=41 train=9.781454 val_mae=10.761733 loss_components={'mae': 9.781454381488619}
+2026-11-10 02:04:21,394 task=2015 epoch=42 train=9.779172 val_mae=10.762266 loss_components={'mae': 9.779171614419846}
+2026-11-10 02:04:26,564 task=2015 epoch=43 train=9.784343 val_mae=10.758825 loss_components={'mae': 9.784342686335245}
+2026-11-10 02:04:31,654 task=2015 epoch=44 train=9.781671 val_mae=10.762804 loss_components={'mae': 9.781670865558443}
+2026-11-10 02:04:36,649 task=2015 epoch=45 train=9.768463 val_mae=10.793795 loss_components={'mae': 9.768463157472157}
+2026-11-10 02:04:41,546 task=2015 epoch=46 train=9.774273 val_mae=10.764438 loss_components={'mae': 9.77427277678535}
+2026-11-10 02:04:46,628 task=2015 epoch=47 train=9.777908 val_mae=10.764315 loss_components={'mae': 9.777907973244076}
+2026-11-10 02:04:51,641 task=2015 epoch=48 train=9.776454 val_mae=10.773610 loss_components={'mae': 9.77645366532462}
+2026-11-10 02:04:56,595 task=2015 epoch=49 train=9.768582 val_mae=10.762036 loss_components={'mae': 9.768582287288847}
+2026-11-10 02:05:01,479 task=2015 epoch=50 train=9.753884 val_mae=10.759115 loss_components={'mae': 9.753884213311332}
+2026-11-10 02:05:06,695 task=2015 epoch=51 train=9.773504 val_mae=10.765244 loss_components={'mae': 9.773504234495617}
+2026-11-10 02:05:11,638 task=2015 epoch=52 train=9.767984 val_mae=10.767100 loss_components={'mae': 9.767984129133678}
+2026-11-10 02:05:16,692 task=2015 epoch=53 train=9.776268 val_mae=10.772573 loss_components={'mae': 9.776268084843954}
+2026-11-10 02:05:21,774 task=2015 epoch=54 train=9.758027 val_mae=10.761903 loss_components={'mae': 9.758027440025693}
+2026-11-10 02:05:26,788 task=2015 epoch=55 train=9.758085 val_mae=10.783090 loss_components={'mae': 9.758084512892223}
+2026-11-10 02:05:31,812 task=2015 epoch=56 train=9.770767 val_mae=10.762654 loss_components={'mae': 9.770766519364857}
+2026-11-10 02:05:36,817 task=2015 epoch=57 train=9.757445 val_mae=10.764593 loss_components={'mae': 9.757445346741449}
+2026-11-10 02:05:41,836 task=2015 epoch=58 train=9.743176 val_mae=10.762584 loss_components={'mae': 9.743176182111105}
+2026-11-10 02:05:46,675 task=2015 epoch=59 train=9.760178 val_mae=10.768427 loss_components={'mae': 9.760178043728782}
+2026-11-10 02:05:51,799 task=2015 epoch=60 train=9.758639 val_mae=10.774702 loss_components={'mae': 9.75863918803987}
+2026-11-10 02:05:56,780 task=2015 epoch=61 train=9.759119 val_mae=10.771399 loss_components={'mae': 9.759118795394897}
+2026-11-10 02:06:01,774 task=2015 epoch=62 train=9.763304 val_mae=10.783316 loss_components={'mae': 9.763304108665103}
+2026-11-10 02:06:06,775 task=2015 epoch=63 train=9.765364 val_mae=10.767014 loss_components={'mae': 9.76536350023179}
+2026-11-10 02:06:11,894 task=2015 epoch=64 train=9.751426 val_mae=10.779370 loss_components={'mae': 9.751425924755278}
+2026-11-10 02:06:16,985 task=2015 epoch=65 train=9.759699 val_mae=10.786502 loss_components={'mae': 9.759699208395821}
+2026-11-10 02:06:22,139 task=2015 epoch=66 train=9.752267 val_mae=10.769994 loss_components={'mae': 9.752266679491315}
+2026-11-10 02:06:27,108 task=2015 epoch=67 train=9.748642 val_mae=10.778524 loss_components={'mae': 9.74864243325733}
+2026-11-10 02:06:32,248 task=2015 epoch=68 train=9.747681 val_mae=10.775449 loss_components={'mae': 9.7476806640625}
+2026-11-10 02:06:37,455 task=2015 epoch=69 train=9.744970 val_mae=10.769763 loss_components={'mae': 9.744970480600992}
+2026-11-10 02:06:42,635 task=2015 epoch=70 train=9.749849 val_mae=10.778685 loss_components={'mae': 9.749849319458008}
+2026-11-10 02:06:42,636 [*] load from /root/autodl-tmp/autodl_psrag_trend/runs_integrated_shared_kv/raw/PEMS/20261110_012737_seed42_d0aedc/2015/10.75084094.pkl
+2026-11-10 02:06:51,718 test task=2015 prefix=3 {'MAE': 10.168790817260742, 'RMSE': 16.621385224383186, 'MAPE': 14.116807281970978}
+2026-11-10 02:06:51,719 test task=2015 prefix=6 {'MAE': 10.461350440979004, 'RMSE': 17.281690595366655, 'MAPE': 14.38477635383606}
+2026-11-10 02:06:51,719 test task=2015 prefix=12 {'MAE': 10.841917037963867, 'RMSE': 18.04977570708766, 'MAPE': 14.787891507148743}
+2026-11-10 02:06:51,719 test task=2015 prefix=Avg {'MAE': 10.438551346460978, 'RMSE': 17.21149393933314, 'MAPE': 14.376119648416838}
+2026-11-10 02:06:53,646 task=2016 nodes=850 samples={'train': 5332, 'val': 1762, 'test': 1762}
+2026-11-10 02:06:53,648 [*] load from /root/autodl-tmp/autodl_psrag_trend/runs_integrated_shared_kv/raw/PEMS/20261110_012737_seed42_d0aedc/2015/10.75084094.pkl
+2026-11-10 02:06:53,687 Total Parameters: 619412
+2026-11-10 02:06:53,687 Trainable Parameters: 249434
+2026-11-10 02:06:53,687 teacher=False residual_norm=True normalize_x=False normalization_scope=split lora_enabled=True lora_years=[2012, 2013, 2014, 2015, 2016] retrain_match_capacity=False
+2026-11-10 02:06:58,811 task=2016 epoch=0 train=12.169846 val_mae=11.325110 loss_components={'mae': 12.169846182777768}
+2026-11-10 02:07:03,781 task=2016 epoch=1 train=10.406283 val_mae=10.709655 loss_components={'mae': 10.406282844997587}
+2026-11-10 02:07:08,672 task=2016 epoch=2 train=9.972240 val_mae=10.554616 loss_components={'mae': 9.97224033446539}
+2026-11-10 02:07:13,791 task=2016 epoch=3 train=9.822009 val_mae=10.506559 loss_components={'mae': 9.82200881413051}
+2026-11-10 02:07:18,891 task=2016 epoch=4 train=9.750188 val_mae=10.476084 loss_components={'mae': 9.750187646775018}
+2026-11-10 02:07:24,253 task=2016 epoch=5 train=9.698007 val_mae=10.483315 loss_components={'mae': 9.698007379259382}
+2026-11-10 02:07:29,282 task=2016 epoch=6 train=9.687875 val_mae=10.484931 loss_components={'mae': 9.687875202723912}
+2026-11-10 02:07:34,181 task=2016 epoch=7 train=9.650853 val_mae=10.462034 loss_components={'mae': 9.650852907271613}
+2026-11-10 02:07:39,179 task=2016 epoch=8 train=9.630750 val_mae=10.460506 loss_components={'mae': 9.63075005440485}
+2026-11-10 02:07:44,262 task=2016 epoch=9 train=9.619505 val_mae=10.445882 loss_components={'mae': 9.619505098887853}
+2026-11-10 02:07:49,226 task=2016 epoch=10 train=9.612485 val_mae=10.446862 loss_components={'mae': 9.612484863826207}
+2026-11-10 02:07:54,078 task=2016 epoch=11 train=9.599586 val_mae=10.445090 loss_components={'mae': 9.599586100805373}
+2026-11-10 02:07:59,057 task=2016 epoch=12 train=9.596973 val_mae=10.440034 loss_components={'mae': 9.596972794759841}
+2026-11-10 02:08:04,063 task=2016 epoch=13 train=9.587828 val_mae=10.425729 loss_components={'mae': 9.587828193392072}
+2026-11-10 02:08:09,073 task=2016 epoch=14 train=9.583324 val_mae=10.445850 loss_components={'mae': 9.583324330193657}
+2026-11-10 02:08:14,111 task=2016 epoch=15 train=9.565624 val_mae=10.437257 loss_components={'mae': 9.56562352180481}
+2026-11-10 02:08:18,997 task=2016 epoch=16 train=9.558475 val_mae=10.454064 loss_components={'mae': 9.558474676949638}
+2026-11-10 02:08:24,054 task=2016 epoch=17 train=9.550961 val_mae=10.432204 loss_components={'mae': 9.550961165201096}
+2026-11-10 02:08:29,013 task=2016 epoch=18 train=9.539135 val_mae=10.447535 loss_components={'mae': 9.539135001954579}
+2026-11-10 02:08:34,010 task=2016 epoch=19 train=9.542745 val_mae=10.432954 loss_components={'mae': 9.542744818187895}
+2026-11-10 02:08:39,092 task=2016 epoch=20 train=9.538254 val_mae=10.425371 loss_components={'mae': 9.538253602527437}
+2026-11-10 02:08:44,161 task=2016 epoch=21 train=9.543615 val_mae=10.417957 loss_components={'mae': 9.543614728110176}
+2026-11-10 02:08:49,176 task=2016 epoch=22 train=9.531131 val_mae=10.419294 loss_components={'mae': 9.531130518232073}
+2026-11-10 02:08:54,265 task=2016 epoch=23 train=9.530787 val_mae=10.435258 loss_components={'mae': 9.530787433896746}
+2026-11-10 02:08:59,230 task=2016 epoch=24 train=9.520378 val_mae=10.426111 loss_components={'mae': 9.520377567836217}
+2026-11-10 02:09:04,432 task=2016 epoch=25 train=9.526125 val_mae=10.417231 loss_components={'mae': 9.526124613625663}
+2026-11-10 02:09:09,743 task=2016 epoch=26 train=9.511477 val_mae=10.431199 loss_components={'mae': 9.511476596196493}
+2026-11-10 02:09:14,906 task=2016 epoch=27 train=9.512285 val_mae=10.415828 loss_components={'mae': 9.512284846532912}
+2026-11-10 02:09:19,885 task=2016 epoch=28 train=9.508974 val_mae=10.430579 loss_components={'mae': 9.50897429102943}
+2026-11-10 02:09:25,062 task=2016 epoch=29 train=9.513853 val_mae=10.419433 loss_components={'mae': 9.513853391011557}
+2026-11-10 02:09:30,252 task=2016 epoch=30 train=9.518577 val_mae=10.436850 loss_components={'mae': 9.51857666742234}
+2026-11-10 02:09:35,594 task=2016 epoch=31 train=9.513354 val_mae=10.422335 loss_components={'mae': 9.513354244686308}
+2026-11-10 02:09:40,861 task=2016 epoch=32 train=9.505963 val_mae=10.448947 loss_components={'mae': 9.505962689717611}
+2026-11-10 02:09:46,097 task=2016 epoch=33 train=9.500992 val_mae=10.432365 loss_components={'mae': 9.500992377599081}
+2026-11-10 02:09:51,621 task=2016 epoch=34 train=9.496147 val_mae=10.419201 loss_components={'mae': 9.496146724337624}
+2026-11-10 02:09:56,582 task=2016 epoch=35 train=9.496105 val_mae=10.426706 loss_components={'mae': 9.496104694548107}
+2026-11-10 02:10:01,581 task=2016 epoch=36 train=9.493083 val_mae=10.442495 loss_components={'mae': 9.493083034242902}
+2026-11-10 02:10:06,785 task=2016 epoch=37 train=9.488738 val_mae=10.451715 loss_components={'mae': 9.488738434655327}
+2026-11-10 02:10:11,889 task=2016 epoch=38 train=9.491826 val_mae=10.441464 loss_components={'mae': 9.491826170966739}
+2026-11-10 02:10:17,042 task=2016 epoch=39 train=9.495880 val_mae=10.427651 loss_components={'mae': 9.49587995665414}
+2026-11-10 02:10:22,152 task=2016 epoch=40 train=9.495280 val_mae=10.450427 loss_components={'mae': 9.495280265808105}
+2026-11-10 02:10:27,231 task=2016 epoch=41 train=9.480519 val_mae=10.440785 loss_components={'mae': 9.480519419624692}
+2026-11-10 02:10:32,192 task=2016 epoch=42 train=9.482789 val_mae=10.467684 loss_components={'mae': 9.482788801193237}
+2026-11-10 02:10:37,188 task=2016 epoch=43 train=9.493910 val_mae=10.433920 loss_components={'mae': 9.493910153706869}
+2026-11-10 02:10:42,247 task=2016 epoch=44 train=9.490180 val_mae=10.439187 loss_components={'mae': 9.490180151803154}
+2026-11-10 02:10:47,444 task=2016 epoch=45 train=9.472522 val_mae=10.426550 loss_components={'mae': 9.472522440410795}
+2026-11-10 02:10:52,502 task=2016 epoch=46 train=9.485057 val_mae=10.426485 loss_components={'mae': 9.485056729543777}
+2026-11-10 02:10:57,583 task=2016 epoch=47 train=9.474245 val_mae=10.423281 loss_components={'mae': 9.474244628633771}
+2026-11-10 02:11:02,636 task=2016 epoch=48 train=9.482483 val_mae=10.419558 loss_components={'mae': 9.482483352933611}
+2026-11-10 02:11:07,587 task=2016 epoch=49 train=9.476938 val_mae=10.437363 loss_components={'mae': 9.476938429332915}
+2026-11-10 02:11:12,817 task=2016 epoch=50 train=9.467198 val_mae=10.453036 loss_components={'mae': 9.467198360533942}
+2026-11-10 02:11:17,944 task=2016 epoch=51 train=9.479997 val_mae=10.422070 loss_components={'mae': 9.479997112637474}
+2026-11-10 02:11:23,024 task=2016 epoch=52 train=9.471982 val_mae=10.431865 loss_components={'mae': 9.471982070377894}
+2026-11-10 02:11:27,979 task=2016 epoch=53 train=9.470355 val_mae=10.444331 loss_components={'mae': 9.470355249586559}
+2026-11-10 02:11:33,133 task=2016 epoch=54 train=9.469114 val_mae=10.436631 loss_components={'mae': 9.46911390622457}
+2026-11-10 02:11:38,339 task=2016 epoch=55 train=9.472435 val_mae=10.429251 loss_components={'mae': 9.472435258683705}
+2026-11-10 02:11:43,591 task=2016 epoch=56 train=9.464262 val_mae=10.425410 loss_components={'mae': 9.464262031373524}
+2026-11-10 02:11:48,880 task=2016 epoch=57 train=9.469479 val_mae=10.438603 loss_components={'mae': 9.46947880018325}
+2026-11-10 02:11:54,117 task=2016 epoch=58 train=9.477758 val_mae=10.442013 loss_components={'mae': 9.477757533391317}
+2026-11-10 02:11:54,118 [*] load from /root/autodl-tmp/autodl_psrag_trend/runs_integrated_shared_kv/raw/PEMS/20261110_012737_seed42_d0aedc/2016/10.41582847.pkl
+2026-11-10 02:12:03,407 test task=2016 prefix=3 {'MAE': 9.65364933013916, 'RMSE': 18.636863258583528, 'MAPE': 12.860581278800964}
+2026-11-10 02:12:03,407 test task=2016 prefix=6 {'MAE': 9.9132080078125, 'RMSE': 19.635462602178805, 'MAPE': 13.113357126712799}
+2026-11-10 02:12:03,407 test task=2016 prefix=12 {'MAE': 10.264427185058594, 'RMSE': 20.851141721353876, 'MAPE': 13.516533374786377}
+2026-11-10 02:12:03,407 test task=2016 prefix=Avg {'MAE': 9.895686785380045, 'RMSE': 19.539301428684883, 'MAPE': 13.117858643333117}
+2026-11-10 02:12:05,075 task=2017 nodes=871 samples={'train': 5332, 'val': 1762, 'test': 1762}
+2026-11-10 02:12:05,076 [*] load from /root/autodl-tmp/autodl_psrag_trend/runs_integrated_shared_kv/raw/PEMS/20261110_012737_seed42_d0aedc/2016/10.41582847.pkl
+2026-11-10 02:12:05,105 Total Parameters: 632956
+2026-11-10 02:12:05,105 Trainable Parameters: 253466
+2026-11-10 02:12:05,105 teacher=False residual_norm=True normalize_x=False normalization_scope=split lora_enabled=True lora_years=[2012, 2013, 2014, 2015, 2016, 2017] retrain_match_capacity=False
+2026-11-10 02:12:10,408 task=2017 epoch=0 train=13.517941 val_mae=12.786126 loss_components={'mae': 13.517940578006563}
+2026-11-10 02:12:15,656 task=2017 epoch=1 train=11.671305 val_mae=12.325434 loss_components={'mae': 11.671305372601463}
+2026-11-10 02:12:20,905 task=2017 epoch=2 train=11.317604 val_mae=12.222030 loss_components={'mae': 11.317604462305704}
+2026-11-10 02:12:26,141 task=2017 epoch=3 train=11.176119 val_mae=12.162270 loss_components={'mae': 11.176118714468819}
+2026-11-10 02:12:31,382 task=2017 epoch=4 train=11.092548 val_mae=12.149596 loss_components={'mae': 11.092548029763359}
+2026-11-10 02:12:36,563 task=2017 epoch=5 train=11.019160 val_mae=12.144352 loss_components={'mae': 11.019159952799479}
+2026-11-10 02:12:41,875 task=2017 epoch=6 train=10.974885 val_mae=12.071880 loss_components={'mae': 10.974885248002552}
+2026-11-10 02:12:47,421 task=2017 epoch=7 train=10.942254 val_mae=12.072531 loss_components={'mae': 10.94225365774972}
+2026-11-10 02:12:52,707 task=2017 epoch=8 train=10.915843 val_mae=12.079330 loss_components={'mae': 10.915842533111572}
+2026-11-10 02:12:57,946 task=2017 epoch=9 train=10.874611 val_mae=12.065701 loss_components={'mae': 10.87461073057992}
+2026-11-10 02:13:03,121 task=2017 epoch=10 train=10.870755 val_mae=12.029906 loss_components={'mae': 10.870754752840314}
+2026-11-10 02:13:08,456 task=2017 epoch=11 train=10.850220 val_mae=12.017910 loss_components={'mae': 10.850219953627814}
+2026-11-10 02:13:13,739 task=2017 epoch=12 train=10.828704 val_mae=12.020417 loss_components={'mae': 10.828703755424137}
+2026-11-10 02:13:19,054 task=2017 epoch=13 train=10.798829 val_mae=12.005086 loss_components={'mae': 10.798828851609002}
+2026-11-10 02:13:24,559 task=2017 epoch=14 train=10.791086 val_mae=12.002147 loss_components={'mae': 10.791085651942662}
+2026-11-10 02:13:29,777 task=2017 epoch=15 train=10.778601 val_mae=12.003407 loss_components={'mae': 10.778600738162087}
+2026-11-10 02:13:34,974 task=2017 epoch=16 train=10.775723 val_mae=11.980891 loss_components={'mae': 10.775722878319877}
+2026-11-10 02:13:40,158 task=2017 epoch=17 train=10.742577 val_mae=11.993807 loss_components={'mae': 10.7425772916703}
+2026-11-10 02:13:45,504 task=2017 epoch=18 train=10.762686 val_mae=11.968008 loss_components={'mae': 10.762686173121134}
+2026-11-10 02:13:50,871 task=2017 epoch=19 train=10.748963 val_mae=11.994479 loss_components={'mae': 10.74896250452314}
+2026-11-10 02:13:56,132 task=2017 epoch=20 train=10.726497 val_mae=11.971849 loss_components={'mae': 10.726496855417887}
+2026-11-10 02:14:01,393 task=2017 epoch=21 train=10.738668 val_mae=11.989606 loss_components={'mae': 10.738668373652867}
+2026-11-10 02:14:06,620 task=2017 epoch=22 train=10.719844 val_mae=11.970849 loss_components={'mae': 10.719844329924811}
+2026-11-10 02:14:11,812 task=2017 epoch=23 train=10.707669 val_mae=11.964535 loss_components={'mae': 10.707669224057879}
+2026-11-10 02:14:17,241 task=2017 epoch=24 train=10.703065 val_mae=11.952081 loss_components={'mae': 10.703065032050723}
+2026-11-10 02:14:22,655 task=2017 epoch=25 train=10.695625 val_mae=11.947536 loss_components={'mae': 10.695625032697405}
+2026-11-10 02:14:27,921 task=2017 epoch=26 train=10.694433 val_mae=11.962185 loss_components={'mae': 10.694432508377801}
+2026-11-10 02:14:33,093 task=2017 epoch=27 train=10.693474 val_mae=11.955691 loss_components={'mae': 10.693473849977766}
+2026-11-10 02:14:38,306 task=2017 epoch=28 train=10.684103 val_mae=11.957510 loss_components={'mae': 10.684102626073928}
+2026-11-10 02:14:43,570 task=2017 epoch=29 train=10.699750 val_mae=11.949944 loss_components={'mae': 10.69975049155099}
+2026-11-10 02:14:48,845 task=2017 epoch=30 train=10.688802 val_mae=11.952329 loss_components={'mae': 10.688802287692116}
+2026-11-10 02:14:54,288 task=2017 epoch=31 train=10.687530 val_mae=11.992928 loss_components={'mae': 10.687529654729934}
+2026-11-10 02:14:59,660 task=2017 epoch=32 train=10.680368 val_mae=11.931824 loss_components={'mae': 10.680367787679037}
+2026-11-10 02:15:04,941 task=2017 epoch=33 train=10.663979 val_mae=11.950091 loss_components={'mae': 10.66397948492141}
+2026-11-10 02:15:10,258 task=2017 epoch=34 train=10.680505 val_mae=11.956475 loss_components={'mae': 10.680504674003238}
+2026-11-10 02:15:15,528 task=2017 epoch=35 train=10.659800 val_mae=11.956110 loss_components={'mae': 10.659800245648338}
+2026-11-10 02:15:20,837 task=2017 epoch=36 train=10.673264 val_mae=11.942657 loss_components={'mae': 10.673263822283063}
+2026-11-10 02:15:25,934 task=2017 epoch=37 train=10.655818 val_mae=11.940991 loss_components={'mae': 10.655817713056292}
+2026-11-10 02:15:31,325 task=2017 epoch=38 train=10.667305 val_mae=11.948498 loss_components={'mae': 10.667304697490874}
+2026-11-10 02:15:36,576 task=2017 epoch=39 train=10.656245 val_mae=11.927543 loss_components={'mae': 10.656245288394746}
+2026-11-10 02:15:41,867 task=2017 epoch=40 train=10.635004 val_mae=11.954024 loss_components={'mae': 10.63500383922032}
+2026-11-10 02:15:47,082 task=2017 epoch=41 train=10.668068 val_mae=11.969117 loss_components={'mae': 10.668067807242984}
+2026-11-10 02:15:52,457 task=2017 epoch=42 train=10.663549 val_mae=11.933157 loss_components={'mae': 10.663549003146944}
+2026-11-10 02:15:57,570 task=2017 epoch=43 train=10.648496 val_mae=11.928611 loss_components={'mae': 10.648496082850865}
+2026-11-10 02:16:02,776 task=2017 epoch=44 train=10.658453 val_mae=11.966769 loss_components={'mae': 10.65845319202968}
+2026-11-10 02:16:07,974 task=2017 epoch=45 train=10.649972 val_mae=11.936027 loss_components={'mae': 10.649971541904268}
+2026-11-10 02:16:13,122 task=2017 epoch=46 train=10.649468 val_mae=11.997230 loss_components={'mae': 10.649467922392345}
+2026-11-10 02:16:18,333 task=2017 epoch=47 train=10.639633 val_mae=11.941061 loss_components={'mae': 10.639632985705422}
+2026-11-10 02:16:23,734 task=2017 epoch=48 train=10.649637 val_mae=11.939831 loss_components={'mae': 10.649637438002086}
+2026-11-10 02:16:29,133 task=2017 epoch=49 train=10.644223 val_mae=11.954080 loss_components={'mae': 10.644222554706392}
+2026-11-10 02:16:34,348 task=2017 epoch=50 train=10.635299 val_mae=11.935622 loss_components={'mae': 10.635299364725748}
+2026-11-10 02:16:39,709 task=2017 epoch=51 train=10.654320 val_mae=11.955854 loss_components={'mae': 10.654319831303187}
+2026-11-10 02:16:44,960 task=2017 epoch=52 train=10.636210 val_mae=11.934697 loss_components={'mae': 10.636209873926072}
+2026-11-10 02:16:50,252 task=2017 epoch=53 train=10.624287 val_mae=11.969431 loss_components={'mae': 10.624286628904796}
+2026-11-10 02:16:55,598 task=2017 epoch=54 train=10.626606 val_mae=11.977181 loss_components={'mae': 10.626605646950859}
+2026-11-10 02:17:00,729 task=2017 epoch=55 train=10.635761 val_mae=11.951192 loss_components={'mae': 10.63576138587225}
+2026-11-10 02:17:05,919 task=2017 epoch=56 train=10.637634 val_mae=11.954307 loss_components={'mae': 10.637634413582939}
+2026-11-10 02:17:11,205 task=2017 epoch=57 train=10.625965 val_mae=11.966357 loss_components={'mae': 10.625964925402688}
+2026-11-10 02:17:16,386 task=2017 epoch=58 train=10.619837 val_mae=11.954960 loss_components={'mae': 10.619837011609759}
+2026-11-10 02:17:21,494 task=2017 epoch=59 train=10.642254 val_mae=11.961999 loss_components={'mae': 10.642254102797736}
+2026-11-10 02:17:26,709 task=2017 epoch=60 train=10.631561 val_mae=11.945962 loss_components={'mae': 10.631560677573795}
+2026-11-10 02:17:31,990 task=2017 epoch=61 train=10.626358 val_mae=11.951180 loss_components={'mae': 10.626358281998407}
+2026-11-10 02:17:37,227 task=2017 epoch=62 train=10.627203 val_mae=11.965369 loss_components={'mae': 10.62720274925232}
+2026-11-10 02:17:42,717 task=2017 epoch=63 train=10.615893 val_mae=11.941206 loss_components={'mae': 10.615893182300386}
+2026-11-10 02:17:48,080 task=2017 epoch=64 train=10.616065 val_mae=11.943033 loss_components={'mae': 10.616065354574294}
+2026-11-10 02:17:53,255 task=2017 epoch=65 train=10.608648 val_mae=11.946709 loss_components={'mae': 10.608648436410087}
+2026-11-10 02:17:58,374 task=2017 epoch=66 train=10.628089 val_mae=11.946618 loss_components={'mae': 10.628088814871651}
+2026-11-10 02:18:03,733 task=2017 epoch=67 train=10.611650 val_mae=11.950914 loss_components={'mae': 10.611649808429537}
+2026-11-10 02:18:09,217 task=2017 epoch=68 train=10.619441 val_mae=11.969924 loss_components={'mae': 10.619440521512713}
+2026-11-10 02:18:14,423 task=2017 epoch=69 train=10.610044 val_mae=11.934002 loss_components={'mae': 10.61004408200582}
+2026-11-10 02:18:19,777 task=2017 epoch=70 train=10.608096 val_mae=11.979972 loss_components={'mae': 10.608095736730666}
+2026-11-10 02:18:19,778 [*] load from /root/autodl-tmp/autodl_psrag_trend/runs_integrated_shared_kv/raw/PEMS/20261110_012737_seed42_d0aedc/2017/11.92754323.pkl
+2026-11-10 02:18:29,258 test task=2017 prefix=3 {'MAE': 10.981590270996094, 'RMSE': 18.873915887481704, 'MAPE': 15.693284571170807}
+2026-11-10 02:18:29,258 test task=2017 prefix=6 {'MAE': 11.330230712890625, 'RMSE': 19.572558659772472, 'MAPE': 16.09620451927185}
+2026-11-10 02:18:29,258 test task=2017 prefix=12 {'MAE': 11.822948455810547, 'RMSE': 20.54963592429544, 'MAPE': 16.805902123451233}
+2026-11-10 02:18:29,258 test task=2017 prefix=Avg {'MAE': 11.31392208735148, 'RMSE': 19.541411553346133, 'MAPE': 16.127327208717663}
+2026-11-10 02:18:29,345 COMPLETED {'dataset': 'PEMS', 'run': 'runs_integrated_shared_kv/raw/PEMS/20261110_012737_seed42_d0aedc', 'smoke': False, 'tasks': ['2011', '2012', '2013', '2014', '2015', '2016', '2017'], 'average': {'3': {'MAE': 10.104602949959892, 'RMSE': 16.82312351002288, 'MAPE': 14.00617893253054}, '6': {'MAE': 10.379944801330566, 'RMSE': 17.4548772701766, 'MAPE': 14.30753128869193}, '12': {'MAE': 10.74399471282959, 'RMSE': 18.235748403357288, 'MAPE': 14.783099506582532}, 'Avg': {'MAE': 10.356843403407506, 'RMSE': 17.393247315253753, 'MAPE': 14.30695786007813}}}

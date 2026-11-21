@@ -1,0 +1,257 @@
+{
+  "2022": {
+    "metrics": {
+      "3": {
+        "MAE": 42.70013052146246,
+        "RMSE": 97.90763301750398,
+        "MAPE": 25.405627165070186,
+        "WAPE": 14.410161581844875,
+        "observed_targets": 375519,
+        "zero_targets": 4872,
+        "MAPE_targets": 370647
+      },
+      "6": {
+        "MAE": 48.02245073876432,
+        "RMSE": 118.46090578847677,
+        "MAPE": 27.528744125180662,
+        "WAPE": 16.22477064597662,
+        "observed_targets": 751047,
+        "zero_targets": 9742,
+        "MAPE_targets": 741305
+      },
+      "12": {
+        "MAE": 56.23642029587143,
+        "RMSE": 150.88347400430834,
+        "MAPE": 32.15797778658268,
+        "WAPE": 19.086978812181954,
+        "observed_targets": 1502132,
+        "zero_targets": 19493,
+        "MAPE_targets": 1482639
+      },
+      "Avg": {
+        "MAE": 48.219643450529844,
+        "RMSE": 119.72273487798553,
+        "MAPE": 27.94689787340148,
+        "WAPE": 16.307399164206416,
+        "observed_targets": 1502132,
+        "zero_targets": 19493,
+        "MAPE_targets": 1482639
+      }
+    },
+    "epochs": 200,
+    "seconds": 135.632,
+    "best_val_mae": 50.92232228178538,
+    "checkpoint": "2022/50.92232228.pkl",
+    "checkpoint_selection": "global_observed_validation_MAE",
+    "registered_nodes": 256,
+    "training_graph_active_nodes": 256,
+    "total_parameters": 379576,
+    "pattern_only_incremental": false,
+    "month": 2,
+    "label": "2022-02"
+  },
+  "2023": {
+    "metrics": {
+      "3": {
+        "MAE": 37.256800231878316,
+        "RMSE": 84.3131718330998,
+        "MAPE": 28.220361610931636,
+        "WAPE": 15.851293531419232,
+        "observed_targets": 500294,
+        "zero_targets": 10111,
+        "MAPE_targets": 490183
+      },
+      "6": {
+        "MAE": 41.32228189060087,
+        "RMSE": 95.23514505832145,
+        "MAPE": 30.688209899574495,
+        "WAPE": 17.56419385510659,
+        "observed_targets": 1001276,
+        "zero_targets": 20180,
+        "MAPE_targets": 981096
+      },
+      "12": {
+        "MAE": 47.26680615924263,
+        "RMSE": 110.41293607452468,
+        "MAPE": 35.77135779114716,
+        "WAPE": 20.06331164254017,
+        "observed_targets": 2005692,
+        "zero_targets": 39944,
+        "MAPE_targets": 1965748
+      },
+      "Avg": {
+        "MAE": 41.36143001511165,
+        "RMSE": 95.21050671768928,
+        "MAPE": 31.129617448930517,
+        "WAPE": 17.578850425033945,
+        "observed_targets": 2005692,
+        "zero_targets": 39944,
+        "MAPE_targets": 1965748
+      }
+    },
+    "epochs": 200,
+    "seconds": 160.625,
+    "best_val_mae": 35.80904022048003,
+    "checkpoint": "2023/35.80904022.pkl",
+    "checkpoint_selection": "global_observed_validation_MAE",
+    "registered_nodes": 320,
+    "training_graph_active_nodes": 316,
+    "total_parameters": 416440,
+    "pattern_only_incremental": true,
+    "month": 8,
+    "label": "2023-08"
+  },
+  "2024": {
+    "metrics": {
+      "3": {
+        "MAE": 38.935339755939665,
+        "RMSE": 90.11453630289942,
+        "MAPE": 26.423647930639284,
+        "WAPE": 13.370802234924897,
+        "observed_targets": 611864,
+        "zero_targets": 13896,
+        "MAPE_targets": 597968
+      },
+      "6": {
+        "MAE": 41.661130279400716,
+        "RMSE": 97.28618701692916,
+        "MAPE": 27.88646921660118,
+        "WAPE": 14.272675505852302,
+        "observed_targets": 1223855,
+        "zero_targets": 27237,
+        "MAPE_targets": 1196618
+      },
+      "12": {
+        "MAE": 46.77906765231203,
+        "RMSE": 110.15900949899716,
+        "MAPE": 31.90171846869272,
+        "WAPE": 15.970642978861791,
+        "observed_targets": 2448080,
+        "zero_targets": 52534,
+        "MAPE_targets": 2395546
+      },
+      "Avg": {
+        "MAE": 41.929618478453214,
+        "RMSE": 97.75783416028285,
+        "MAPE": 28.392926934451964,
+        "WAPE": 14.361776968906435,
+        "observed_targets": 2448080,
+        "zero_targets": 52534,
+        "MAPE_targets": 2395546
+      }
+    },
+    "epochs": 183,
+    "seconds": 147.703,
+    "best_val_mae": 44.314763250581386,
+    "checkpoint": "2024/44.31476325.pkl",
+    "checkpoint_selection": "global_observed_validation_MAE",
+    "registered_nodes": 384,
+    "training_graph_active_nodes": 379,
+    "total_parameters": 453304,
+    "pattern_only_incremental": true,
+    "month": 4,
+    "label": "2024-04"
+  },
+  "2025": {
+    "metrics": {
+      "3": {
+        "MAE": 30.47996167542428,
+        "RMSE": 63.47391060481011,
+        "MAPE": 24.220580487439545,
+        "WAPE": 12.96233832563101,
+        "observed_targets": 723413,
+        "zero_targets": 22513,
+        "MAPE_targets": 700900
+      },
+      "6": {
+        "MAE": 32.888279327534136,
+        "RMSE": 69.6783141240408,
+        "MAPE": 25.190929403904228,
+        "WAPE": 13.970854407142271,
+        "observed_targets": 1446715,
+        "zero_targets": 45054,
+        "MAPE_targets": 1401661
+      },
+      "12": {
+        "MAE": 36.822227179877956,
+        "RMSE": 78.48857318454718,
+        "MAPE": 27.84515994758359,
+        "WAPE": 15.611932487359601,
+        "observed_targets": 2893008,
+        "zero_targets": 90167,
+        "MAPE_targets": 2802841
+      },
+      "Avg": {
+        "MAE": 32.97842015293102,
+        "RMSE": 69.57012748482855,
+        "MAPE": 25.485053567440914,
+        "WAPE": 14.006127234378363,
+        "observed_targets": 2893008,
+        "zero_targets": 90167,
+        "MAPE_targets": 2802841
+      }
+    },
+    "epochs": 189,
+    "seconds": 160.233,
+    "best_val_mae": 33.100285425950084,
+    "checkpoint": "2025/33.10028543.pkl",
+    "checkpoint_selection": "global_observed_validation_MAE",
+    "registered_nodes": 448,
+    "training_graph_active_nodes": 436,
+    "total_parameters": 490168,
+    "pattern_only_incremental": true,
+    "month": 8,
+    "label": "2025-08"
+  },
+  "2026": {
+    "metrics": {
+      "3": {
+        "MAE": 41.368654671723625,
+        "RMSE": 95.39118789728049,
+        "MAPE": 25.740259336701907,
+        "WAPE": 13.715818383730468,
+        "observed_targets": 792009,
+        "zero_targets": 16257,
+        "MAPE_targets": 775752
+      },
+      "6": {
+        "MAE": 45.71458198660915,
+        "RMSE": 114.56818466404067,
+        "MAPE": 26.987885837375924,
+        "WAPE": 15.11653239732539,
+        "observed_targets": 1584156,
+        "zero_targets": 31910,
+        "MAPE_targets": 1552246
+      },
+      "12": {
+        "MAE": 51.67054277279274,
+        "RMSE": 136.46294948985025,
+        "MAPE": 29.389365674051902,
+        "WAPE": 17.01696798466917,
+        "observed_targets": 3168922,
+        "zero_targets": 61670,
+        "MAPE_targets": 3107252
+      },
+      "Avg": {
+        "MAE": 45.5692940881238,
+        "RMSE": 112.88915990476598,
+        "MAPE": 27.143945088829394,
+        "WAPE": 15.062778010765271,
+        "observed_targets": 3168922,
+        "zero_targets": 61670,
+        "MAPE_targets": 3107252
+      }
+    },
+    "epochs": 127,
+    "seconds": 110.556,
+    "best_val_mae": 45.186954159525875,
+    "checkpoint": "2026/45.18695416.pkl",
+    "checkpoint_selection": "global_observed_validation_MAE",
+    "registered_nodes": 499,
+    "training_graph_active_nodes": 489,
+    "total_parameters": 519544,
+    "pattern_only_incremental": true,
+    "month": 6,
+    "label": "2026-06"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "model": "PSRAG_REFINE_V6_STANDARD_GCN_DYN_FRETS_LORA_TREND_QKNORM_WEEK_SHARED_KV_GCN_ADAPTER_LORA_EXTRA_ABLATION_NO_DYNAMIC_GRAPH",
+  "ablation": "no_dynamic_graph",
+  "protocol": "full",
+  "dataset": "CA_NODE_SHIFT",
+  "variant": "raw",
+  "tasks": [
+    "0",
+    "1",
+    "2",
+    "3"
+  ],
+  "average": {
+    "3": {
+      "MAE": 15.885862974743894,
+      "RMSE": 25.35008237063458,
+      "MAPE": 10.188174008157404
+    },
+    "6": {
+      "MAE": 16.509829939484277,
+      "RMSE": 26.507735330687776,
+      "MAPE": 10.569565554116418
+    },
+    "12": {
+      "MAE": 17.48928261451417,
+      "RMSE": 28.24712662885544,
+      "MAPE": 11.205803421085465
+    },
+    "Avg": {
+      "MAE": 16.531288635084472,
+      "RMSE": 26.5220441629292,
+      "MAPE": 10.592388697065886
+    }
+  },
+  "run": "/root/autodl-tmp/autodl_psrag_trend/runs_sharedkv_extra_ablations/full/no_dynamic_graph/raw/CA_NODE_SHIFT/20261115_054133_seed42_6c33e8",
+  "smoke": false,
+  "architecture": {
+    "embedding_variant": "sharedkv_extra_ablation",
+    "embedding_design_version": 1,
+    "sharedkv_ablation": "no_dynamic_graph",
+    "ablation_description": "Physical graph propagation only; node embeddings remain in all other paths",
+    "source_design": "PSRAG_REFINE_V6_STANDARD_GCN_DYN_FRETS_LORA_TREND_QKNORM_WEEK_SHARED_KV_GCN_ADAPTER_LORA",
+    "hidden_dim": 192,
+    "learnable_node_bank": true,
+    "node_bank_replacement": "parameter_table",
+    "pattern_branch": true,
+    "bank_shared_key_value_shape": [
+      64,
+      192
+    ],
+    "bank_key_value_tied": true,
+    "bank_retrieval": "cosine_shared_key_value_raw_value",
+    "bank_temperature": 0.3,
+    "bank_qk_norm_eps": 1e-08,
+    "bank_temperature_trainable": false,
+    "seasonal_branch": true,
+    "calendar_embeddings_registered": true,
+    "week_interaction_rank": 16,
+    "week_interaction_parameters": 7792,
+    "node_free_season": null,
+    "dynamic_graph": false,
+    "graph_propagation": "physical_only",
+    "node_removal_dynamic_graph_coupling": false,
+    "scale_head_input_dim": 386,
+    "scale_head_removed": false,
+    "scale_head_present": true,
+    "future_statistics": "original_future_statistics_head_or_explicit_fixed_stats_flag",
+    "use_lora": true,
+    "lora_rank": 4,
+    "annual_mlp_branches": [
+      "residual",
+      "pattern"
+    ],
+    "gcn_adapter_rank": 16,
+    "gcn_adapter_base_parameters": 6144,
+    "gcn_adapter_lora_rank": 4,
+    "use_gcn_adapter_lora": true,
+    "gcn_adapter_annual_parameters": 1664,
+    "lifecycle": "first_task_full_base_later_shared_parameters_and_current_annual_lora_only",
+    "base_adapter_retained": true
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "model": "PSRAG_REFINE_V6_STANDARD_GCN_DYN_FRETS_LORA_TREND_QKNORM_WEEK_SHARED_KV_GCN_ADAPTER_LORA_ABLATION_NO_NODE_BANK",
+  "ablation": "no_node_bank",
+  "protocol": "full",
+  "dataset": "AIR",
+  "variant": "raw",
+  "tasks": [
+    "2016",
+    "2017",
+    "2018",
+    "2019"
+  ],
+  "average": {
+    "3": {
+      "MAE": 12.48324175488238,
+      "RMSE": 22.471406710361823,
+      "MAPE": 16.972812654032673
+    },
+    "6": {
+      "MAE": 16.659686338130292,
+      "RMSE": 29.07172299121038,
+      "MAPE": 22.82685736838112
+    },
+    "12": {
+      "MAE": 21.10847227868427,
+      "RMSE": 35.59400168297155,
+      "MAPE": 29.265831356247983
+    },
+    "Avg": {
+      "MAE": 16.2466790951833,
+      "RMSE": 28.19935046916746,
+      "MAPE": 22.334998136041605
+    }
+  },
+  "run": "/root/autodl-tmp/autodl_psrag_trend/runs_sharedkv_ablations/full/no_node_bank/raw/AIR/20261112_023105_seed42_10e6e4",
+  "smoke": false,
+  "architecture": {
+    "embedding_variant": "sharedkv_ablation",
+    "embedding_design_version": 1,
+    "sharedkv_ablation": "no_node_bank",
+    "ablation_description": "No learnable node embedding or node-conditioned injection; the embedding-derived dynamic graph is also removed",
+    "source_design": "PSRAG_REFINE_V6_STANDARD_GCN_DYN_FRETS_LORA_TREND_QKNORM_WEEK_SHARED_KV_GCN_ADAPTER_LORA",
+    "hidden_dim": 192,
+    "learnable_node_bank": false,
+    "node_bank_replacement": "zero_buffer_no_node_injection",
+    "pattern_branch": true,
+    "bank_shared_key_value_shape": [
+      64,
+      192
+    ],
+    "bank_key_value_tied": true,
+    "bank_retrieval": "cosine_shared_key_value_raw_value",
+    "bank_temperature": 0.3,
+    "bank_qk_norm_eps": 1e-08,
+    "bank_temperature_trainable": false,
+    "seasonal_branch": true,
+    "calendar_embeddings_registered": true,
+    "week_interaction_rank": 16,
+    "week_interaction_parameters": 3568,
+    "node_free_season": "shared_time_bias_plus_shared_scalar",
+    "dynamic_graph": false,
+    "graph_propagation": "physical_only",
+    "node_removal_dynamic_graph_coupling": true,
+    "scale_head_input_dim": 194,
+    "use_lora": true,
+    "lora_rank": 4,
+    "annual_mlp_branches": [
+      "residual",
+      "pattern"
+    ],
+    "gcn_adapter_rank": 16,
+    "gcn_adapter_base_parameters": 6144,
+    "gcn_adapter_lora_rank": 4,
+    "use_gcn_adapter_lora": true,
+    "gcn_adapter_annual_parameters": 1664,
+    "lifecycle": "first_task_full_base_later_shared_parameters_and_current_annual_lora_only",
+    "base_adapter_retained": true
+  }
+}

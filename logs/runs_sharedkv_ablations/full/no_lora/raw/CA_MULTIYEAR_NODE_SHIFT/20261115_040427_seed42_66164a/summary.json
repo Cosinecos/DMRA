@@ -1,0 +1,77 @@
+{
+  "model": "PSRAG_REFINE_V6_STANDARD_GCN_DYN_FRETS_LORA_TREND_QKNORM_WEEK_SHARED_KV_GCN_ADAPTER_LORA_ABLATION_NO_LORA",
+  "ablation": "no_lora",
+  "protocol": "full",
+  "dataset": "CA_MULTIYEAR_NODE_SHIFT",
+  "variant": "raw",
+  "tasks": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "average": {
+    "3": {
+      "MAE": 17.28017615294123,
+      "RMSE": 26.99399683472082,
+      "MAPE": 9.83833021995784
+    },
+    "6": {
+      "MAE": 18.05300340075825,
+      "RMSE": 28.40819301331461,
+      "MAPE": 10.191245198466056
+    },
+    "12": {
+      "MAE": 19.33408603974258,
+      "RMSE": 30.6117588969908,
+      "MAPE": 10.849940347558771
+    },
+    "Avg": {
+      "MAE": 18.09978608905319,
+      "RMSE": 28.450180985581493,
+      "MAPE": 10.230721870023213
+    }
+  },
+  "run": "/root/autodl-tmp/autodl_psrag_trend/runs_sharedkv_ablations/full/no_lora/raw/CA_MULTIYEAR_NODE_SHIFT/20261115_040427_seed42_66164a",
+  "smoke": false,
+  "architecture": {
+    "embedding_variant": "sharedkv_ablation",
+    "embedding_design_version": 1,
+    "sharedkv_ablation": "no_lora",
+    "ablation_description": "No annual LoRA A/B/bias in either MLP or graph Adapter; base Adapter retained and later frozen",
+    "source_design": "PSRAG_REFINE_V6_STANDARD_GCN_DYN_FRETS_LORA_TREND_QKNORM_WEEK_SHARED_KV_GCN_ADAPTER_LORA",
+    "hidden_dim": 192,
+    "learnable_node_bank": true,
+    "node_bank_replacement": "parameter_table",
+    "pattern_branch": true,
+    "bank_shared_key_value_shape": [
+      64,
+      192
+    ],
+    "bank_key_value_tied": true,
+    "bank_retrieval": "cosine_shared_key_value_raw_value",
+    "bank_temperature": 0.3,
+    "bank_qk_norm_eps": 1e-08,
+    "bank_temperature_trainable": false,
+    "seasonal_branch": true,
+    "calendar_embeddings_registered": true,
+    "week_interaction_rank": 16,
+    "week_interaction_parameters": 7792,
+    "node_free_season": null,
+    "dynamic_graph": true,
+    "graph_propagation": "original_prior_plus_embedding_topk",
+    "node_removal_dynamic_graph_coupling": false,
+    "scale_head_input_dim": 386,
+    "use_lora": false,
+    "lora_rank": 4,
+    "annual_mlp_branches": [],
+    "gcn_adapter_rank": 16,
+    "gcn_adapter_base_parameters": 6144,
+    "gcn_adapter_lora_rank": 4,
+    "use_gcn_adapter_lora": false,
+    "gcn_adapter_annual_parameters": 0,
+    "lifecycle": "first_task_full_base_later_shared_parameters_and_current_annual_lora_only",
+    "base_adapter_retained": true
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "baseline": "PECPM",
+  "dataset": "CA_MULTIYEAR_NODE_SHIFT",
+  "variant": "unified",
+  "run": "/root/autodl-tmp/autodl_psrag_trend/runs_baselines/PECPM/CA_MULTIYEAR_NODE_SHIFT/unified/20261101_203310_seed42_55876c",
+  "smoke": false,
+  "tasks": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "average": {
+    "3": {
+      "MAE": 22.145927700457776,
+      "RMSE": 32.40473443695229,
+      "MAPE": 12.050149662841708
+    },
+    "6": {
+      "MAE": 23.663678380670454,
+      "RMSE": 34.96721705003751,
+      "MAPE": 12.821117230476707
+    },
+    "12": {
+      "MAE": 26.278043209198408,
+      "RMSE": 39.193900348778364,
+      "MAPE": 14.313888234163588
+    },
+    "Avg": {
+      "MAE": 23.774336540580354,
+      "RMSE": 35.1035247076751,
+      "MAPE": 12.920150305570857
+    }
+  },
+  "protocol": {
+    "split": "chronological_per_task",
+    "rates": [
+      0.6,
+      0.2,
+      0.2
+    ],
+    "targets": "source",
+    "input_preprocessing": "standardized_x",
+    "normalization_scope": "split",
+    "validation": "masked_MAE_batch_mean",
+    "test": "global_masked_prefix_metrics",
+    "old_task_backtesting": false,
+    "method_training_loss": "upstream_specific"
+  },
+  "fidelity_status": "adapted_missing_official_preprocessing"
+}

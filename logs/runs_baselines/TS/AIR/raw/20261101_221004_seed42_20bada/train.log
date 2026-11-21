@@ -1,0 +1,326 @@
+2026-11-01 22:10:04,566 baseline=TS dataset=AIR variant=raw device=cuda:0 run=/root/autodl-tmp/autodl_psrag_trend/runs_baselines/TS/AIR/raw/20261101_221004_seed42_20bada settings={'begin_year': 2016, 'end_year': 2019, 'raw_data_path': 'data/AIR/RawData/', 'graph_path': 'data/AIR/graph/', 'save_data_path': 'cache/AIR/', 'x_len': 12, 'y_len': 12, 'steps_per_day': 24, 'pems_days': 31, 'train_rate': 0.6, 'val_rate': 0.2, 'test_rate': 0.2, 'baseline': 'TS', 'method': 'TS', 'dataset': 'AIR', 'variant': 'raw', 'seed': 42, 'gpuid': 0, 'num_workers': 4, 'normalize_x': False, 'normalization_scope': 'split', 'target_scale': 'source', 'val_test_mix': False, 'epoch': 200, 'batch_size': 128, 'lr': 0.005, 'dropout': 0.0, 'patience': 30, 'weight_decay': 0.01, 'grad_clip': 0.0, 'lr_schedule': None, 'batch_size_schedule': None, 'cache_data': False, 'data_process': True, 'init': True, 'smoke': False, 'ts_hidden': 64, 'ts_dropout': 0.0, 'ts_num_hops': 2, 'ts_detect_fraction': 0.01, 'ts_replay_fraction': 0.09, 'ts_max_fraction': 0.1, 'ts_ewc': True, 'ts_ewc_lambda': 0.0001, 'ts_fisher_max_batches': 0, 'ts_prediction_loss': 'mse', 'fidelity_status': 'official_network_and_incremental_algorithm_train_only_detection', 'output_root': '/root/autodl-tmp/autodl_psrag_trend/runs_baselines', 'protocol': {'split': 'chronological_per_task', 'rates': [0.6, 0.2, 0.2], 'targets': 'source', 'input_preprocessing': 'source_x', 'normalization_scope': None, 'validation': 'masked_MAE_batch_mean', 'test': 'global_masked_prefix_metrics', 'old_task_backtesting': False, 'method_training_loss': 'upstream_specific'}}
+2026-11-01 22:10:05,248 task=2016 nodes=1087 preprocessing={'array_dtype': 'float32', 'cache_version': 1, 'nodes': 1087, 'norm_eps': 1e-08, 'normalization_scope': 'split', 'normalize_x': False, 'rates': [0.6, 0.2, 0.2], 'sample_limits': None, 'source_steps': 8578, 'split_offsets': {'test': 6862, 'train': 0, 'val': 5146}, 'split_steps': {'test': 1716, 'train': 5146, 'val': 1716}, 'target_scale': 'source', 'val_test_mix': False, 'x_len': 12, 'x_statistics': {}, 'y_len': 12}
+2026-11-01 22:10:05,250 task=2016 parameters=3308 trainable=3308 training_nodes=1087 samples={'train': 5122, 'val': 1692, 'test': 1692}
+2026-11-01 22:10:08,490 task=2016 epoch=0 train=2686.787705 val_mae=16.480788 loss_components={'mse': 2686.787704839939, 'ewc': 0.0}
+2026-11-01 22:10:11,732 task=2016 epoch=1 train=1475.707180 val_mae=15.678864 loss_components={'mse': 1475.7071801162347, 'ewc': 0.0}
+2026-11-01 22:10:14,808 task=2016 epoch=2 train=1362.046729 val_mae=15.224861 loss_components={'mse': 1362.04672911109, 'ewc': 0.0}
+2026-11-01 22:10:17,927 task=2016 epoch=3 train=1304.105949 val_mae=15.039610 loss_components={'mse': 1304.1059488436072, 'ewc': 0.0}
+2026-11-01 22:10:21,034 task=2016 epoch=4 train=1282.807726 val_mae=14.854157 loss_components={'mse': 1282.8077258598514, 'ewc': 0.0}
+2026-11-01 22:10:24,411 task=2016 epoch=5 train=1276.245677 val_mae=15.447075 loss_components={'mse': 1276.2456769245427, 'ewc': 0.0}
+2026-11-01 22:10:27,894 task=2016 epoch=6 train=1282.605752 val_mae=15.941210 loss_components={'mse': 1282.605751595846, 'ewc': 0.0}
+2026-11-01 22:10:31,016 task=2016 epoch=7 train=1346.279556 val_mae=15.223648 loss_components={'mse': 1346.2795559022484, 'ewc': 0.0}
+2026-11-01 22:10:34,213 task=2016 epoch=8 train=1239.800987 val_mae=16.660422 loss_components={'mse': 1239.800986685404, 'ewc': 0.0}
+2026-11-01 22:10:37,375 task=2016 epoch=9 train=1257.449850 val_mae=14.726937 loss_components={'mse': 1257.4498499428353, 'ewc': 0.0}
+2026-11-01 22:10:40,553 task=2016 epoch=10 train=1226.671683 val_mae=15.288645 loss_components={'mse': 1226.6716829625573, 'ewc': 0.0}
+2026-11-01 22:10:43,718 task=2016 epoch=11 train=1212.071148 val_mae=14.730004 loss_components={'mse': 1212.071147639577, 'ewc': 0.0}
+2026-11-01 22:10:46,980 task=2016 epoch=12 train=1255.076607 val_mae=14.708689 loss_components={'mse': 1255.0766065644054, 'ewc': 0.0}
+2026-11-01 22:10:50,157 task=2016 epoch=13 train=1236.582594 val_mae=15.066684 loss_components={'mse': 1236.5825939643673, 'ewc': 0.0}
+2026-11-01 22:10:53,303 task=2016 epoch=14 train=1207.194058 val_mae=14.572502 loss_components={'mse': 1207.194057557641, 'ewc': 0.0}
+2026-11-01 22:10:56,405 task=2016 epoch=15 train=1214.469057 val_mae=15.138515 loss_components={'mse': 1214.4690566644435, 'ewc': 0.0}
+2026-11-01 22:10:59,401 task=2016 epoch=16 train=1204.741721 val_mae=15.426340 loss_components={'mse': 1204.7417208043541, 'ewc': 0.0}
+2026-11-01 22:11:02,543 task=2016 epoch=17 train=1272.711825 val_mae=15.358735 loss_components={'mse': 1272.711824742759, 'ewc': 0.0}
+2026-11-01 22:11:05,769 task=2016 epoch=18 train=1226.410409 val_mae=15.555796 loss_components={'mse': 1226.410409322599, 'ewc': 0.0}
+2026-11-01 22:11:08,867 task=2016 epoch=19 train=1203.458075 val_mae=14.661105 loss_components={'mse': 1203.4580748023056, 'ewc': 0.0}
+2026-11-01 22:11:11,889 task=2016 epoch=20 train=1238.704240 val_mae=17.377997 loss_components={'mse': 1238.7042400080984, 'ewc': 0.0}
+2026-11-01 22:11:14,941 task=2016 epoch=21 train=1232.012557 val_mae=14.929140 loss_components={'mse': 1232.0125568669016, 'ewc': 0.0}
+2026-11-01 22:11:18,010 task=2016 epoch=22 train=1208.029400 val_mae=14.576199 loss_components={'mse': 1208.029399592702, 'ewc': 0.0}
+2026-11-01 22:11:21,105 task=2016 epoch=23 train=1219.351860 val_mae=14.641460 loss_components={'mse': 1219.3518602324696, 'ewc': 0.0}
+2026-11-01 22:11:24,285 task=2016 epoch=24 train=1207.584824 val_mae=15.414357 loss_components={'mse': 1207.5848239805641, 'ewc': 0.0}
+2026-11-01 22:11:27,465 task=2016 epoch=25 train=1199.408779 val_mae=14.964033 loss_components={'mse': 1199.4087792373284, 'ewc': 0.0}
+2026-11-01 22:11:30,557 task=2016 epoch=26 train=1210.706406 val_mae=14.471678 loss_components={'mse': 1210.7064060118141, 'ewc': 0.0}
+2026-11-01 22:11:33,657 task=2016 epoch=27 train=1202.077256 val_mae=15.230751 loss_components={'mse': 1202.0772556211891, 'ewc': 0.0}
+2026-11-01 22:11:36,665 task=2016 epoch=28 train=1229.109717 val_mae=14.900736 loss_components={'mse': 1229.10971739234, 'ewc': 0.0}
+2026-11-01 22:11:39,996 task=2016 epoch=29 train=1206.466876 val_mae=15.769189 loss_components={'mse': 1206.4668757741044, 'ewc': 0.0}
+2026-11-01 22:11:43,532 task=2016 epoch=30 train=1268.384587 val_mae=16.144123 loss_components={'mse': 1268.3845869855184, 'ewc': 0.0}
+2026-11-01 22:11:46,966 task=2016 epoch=31 train=1242.667073 val_mae=14.642861 loss_components={'mse': 1242.6670725752667, 'ewc': 0.0}
+2026-11-01 22:11:50,063 task=2016 epoch=32 train=1208.906240 val_mae=15.618929 loss_components={'mse': 1208.9062395793635, 'ewc': 0.0}
+2026-11-01 22:11:53,230 task=2016 epoch=33 train=1508.770057 val_mae=24.098632 loss_components={'mse': 1508.7700567478087, 'ewc': 0.0}
+2026-11-01 22:11:56,305 task=2016 epoch=34 train=1342.965414 val_mae=14.803075 loss_components={'mse': 1342.965413907679, 'ewc': 0.0}
+2026-11-01 22:11:59,319 task=2016 epoch=35 train=1222.564236 val_mae=14.998967 loss_components={'mse': 1222.5642357802972, 'ewc': 0.0}
+2026-11-01 22:12:02,371 task=2016 epoch=36 train=1200.756955 val_mae=14.713062 loss_components={'mse': 1200.756955030488, 'ewc': 0.0}
+2026-11-01 22:12:05,417 task=2016 epoch=37 train=1221.348642 val_mae=14.950361 loss_components={'mse': 1221.348641744474, 'ewc': 0.0}
+2026-11-01 22:12:08,520 task=2016 epoch=38 train=1192.152101 val_mae=15.115283 loss_components={'mse': 1192.1521010980373, 'ewc': 0.0}
+2026-11-01 22:12:11,579 task=2016 epoch=39 train=1212.239213 val_mae=15.152927 loss_components={'mse': 1212.2392131526296, 'ewc': 0.0}
+2026-11-01 22:12:14,674 task=2016 epoch=40 train=1216.776382 val_mae=14.822729 loss_components={'mse': 1216.7763820741234, 'ewc': 0.0}
+2026-11-01 22:12:17,740 task=2016 epoch=41 train=1208.455042 val_mae=15.120989 loss_components={'mse': 1208.4550423971036, 'ewc': 0.0}
+2026-11-01 22:12:21,158 task=2016 epoch=42 train=1205.446963 val_mae=14.612239 loss_components={'mse': 1205.4469634265433, 'ewc': 0.0}
+2026-11-01 22:12:24,305 task=2016 epoch=43 train=1209.311340 val_mae=15.023999 loss_components={'mse': 1209.3113403320312, 'ewc': 0.0}
+2026-11-01 22:12:27,440 task=2016 epoch=44 train=1208.776911 val_mae=15.400532 loss_components={'mse': 1208.7769105492569, 'ewc': 0.0}
+2026-11-01 22:12:30,595 task=2016 epoch=45 train=1217.357295 val_mae=14.584398 loss_components={'mse': 1217.3572953387004, 'ewc': 0.0}
+2026-11-01 22:12:33,864 task=2016 epoch=46 train=1251.194711 val_mae=14.805377 loss_components={'mse': 1251.1947110804115, 'ewc': 0.0}
+2026-11-01 22:12:37,061 task=2016 epoch=47 train=1216.521632 val_mae=14.715540 loss_components={'mse': 1216.5216317525724, 'ewc': 0.0}
+2026-11-01 22:12:40,289 task=2016 epoch=48 train=1196.926069 val_mae=14.851011 loss_components={'mse': 1196.926068561833, 'ewc': 0.0}
+2026-11-01 22:12:43,464 task=2016 epoch=49 train=1195.542291 val_mae=15.705512 loss_components={'mse': 1195.5422914086319, 'ewc': 0.0}
+2026-11-01 22:12:46,719 task=2016 epoch=50 train=1199.383697 val_mae=14.998367 loss_components={'mse': 1199.3836967654345, 'ewc': 0.0}
+2026-11-01 22:12:49,843 task=2016 epoch=51 train=1206.475726 val_mae=14.654903 loss_components={'mse': 1206.4757258717607, 'ewc': 0.0}
+2026-11-01 22:12:53,131 task=2016 epoch=52 train=1191.200460 val_mae=14.808263 loss_components={'mse': 1191.2004602943978, 'ewc': 0.0}
+2026-11-01 22:12:56,282 task=2016 epoch=53 train=1206.288754 val_mae=14.922268 loss_components={'mse': 1206.2887543468942, 'ewc': 0.0}
+2026-11-01 22:12:59,558 task=2016 epoch=54 train=1229.073239 val_mae=15.135054 loss_components={'mse': 1229.0732392101754, 'ewc': 0.0}
+2026-11-01 22:13:02,848 task=2016 epoch=55 train=1207.209203 val_mae=14.950879 loss_components={'mse': 1207.2092032083651, 'ewc': 0.0}
+2026-11-01 22:13:05,936 task=2016 epoch=56 train=1238.603431 val_mae=14.535922 loss_components={'mse': 1238.6034307712462, 'ewc': 0.0}
+2026-11-01 22:13:09,174 task=2016 epoch=57 train=1205.547585 val_mae=14.729942 loss_components={'mse': 1205.5475850919397, 'ewc': 0.0}
+2026-11-01 22:13:11,415 test task=2016 prefix=3 {'MAE': 15.413796553905163, 'RMSE': 27.226609929129893, 'MAPE': 19.530474760047355}
+2026-11-01 22:13:11,415 test task=2016 prefix=6 {'MAE': 20.14328028670728, 'RMSE': 34.408871690160915, 'MAPE': 25.879123078164064}
+2026-11-01 22:13:11,415 test task=2016 prefix=12 {'MAE': 25.177812136997943, 'RMSE': 41.62551793592367, 'MAPE': 32.834510670690726}
+2026-11-01 22:13:11,415 test task=2016 prefix=Avg {'MAE': 19.635989803880005, 'RMSE': 33.43261880566241, 'MAPE': 25.298163225480938}
+2026-11-01 22:13:12,197 task=2017 nodes=1154 preprocessing={'array_dtype': 'float32', 'cache_version': 1, 'nodes': 1154, 'norm_eps': 1e-08, 'normalization_scope': 'split', 'normalize_x': False, 'rates': [0.6, 0.2, 0.2], 'sample_limits': None, 'source_steps': 8619, 'split_offsets': {'test': 6895, 'train': 0, 'val': 5171}, 'split_steps': {'test': 1724, 'train': 5171, 'val': 1724}, 'target_scale': 'source', 'val_test_mix': False, 'x_len': 12, 'x_statistics': {}, 'y_len': 12}
+2026-11-01 22:13:15,011 EWC Fisher batches=41 elements=3308
+2026-11-01 22:13:15,778 TrafficStream new=67 evolved=11 replay_draws=103 seeds=107 subgraph=362 EWC=True
+2026-11-01 22:13:15,780 task=2017 parameters=3308 trainable=3308 training_nodes=362 samples={'train': 5147, 'val': 1700, 'test': 1700}
+2026-11-01 22:13:18,249 task=2017 epoch=0 train=1211.462234 val_mae=14.550516 loss_components={'mse': 1210.3638320550685, 'ewc': 1.0984032164077933}
+2026-11-01 22:13:20,551 task=2017 epoch=1 train=1179.658813 val_mae=14.130951 loss_components={'mse': 1177.648296077077, 'ewc': 2.0105177629284743}
+2026-11-01 22:13:22,781 task=2017 epoch=2 train=1178.064337 val_mae=14.297113 loss_components={'mse': 1175.8111944431212, 'ewc': 2.253142135899241}
+2026-11-01 22:13:25,024 task=2017 epoch=3 train=1186.939679 val_mae=13.932893 loss_components={'mse': 1184.146030332984, 'ewc': 2.7936438351142696}
+2026-11-01 22:13:27,265 task=2017 epoch=4 train=1161.404883 val_mae=14.032305 loss_components={'mse': 1158.433940608327, 'ewc': 2.970940898104412}
+2026-11-01 22:13:29,515 task=2017 epoch=5 train=1165.761552 val_mae=14.538289 loss_components={'mse': 1162.8855263314597, 'ewc': 2.8760244090382647}
+2026-11-01 22:13:31,754 task=2017 epoch=6 train=1180.208509 val_mae=14.277140 loss_components={'mse': 1177.335650188167, 'ewc': 2.8728535117172616}
+2026-11-01 22:13:34,056 task=2017 epoch=7 train=1163.162361 val_mae=14.628568 loss_components={'mse': 1160.4830694431212, 'ewc': 2.6792933591982213}
+2026-11-01 22:13:36,419 task=2017 epoch=8 train=1155.847256 val_mae=14.402764 loss_components={'mse': 1153.271005025724, 'ewc': 2.5762481747603996}
+2026-11-01 22:13:38,817 task=2017 epoch=9 train=1164.859165 val_mae=14.432513 loss_components={'mse': 1161.9245977634337, 'ewc': 2.934568009725431}
+2026-11-01 22:13:41,288 task=2017 epoch=10 train=1162.535362 val_mae=14.835881 loss_components={'mse': 1159.864999166349, 'ewc': 2.670359175379683}
+2026-11-01 22:13:43,653 task=2017 epoch=11 train=1155.062199 val_mae=15.241971 loss_components={'mse': 1152.2217675185784, 'ewc': 2.8404338650587126}
+2026-11-01 22:13:45,869 task=2017 epoch=12 train=1175.411989 val_mae=14.493920 loss_components={'mse': 1172.693128632336, 'ewc': 2.718867121673212}
+2026-11-01 22:13:48,068 task=2017 epoch=13 train=1158.063554 val_mae=14.571932 loss_components={'mse': 1155.3884202910633, 'ewc': 2.675136816210863}
+2026-11-01 22:13:50,275 task=2017 epoch=14 train=1164.925874 val_mae=13.763448 loss_components={'mse': 1162.13410614758, 'ewc': 2.791763765055959}
+2026-11-01 22:13:52,501 task=2017 epoch=15 train=1165.963342 val_mae=14.265994 loss_components={'mse': 1163.044664336414, 'ewc': 2.9186862736213497}
+2026-11-01 22:13:54,820 task=2017 epoch=16 train=1161.533423 val_mae=13.743745 loss_components={'mse': 1158.8403052353278, 'ewc': 2.6931142865157707}
+2026-11-01 22:13:57,261 task=2017 epoch=17 train=1163.936439 val_mae=14.677043 loss_components={'mse': 1161.216621212843, 'ewc': 2.719812026837977}
+2026-11-01 22:13:59,647 task=2017 epoch=18 train=1160.351847 val_mae=14.387583 loss_components={'mse': 1157.5951359446456, 'ewc': 2.756717670254591}
+2026-11-01 22:14:02,016 task=2017 epoch=19 train=1150.272218 val_mae=14.557684 loss_components={'mse': 1147.4739260789825, 'ewc': 2.7982907527830543}
+2026-11-01 22:14:04,266 task=2017 epoch=20 train=1161.530908 val_mae=13.770972 loss_components={'mse': 1158.6404761337653, 'ewc': 2.8904296305121444}
+2026-11-01 22:14:06,513 task=2017 epoch=21 train=1163.478461 val_mae=13.670981 loss_components={'mse': 1160.6186895603087, 'ewc': 2.8597633606050072}
+2026-11-01 22:14:08,699 task=2017 epoch=22 train=1152.874583 val_mae=14.093286 loss_components={'mse': 1150.1260137790587, 'ewc': 2.7485564569147622}
+2026-11-01 22:14:10,927 task=2017 epoch=23 train=1157.688304 val_mae=14.529512 loss_components={'mse': 1154.680294874238, 'ewc': 3.008017400415932}
+2026-11-01 22:14:13,171 task=2017 epoch=24 train=1159.493084 val_mae=14.299679 loss_components={'mse': 1156.6179913776677, 'ewc': 2.8750886277454657}
+2026-11-01 22:14:15,485 task=2017 epoch=25 train=1154.772707 val_mae=14.176515 loss_components={'mse': 1151.8894281154726, 'ewc': 2.8832743167877197}
+2026-11-01 22:14:17,845 task=2017 epoch=26 train=1161.302175 val_mae=13.965611 loss_components={'mse': 1158.33056640625, 'ewc': 2.97159891593747}
+2026-11-01 22:14:20,164 task=2017 epoch=27 train=1154.800682 val_mae=14.514710 loss_components={'mse': 1151.8048840034298, 'ewc': 2.9957973666307405}
+2026-11-01 22:14:22,308 task=2017 epoch=28 train=1151.796863 val_mae=14.199098 loss_components={'mse': 1148.9073962700077, 'ewc': 2.889459383196947}
+2026-11-01 22:14:24,492 task=2017 epoch=29 train=1146.423751 val_mae=13.772224 loss_components={'mse': 1143.3817912776296, 'ewc': 3.0419547790434303}
+2026-11-01 22:14:26,641 task=2017 epoch=30 train=1155.744026 val_mae=14.313573 loss_components={'mse': 1152.8567430449696, 'ewc': 2.887280359500792}
+2026-11-01 22:14:28,873 task=2017 epoch=31 train=1154.701540 val_mae=14.343038 loss_components={'mse': 1151.872181962176, 'ewc': 2.82936969617518}
+2026-11-01 22:14:31,183 task=2017 epoch=32 train=1152.522701 val_mae=14.109588 loss_components={'mse': 1149.5081057664825, 'ewc': 3.0146005095505135}
+2026-11-01 22:14:33,517 task=2017 epoch=33 train=1161.467034 val_mae=14.099870 loss_components={'mse': 1158.6347373404153, 'ewc': 2.8322913821150615}
+2026-11-01 22:14:35,891 task=2017 epoch=34 train=1158.370951 val_mae=13.821327 loss_components={'mse': 1155.4155645603087, 'ewc': 2.955386807278889}
+2026-11-01 22:14:38,018 task=2017 epoch=35 train=1154.248799 val_mae=14.217416 loss_components={'mse': 1151.111075052401, 'ewc': 3.1377300692767633}
+2026-11-01 22:14:40,251 task=2017 epoch=36 train=1150.633838 val_mae=13.975325 loss_components={'mse': 1147.6423622689597, 'ewc': 2.991477809301237}
+2026-11-01 22:14:42,420 task=2017 epoch=37 train=1154.999641 val_mae=14.020334 loss_components={'mse': 1152.0225175066691, 'ewc': 2.9771152414926667}
+2026-11-01 22:14:44,591 task=2017 epoch=38 train=1154.523451 val_mae=14.383571 loss_components={'mse': 1151.3203199433117, 'ewc': 3.2031334028011416}
+2026-11-01 22:14:46,831 task=2017 epoch=39 train=1152.083515 val_mae=14.302055 loss_components={'mse': 1149.0712101633956, 'ewc': 3.0122988107727795}
+2026-11-01 22:14:49,111 task=2017 epoch=40 train=1159.872834 val_mae=14.100692 loss_components={'mse': 1156.7635572479992, 'ewc': 3.109268833951252}
+2026-11-01 22:14:51,402 task=2017 epoch=41 train=1149.427112 val_mae=14.681036 loss_components={'mse': 1146.3390622022675, 'ewc': 3.088048016152731}
+2026-11-01 22:14:53,747 task=2017 epoch=42 train=1143.433381 val_mae=13.828529 loss_components={'mse': 1140.3487920993712, 'ewc': 3.0845870739076195}
+2026-11-01 22:14:56,306 task=2017 epoch=43 train=1147.715454 val_mae=13.477529 loss_components={'mse': 1144.6359803734756, 'ewc': 3.0794742630749212}
+2026-11-01 22:14:58,877 task=2017 epoch=44 train=1162.326389 val_mae=14.096115 loss_components={'mse': 1159.1341999333079, 'ewc': 3.1921813371704846}
+2026-11-01 22:15:01,255 task=2017 epoch=45 train=1147.647448 val_mae=14.332209 loss_components={'mse': 1144.541460735042, 'ewc': 3.1059837632062957}
+2026-11-01 22:15:03,541 task=2017 epoch=46 train=1146.791413 val_mae=13.671860 loss_components={'mse': 1143.693813417016, 'ewc': 3.097594697300981}
+2026-11-01 22:15:05,907 task=2017 epoch=47 train=1145.596689 val_mae=14.216639 loss_components={'mse': 1142.4170442906823, 'ewc': 3.179644805629079}
+2026-11-01 22:15:08,267 task=2017 epoch=48 train=1150.473566 val_mae=14.352758 loss_components={'mse': 1147.4331516172829, 'ewc': 3.040413687868816}
+2026-11-01 22:15:10,704 task=2017 epoch=49 train=1145.641823 val_mae=13.795375 loss_components={'mse': 1142.5831432807736, 'ewc': 3.058683430276266}
+2026-11-01 22:15:13,123 task=2017 epoch=50 train=1148.608227 val_mae=13.942266 loss_components={'mse': 1145.4929571384337, 'ewc': 3.115269056180628}
+2026-11-01 22:15:15,555 task=2017 epoch=51 train=1148.618748 val_mae=14.687236 loss_components={'mse': 1145.2743932212272, 'ewc': 3.3443564728992743}
+2026-11-01 22:15:18,020 task=2017 epoch=52 train=1145.719432 val_mae=14.605794 loss_components={'mse': 1142.6782152129383, 'ewc': 3.041227381403853}
+2026-11-01 22:15:20,446 task=2017 epoch=53 train=1158.971675 val_mae=15.296035 loss_components={'mse': 1155.856963366997, 'ewc': 3.1147112497469274}
+2026-11-01 22:15:22,831 task=2017 epoch=54 train=1157.072023 val_mae=14.015868 loss_components={'mse': 1153.9890851276677, 'ewc': 3.082942398583017}
+2026-11-01 22:15:25,244 task=2017 epoch=55 train=1140.745637 val_mae=14.004020 loss_components={'mse': 1137.5288562309452, 'ewc': 3.2167896410314047}
+2026-11-01 22:15:27,629 task=2017 epoch=56 train=1141.790553 val_mae=13.975373 loss_components={'mse': 1138.6563705816502, 'ewc': 3.13417380612071}
+2026-11-01 22:15:30,017 task=2017 epoch=57 train=1143.035942 val_mae=13.668699 loss_components={'mse': 1139.8654993568978, 'ewc': 3.1704446746081842}
+2026-11-01 22:15:32,479 task=2017 epoch=58 train=1144.481928 val_mae=14.103793 loss_components={'mse': 1141.428231588224, 'ewc': 3.0536906777358634}
+2026-11-01 22:15:34,937 task=2017 epoch=59 train=1138.682345 val_mae=14.499622 loss_components={'mse': 1135.5276742330411, 'ewc': 3.1546640628721656}
+2026-11-01 22:15:37,609 task=2017 epoch=60 train=1142.131077 val_mae=14.038566 loss_components={'mse': 1139.0221304544589, 'ewc': 3.1089475503781947}
+2026-11-01 22:15:40,036 task=2017 epoch=61 train=1145.938325 val_mae=14.102364 loss_components={'mse': 1142.8647282298018, 'ewc': 3.0735923546116526}
+2026-11-01 22:15:42,450 task=2017 epoch=62 train=1147.465963 val_mae=13.761668 loss_components={'mse': 1144.3740680973704, 'ewc': 3.091902279272312}
+2026-11-01 22:15:44,897 task=2017 epoch=63 train=1147.593180 val_mae=13.974607 loss_components={'mse': 1144.506133288872, 'ewc': 3.0870508217230075}
+2026-11-01 22:15:47,313 task=2017 epoch=64 train=1151.241783 val_mae=13.920865 loss_components={'mse': 1147.925336139958, 'ewc': 3.3164489152954846}
+2026-11-01 22:15:49,683 task=2017 epoch=65 train=1144.116717 val_mae=13.735304 loss_components={'mse': 1140.9728721060403, 'ewc': 3.1438477562695013}
+2026-11-01 22:15:51,983 task=2017 epoch=66 train=1162.050184 val_mae=14.134369 loss_components={'mse': 1158.9080378834794, 'ewc': 3.14214918090076}
+2026-11-01 22:15:54,249 task=2017 epoch=67 train=1146.257015 val_mae=13.710412 loss_components={'mse': 1143.0466591439597, 'ewc': 3.210357997475601}
+2026-11-01 22:15:56,499 task=2017 epoch=68 train=1141.659714 val_mae=13.979435 loss_components={'mse': 1138.4669397865853, 'ewc': 3.1927674863396622}
+2026-11-01 22:15:58,769 task=2017 epoch=69 train=1144.268939 val_mae=13.649855 loss_components={'mse': 1141.0972141172829, 'ewc': 3.1717157654645964}
+2026-11-01 22:16:01,053 task=2017 epoch=70 train=1149.726338 val_mae=14.118961 loss_components={'mse': 1146.5581501286204, 'ewc': 3.1681925610798163}
+2026-11-01 22:16:03,356 task=2017 epoch=71 train=1145.149021 val_mae=14.360594 loss_components={'mse': 1141.9920237471417, 'ewc': 3.1569954941912397}
+2026-11-01 22:16:05,670 task=2017 epoch=72 train=1154.970218 val_mae=14.082742 loss_components={'mse': 1151.7707445098133, 'ewc': 3.1994652922560527}
+2026-11-01 22:16:08,059 task=2017 epoch=73 train=1143.733451 val_mae=14.295643 loss_components={'mse': 1140.5720095750762, 'ewc': 3.161445315291242}
+2026-11-01 22:16:10,364 task=2017 epoch=74 train=1145.335610 val_mae=13.888682 loss_components={'mse': 1142.1272836080411, 'ewc': 3.208317122808317}
+2026-11-01 22:16:12,923 test task=2017 prefix=3 {'MAE': 14.056679850695044, 'RMSE': 23.844807603585934, 'MAPE': 16.88799662743096}
+2026-11-01 22:16:12,924 test task=2017 prefix=6 {'MAE': 18.365370812918524, 'RMSE': 30.49063677195231, 'MAPE': 22.427658837353828}
+2026-11-01 22:16:12,924 test task=2017 prefix=12 {'MAE': 22.852576174376566, 'RMSE': 36.8942675281455, 'MAPE': 28.55572497509806}
+2026-11-01 22:16:12,924 test task=2017 prefix=Avg {'MAE': 17.90605168360553, 'RMSE': 29.571304830954585, 'MAPE': 21.951007902984383}
+2026-11-01 22:16:13,740 task=2018 nodes=1193 preprocessing={'array_dtype': 'float32', 'cache_version': 1, 'nodes': 1193, 'norm_eps': 1e-08, 'normalization_scope': 'split', 'normalize_x': False, 'rates': [0.6, 0.2, 0.2], 'sample_limits': None, 'source_steps': 8378, 'split_offsets': {'test': 6702, 'train': 0, 'val': 5026}, 'split_steps': {'test': 1676, 'train': 5026, 'val': 1676}, 'target_scale': 'source', 'val_test_mix': False, 'x_len': 12, 'x_statistics': {}, 'y_len': 12}
+2026-11-01 22:16:16,906 EWC Fisher batches=40 elements=3308
+2026-11-01 22:16:17,522 TrafficStream new=39 evolved=11 replay_draws=107 seeds=111 subgraph=326 EWC=True
+2026-11-01 22:16:17,523 task=2018 parameters=3308 trainable=3308 training_nodes=326 samples={'train': 5002, 'val': 1652, 'test': 1652}
+2026-11-01 22:16:19,749 task=2018 epoch=0 train=1159.636746 val_mae=12.816938 loss_components={'mse': 1159.4609146118164, 'ewc': 0.1758402545703575}
+2026-11-01 22:16:21,889 task=2018 epoch=1 train=1139.231052 val_mae=12.491298 loss_components={'mse': 1138.9738037109375, 'ewc': 0.2572523720562458}
+2026-11-01 22:16:24,011 task=2018 epoch=2 train=1142.466321 val_mae=12.437130 loss_components={'mse': 1142.1468124389648, 'ewc': 0.3195129528641701}
+2026-11-01 22:16:26,245 task=2018 epoch=3 train=1131.459480 val_mae=12.731536 loss_components={'mse': 1131.0746856689452, 'ewc': 0.3847988560795784}
+2026-11-01 22:16:28,397 task=2018 epoch=4 train=1142.623895 val_mae=12.534728 loss_components={'mse': 1142.1762802124024, 'ewc': 0.44761335626244547}
+2026-11-01 22:16:30,621 task=2018 epoch=5 train=1139.547479 val_mae=12.422254 loss_components={'mse': 1139.0265655517578, 'ewc': 0.5209158636629582}
+2026-11-01 22:16:32,878 task=2018 epoch=6 train=1141.239391 val_mae=12.238985 loss_components={'mse': 1140.6738845825196, 'ewc': 0.565519018471241}
+2026-11-01 22:16:35,070 task=2018 epoch=7 train=1133.641162 val_mae=12.467959 loss_components={'mse': 1133.0028884887695, 'ewc': 0.6382735401391983}
+2026-11-01 22:16:37,265 task=2018 epoch=8 train=1139.208167 val_mae=12.220389 loss_components={'mse': 1138.5627349853517, 'ewc': 0.6454348132014275}
+2026-11-01 22:16:39,522 task=2018 epoch=9 train=1152.372281 val_mae=12.592164 loss_components={'mse': 1151.6787170410157, 'ewc': 0.6935664117336273}
+2026-11-01 22:16:41,767 task=2018 epoch=10 train=1156.945116 val_mae=12.087670 loss_components={'mse': 1156.204751586914, 'ewc': 0.7403609320521355}
+2026-11-01 22:16:44,016 task=2018 epoch=11 train=1143.122095 val_mae=12.107069 loss_components={'mse': 1142.3666213989259, 'ewc': 0.7554735168814659}
+2026-11-01 22:16:46,351 task=2018 epoch=12 train=1142.051268 val_mae=12.498444 loss_components={'mse': 1141.2658599853517, 'ewc': 0.7854061052203178}
+2026-11-01 22:16:48,575 task=2018 epoch=13 train=1138.387457 val_mae=12.560248 loss_components={'mse': 1137.5769821166991, 'ewc': 0.8104718744754791}
+2026-11-01 22:16:50,900 task=2018 epoch=14 train=1142.984544 val_mae=12.303540 loss_components={'mse': 1142.12607421875, 'ewc': 0.8584641322493554}
+2026-11-01 22:16:53,227 task=2018 epoch=15 train=1145.336215 val_mae=12.626457 loss_components={'mse': 1144.4561614990234, 'ewc': 0.8800524979829788}
+2026-11-01 22:16:55,764 task=2018 epoch=16 train=1143.050780 val_mae=12.061770 loss_components={'mse': 1142.1583190917968, 'ewc': 0.8924522578716279}
+2026-11-01 22:16:58,157 task=2018 epoch=17 train=1137.841917 val_mae=12.217390 loss_components={'mse': 1136.8994003295898, 'ewc': 0.9425192207098008}
+2026-11-01 22:17:00,418 task=2018 epoch=18 train=1145.621591 val_mae=12.718179 loss_components={'mse': 1144.6856842041016, 'ewc': 0.9359053418040275}
+2026-11-01 22:17:02,730 task=2018 epoch=19 train=1135.841962 val_mae=12.720791 loss_components={'mse': 1134.9243392944336, 'ewc': 0.917622834444046}
+2026-11-01 22:17:04,996 task=2018 epoch=20 train=1127.325113 val_mae=12.370114 loss_components={'mse': 1126.3853607177734, 'ewc': 0.939744333922863}
+2026-11-01 22:17:07,288 task=2018 epoch=21 train=1138.354781 val_mae=12.281126 loss_components={'mse': 1137.3859893798829, 'ewc': 0.9687885478138923}
+2026-11-01 22:17:09,532 task=2018 epoch=22 train=1141.376265 val_mae=12.189050 loss_components={'mse': 1140.3738861083984, 'ewc': 1.0023736163973809}
+2026-11-01 22:17:11,757 task=2018 epoch=23 train=1173.347174 val_mae=14.132135 loss_components={'mse': 1172.2918182373046, 'ewc': 1.0553542792797088}
+2026-11-01 22:17:13,972 task=2018 epoch=24 train=1140.543971 val_mae=12.578967 loss_components={'mse': 1139.4071578979492, 'ewc': 1.136818528175354}
+2026-11-01 22:17:16,165 task=2018 epoch=25 train=1151.319638 val_mae=12.401679 loss_components={'mse': 1150.2307907104491, 'ewc': 1.0888535648584365}
+2026-11-01 22:17:18,392 task=2018 epoch=26 train=1141.781995 val_mae=12.403776 loss_components={'mse': 1140.6136093139648, 'ewc': 1.1683870196342467}
+2026-11-01 22:17:20,753 task=2018 epoch=27 train=1133.361292 val_mae=12.168095 loss_components={'mse': 1132.1915771484375, 'ewc': 1.1697185397148133}
+2026-11-01 22:17:23,057 task=2018 epoch=28 train=1141.124698 val_mae=12.716708 loss_components={'mse': 1139.9514221191407, 'ewc': 1.1732751607894898}
+2026-11-01 22:17:25,486 task=2018 epoch=29 train=1139.788274 val_mae=12.734210 loss_components={'mse': 1138.6244659423828, 'ewc': 1.163810670375824}
+2026-11-01 22:17:27,849 task=2018 epoch=30 train=1135.441052 val_mae=12.282699 loss_components={'mse': 1134.2571060180665, 'ewc': 1.1839494556188583}
+2026-11-01 22:17:30,269 task=2018 epoch=31 train=1130.417493 val_mae=12.810094 loss_components={'mse': 1129.2003341674804, 'ewc': 1.2171554118394852}
+2026-11-01 22:17:32,743 task=2018 epoch=32 train=1128.186098 val_mae=12.371290 loss_components={'mse': 1126.9862228393554, 'ewc': 1.1998709291219711}
+2026-11-01 22:17:35,330 task=2018 epoch=33 train=1139.431447 val_mae=13.042996 loss_components={'mse': 1138.1905548095704, 'ewc': 1.2408915758132935}
+2026-11-01 22:17:37,666 task=2018 epoch=34 train=1128.260898 val_mae=12.557121 loss_components={'mse': 1126.9880584716798, 'ewc': 1.2728361815214158}
+2026-11-01 22:17:40,044 task=2018 epoch=35 train=1133.120767 val_mae=13.046476 loss_components={'mse': 1131.8277557373046, 'ewc': 1.2930088669061661}
+2026-11-01 22:17:42,369 task=2018 epoch=36 train=1142.409135 val_mae=13.157607 loss_components={'mse': 1141.1143966674804, 'ewc': 1.2947402596473694}
+2026-11-01 22:17:44,717 task=2018 epoch=37 train=1131.490103 val_mae=12.751245 loss_components={'mse': 1130.145425415039, 'ewc': 1.3446838110685349}
+2026-11-01 22:17:47,074 task=2018 epoch=38 train=1134.806599 val_mae=13.344296 loss_components={'mse': 1133.49755859375, 'ewc': 1.3090460777282715}
+2026-11-01 22:17:49,369 task=2018 epoch=39 train=1131.542836 val_mae=12.224440 loss_components={'mse': 1130.2322494506836, 'ewc': 1.3105791538953782}
+2026-11-01 22:17:51,685 task=2018 epoch=40 train=1132.324054 val_mae=12.917742 loss_components={'mse': 1130.960009765625, 'ewc': 1.3640439003705978}
+2026-11-01 22:17:54,068 task=2018 epoch=41 train=1126.562286 val_mae=12.475958 loss_components={'mse': 1125.1899765014648, 'ewc': 1.3723093658685683}
+2026-11-01 22:17:56,373 task=2018 epoch=42 train=1139.321240 val_mae=13.470371 loss_components={'mse': 1137.92120513916, 'ewc': 1.4000320345163346}
+2026-11-01 22:17:58,624 task=2018 epoch=43 train=1136.518240 val_mae=13.188672 loss_components={'mse': 1135.113705444336, 'ewc': 1.4045401781797409}
+2026-11-01 22:18:00,941 task=2018 epoch=44 train=1135.731967 val_mae=12.507391 loss_components={'mse': 1134.311848449707, 'ewc': 1.4201160758733749}
+2026-11-01 22:18:03,279 task=2018 epoch=45 train=1124.943950 val_mae=12.167715 loss_components={'mse': 1123.5189590454102, 'ewc': 1.424994456768036}
+2026-11-01 22:18:05,643 task=2018 epoch=46 train=1125.208206 val_mae=12.051435 loss_components={'mse': 1123.8103378295898, 'ewc': 1.3978693008422851}
+2026-11-01 22:18:07,966 task=2018 epoch=47 train=1157.336191 val_mae=13.536848 loss_components={'mse': 1155.9146575927734, 'ewc': 1.4215251803398132}
+2026-11-01 22:18:10,537 task=2018 epoch=48 train=1146.873875 val_mae=14.806923 loss_components={'mse': 1145.2973999023438, 'ewc': 1.576480582356453}
+2026-11-01 22:18:13,088 task=2018 epoch=49 train=1145.500262 val_mae=12.737868 loss_components={'mse': 1143.7812606811524, 'ewc': 1.718995463848114}
+2026-11-01 22:18:15,334 task=2018 epoch=50 train=1136.272876 val_mae=12.355021 loss_components={'mse': 1134.6003372192383, 'ewc': 1.6725356221199035}
+2026-11-01 22:18:17,537 task=2018 epoch=51 train=1129.339824 val_mae=12.609343 loss_components={'mse': 1127.7542938232423, 'ewc': 1.5855256170034409}
+2026-11-01 22:18:19,767 task=2018 epoch=52 train=1145.820474 val_mae=12.599348 loss_components={'mse': 1144.2511840820312, 'ewc': 1.5692838191986085}
+2026-11-01 22:18:22,013 task=2018 epoch=53 train=1142.037015 val_mae=12.446816 loss_components={'mse': 1140.4779006958008, 'ewc': 1.559103637933731}
+2026-11-01 22:18:24,244 task=2018 epoch=54 train=1133.563176 val_mae=12.988546 loss_components={'mse': 1132.009001159668, 'ewc': 1.554178124666214}
+2026-11-01 22:18:26,578 task=2018 epoch=55 train=1142.378183 val_mae=13.037628 loss_components={'mse': 1140.8342422485352, 'ewc': 1.5439380168914796}
+2026-11-01 22:18:28,747 task=2018 epoch=56 train=1138.633171 val_mae=13.097681 loss_components={'mse': 1137.0748092651368, 'ewc': 1.5583604604005814}
+2026-11-01 22:18:30,983 task=2018 epoch=57 train=1129.250168 val_mae=12.622597 loss_components={'mse': 1127.698468017578, 'ewc': 1.5517115503549577}
+2026-11-01 22:18:33,201 task=2018 epoch=58 train=1153.444455 val_mae=13.178097 loss_components={'mse': 1151.9330780029297, 'ewc': 1.511377105116844}
+2026-11-01 22:18:35,382 task=2018 epoch=59 train=1125.127219 val_mae=12.483039 loss_components={'mse': 1123.5374481201172, 'ewc': 1.5897683292627334}
+2026-11-01 22:18:37,569 task=2018 epoch=60 train=1142.799239 val_mae=12.093678 loss_components={'mse': 1141.186801147461, 'ewc': 1.612440350651741}
+2026-11-01 22:18:39,786 task=2018 epoch=61 train=1140.504871 val_mae=12.587955 loss_components={'mse': 1138.833319091797, 'ewc': 1.6715505182743073}
+2026-11-01 22:18:41,939 task=2018 epoch=62 train=1147.828029 val_mae=12.805816 loss_components={'mse': 1146.1866882324218, 'ewc': 1.6413428366184235}
+2026-11-01 22:18:44,101 task=2018 epoch=63 train=1131.762326 val_mae=13.083475 loss_components={'mse': 1130.0710891723634, 'ewc': 1.6912353754043579}
+2026-11-01 22:18:46,305 task=2018 epoch=64 train=1133.741019 val_mae=12.386872 loss_components={'mse': 1132.0544204711914, 'ewc': 1.686593970656395}
+2026-11-01 22:18:48,621 task=2018 epoch=65 train=1135.871500 val_mae=13.095325 loss_components={'mse': 1134.2249938964844, 'ewc': 1.6465045720338822}
+2026-11-01 22:18:51,055 task=2018 epoch=66 train=1136.684065 val_mae=13.202445 loss_components={'mse': 1135.0064743041992, 'ewc': 1.6775791019201278}
+2026-11-01 22:18:53,388 task=2018 epoch=67 train=1142.319492 val_mae=13.051683 loss_components={'mse': 1140.6720138549804, 'ewc': 1.6474727183580398}
+2026-11-01 22:18:55,528 task=2018 epoch=68 train=1126.820013 val_mae=12.536993 loss_components={'mse': 1125.1352569580079, 'ewc': 1.684764787554741}
+2026-11-01 22:18:57,715 task=2018 epoch=69 train=1139.964386 val_mae=12.587740 loss_components={'mse': 1138.3070556640625, 'ewc': 1.6573324978351593}
+2026-11-01 22:18:59,946 task=2018 epoch=70 train=1132.662585 val_mae=12.978603 loss_components={'mse': 1130.969174194336, 'ewc': 1.6934080213308333}
+2026-11-01 22:19:02,127 task=2018 epoch=71 train=1143.101077 val_mae=13.023945 loss_components={'mse': 1141.3722869873047, 'ewc': 1.7287901788949966}
+2026-11-01 22:19:04,327 task=2018 epoch=72 train=1137.697263 val_mae=12.483086 loss_components={'mse': 1135.9701766967773, 'ewc': 1.7270835161209106}
+2026-11-01 22:19:06,506 task=2018 epoch=73 train=1143.952025 val_mae=13.325731 loss_components={'mse': 1142.2036254882812, 'ewc': 1.7483978599309922}
+2026-11-01 22:19:08,667 task=2018 epoch=74 train=1130.088132 val_mae=12.085568 loss_components={'mse': 1128.32293548584, 'ewc': 1.7651976615190506}
+2026-11-01 22:19:10,897 task=2018 epoch=75 train=1150.448573 val_mae=12.487150 loss_components={'mse': 1148.662532043457, 'ewc': 1.7860426664352418}
+2026-11-01 22:19:13,158 task=2018 epoch=76 train=1140.779932 val_mae=12.546806 loss_components={'mse': 1138.9856201171874, 'ewc': 1.79430995285511}
+2026-11-01 22:19:15,320 task=2018 epoch=77 train=1129.478217 val_mae=12.968778 loss_components={'mse': 1127.6576354980468, 'ewc': 1.820577722787857}
+2026-11-01 22:19:17,701 test task=2018 prefix=3 {'MAE': 12.106605008561717, 'RMSE': 21.799935668859565, 'MAPE': 17.369595715700566}
+2026-11-01 22:19:17,702 test task=2018 prefix=6 {'MAE': 15.778797339225083, 'RMSE': 28.117140517430222, 'MAPE': 23.03166654561951}
+2026-11-01 22:19:17,702 test task=2018 prefix=12 {'MAE': 19.608767658135562, 'RMSE': 34.35549656368736, 'MAPE': 29.418626463528565}
+2026-11-01 22:19:17,702 test task=2018 prefix=Avg {'MAE': 15.414992846290573, 'RMSE': 27.321453491856854, 'MAPE': 22.62101542779161}
+2026-11-01 22:19:18,438 task=2019 nodes=1202 preprocessing={'array_dtype': 'float32', 'cache_version': 1, 'nodes': 1202, 'norm_eps': 1e-08, 'normalization_scope': 'split', 'normalize_x': False, 'rates': [0.6, 0.2, 0.2], 'sample_limits': None, 'source_steps': 8490, 'split_offsets': {'test': 6792, 'train': 0, 'val': 5094}, 'split_steps': {'test': 1698, 'train': 5094, 'val': 1698}, 'target_scale': 'source', 'val_test_mix': False, 'x_len': 12, 'x_statistics': {}, 'y_len': 12}
+2026-11-01 22:19:21,356 EWC Fisher batches=40 elements=3308
+2026-11-01 22:19:21,809 TrafficStream new=9 evolved=12 replay_draws=108 seeds=114 subgraph=276 EWC=True
+2026-11-01 22:19:21,810 task=2019 parameters=3308 trainable=3308 training_nodes=276 samples={'train': 5070, 'val': 1674, 'test': 1674}
+2026-11-01 22:19:23,876 task=2019 epoch=0 train=1027.987399 val_mae=12.639447 loss_components={'mse': 1026.3551086425782, 'ewc': 1.6323007091879844}
+2026-11-01 22:19:25,949 task=2019 epoch=1 train=1013.127525 val_mae=12.466741 loss_components={'mse': 1012.5398422241211, 'ewc': 0.5876779809594155}
+2026-11-01 22:19:28,124 task=2019 epoch=2 train=1013.099321 val_mae=12.125890 loss_components={'mse': 1012.4298858642578, 'ewc': 0.6694311112165451}
+2026-11-01 22:19:30,355 task=2019 epoch=3 train=1009.338138 val_mae=11.987251 loss_components={'mse': 1008.5535385131836, 'ewc': 0.7845974758267402}
+2026-11-01 22:19:32,613 task=2019 epoch=4 train=1022.171947 val_mae=13.052445 loss_components={'mse': 1021.3614730834961, 'ewc': 0.810473407804966}
+2026-11-01 22:19:34,687 task=2019 epoch=5 train=1017.147675 val_mae=12.078787 loss_components={'mse': 1016.2199584960938, 'ewc': 0.9277243420481682}
+2026-11-01 22:19:36,767 task=2019 epoch=6 train=1012.696196 val_mae=12.689031 loss_components={'mse': 1011.6082244873047, 'ewc': 1.0879696905612946}
+2026-11-01 22:19:38,907 task=2019 epoch=7 train=1010.193582 val_mae=12.285940 loss_components={'mse': 1009.3494918823242, 'ewc': 0.8440940976142883}
+2026-11-01 22:19:41,062 task=2019 epoch=8 train=1008.323882 val_mae=12.033119 loss_components={'mse': 1007.3973373413086, 'ewc': 0.9265382826328278}
+2026-11-01 22:19:43,123 task=2019 epoch=9 train=1008.851480 val_mae=12.079719 loss_components={'mse': 1007.9382919311523, 'ewc': 0.9131895348429679}
+2026-11-01 22:19:45,310 task=2019 epoch=10 train=1017.441135 val_mae=12.173639 loss_components={'mse': 1016.1344970703125, 'ewc': 1.3066378131508827}
+2026-11-01 22:19:47,569 task=2019 epoch=11 train=1010.251053 val_mae=11.997773 loss_components={'mse': 1009.1295944213867, 'ewc': 1.121464104950428}
+2026-11-01 22:19:49,853 task=2019 epoch=12 train=1007.523981 val_mae=12.560340 loss_components={'mse': 1006.4295074462891, 'ewc': 1.094478467106819}
+2026-11-01 22:19:52,086 task=2019 epoch=13 train=1008.629691 val_mae=12.481058 loss_components={'mse': 1007.5363494873047, 'ewc': 1.0933468356728553}
+2026-11-01 22:19:54,304 task=2019 epoch=14 train=1007.865311 val_mae=12.675992 loss_components={'mse': 1006.8272125244141, 'ewc': 1.0380946934223174}
+2026-11-01 22:19:56,565 task=2019 epoch=15 train=1009.774149 val_mae=12.183847 loss_components={'mse': 1008.6892349243165, 'ewc': 1.08491350710392}
+2026-11-01 22:19:58,746 task=2019 epoch=16 train=1013.264236 val_mae=12.750875 loss_components={'mse': 1012.031283569336, 'ewc': 1.2329516932368279}
+2026-11-01 22:20:01,019 task=2019 epoch=17 train=1006.873535 val_mae=12.013028 loss_components={'mse': 1005.6712707519531, 'ewc': 1.2022662997245788}
+2026-11-01 22:20:03,331 task=2019 epoch=18 train=1005.085426 val_mae=12.219932 loss_components={'mse': 1003.9094009399414, 'ewc': 1.1760273545980453}
+2026-11-01 22:20:05,716 task=2019 epoch=19 train=1004.930742 val_mae=12.613895 loss_components={'mse': 1003.6869644165039, 'ewc': 1.243778297305107}
+2026-11-01 22:20:08,163 task=2019 epoch=20 train=1005.764401 val_mae=11.936009 loss_components={'mse': 1004.4805709838868, 'ewc': 1.2838285595178605}
+2026-11-01 22:20:10,573 task=2019 epoch=21 train=1007.677618 val_mae=12.727267 loss_components={'mse': 1006.3770156860352, 'ewc': 1.3006070524454116}
+2026-11-01 22:20:12,855 task=2019 epoch=22 train=1007.598503 val_mae=12.235445 loss_components={'mse': 1006.3862258911133, 'ewc': 1.2122788786888123}
+2026-11-01 22:20:15,066 task=2019 epoch=23 train=1005.752431 val_mae=12.613951 loss_components={'mse': 1004.51669921875, 'ewc': 1.235728344321251}
+2026-11-01 22:20:17,301 task=2019 epoch=24 train=1010.694681 val_mae=12.416350 loss_components={'mse': 1009.2678802490234, 'ewc': 1.4268027514219284}
+2026-11-01 22:20:19,486 task=2019 epoch=25 train=1007.061928 val_mae=12.490243 loss_components={'mse': 1005.660498046875, 'ewc': 1.401427325606346}
+2026-11-01 22:20:21,708 task=2019 epoch=26 train=1005.629175 val_mae=12.399435 loss_components={'mse': 1004.1909652709961, 'ewc': 1.4382157355546952}
+2026-11-01 22:20:23,854 task=2019 epoch=27 train=1007.529280 val_mae=12.050834 loss_components={'mse': 1005.9723587036133, 'ewc': 1.5569228172302245}
+2026-11-01 22:20:26,063 task=2019 epoch=28 train=1005.956584 val_mae=12.178424 loss_components={'mse': 1004.4795654296875, 'ewc': 1.477019014954567}
+2026-11-01 22:20:28,226 task=2019 epoch=29 train=1004.323286 val_mae=11.986522 loss_components={'mse': 1002.7984130859375, 'ewc': 1.5248696357011795}
+2026-11-01 22:20:30,452 task=2019 epoch=30 train=1008.423299 val_mae=12.350249 loss_components={'mse': 1006.901155090332, 'ewc': 1.522143965959549}
+2026-11-01 22:20:32,609 task=2019 epoch=31 train=1009.983401 val_mae=12.987659 loss_components={'mse': 1008.4357345581054, 'ewc': 1.5476652771234511}
+2026-11-01 22:20:34,753 task=2019 epoch=32 train=1004.980861 val_mae=12.029847 loss_components={'mse': 1003.4251342773438, 'ewc': 1.5557240545749664}
+2026-11-01 22:20:36,996 task=2019 epoch=33 train=1005.793660 val_mae=12.398635 loss_components={'mse': 1004.1237838745117, 'ewc': 1.6698850482702254}
+2026-11-01 22:20:39,248 task=2019 epoch=34 train=1006.608089 val_mae=12.207888 loss_components={'mse': 1005.0588317871094, 'ewc': 1.5492590814828873}
+2026-11-01 22:20:41,462 task=2019 epoch=35 train=1004.807607 val_mae=11.963230 loss_components={'mse': 1003.2196105957031, 'ewc': 1.5879929095506669}
+2026-11-01 22:20:43,650 task=2019 epoch=36 train=1010.390977 val_mae=11.976024 loss_components={'mse': 1008.6722305297851, 'ewc': 1.7187395066022872}
+2026-11-01 22:20:46,001 task=2019 epoch=37 train=1005.861070 val_mae=12.560941 loss_components={'mse': 1004.2429443359375, 'ewc': 1.6181315630674362}
+2026-11-01 22:20:48,378 task=2019 epoch=38 train=1006.145406 val_mae=11.984373 loss_components={'mse': 1004.4631042480469, 'ewc': 1.682300466299057}
+2026-11-01 22:20:50,561 task=2019 epoch=39 train=1006.469011 val_mae=12.254319 loss_components={'mse': 1004.7992599487304, 'ewc': 1.669749230146408}
+2026-11-01 22:20:52,686 task=2019 epoch=40 train=1013.158473 val_mae=11.873048 loss_components={'mse': 1011.4455505371094, 'ewc': 1.7129240125417708}
+2026-11-01 22:20:54,756 task=2019 epoch=41 train=1009.610796 val_mae=12.077144 loss_components={'mse': 1007.9103607177734, 'ewc': 1.700432652235031}
+2026-11-01 22:20:56,855 task=2019 epoch=42 train=1008.574390 val_mae=11.968262 loss_components={'mse': 1006.6874542236328, 'ewc': 1.8869356215000153}
+2026-11-01 22:20:59,052 task=2019 epoch=43 train=1004.942313 val_mae=12.170515 loss_components={'mse': 1003.1541381835938, 'ewc': 1.7881677389144897}
+2026-11-01 22:21:01,172 task=2019 epoch=44 train=1007.104140 val_mae=13.037235 loss_components={'mse': 1005.4720031738282, 'ewc': 1.6321298807859421}
+2026-11-01 22:21:03,274 task=2019 epoch=45 train=1006.496133 val_mae=12.536832 loss_components={'mse': 1004.7924453735352, 'ewc': 1.7036836713552475}
+2026-11-01 22:21:05,416 task=2019 epoch=46 train=1004.058089 val_mae=12.252213 loss_components={'mse': 1002.1355392456055, 'ewc': 1.9225510597229003}
+2026-11-01 22:21:07,534 task=2019 epoch=47 train=1004.947252 val_mae=12.074804 loss_components={'mse': 1003.1230438232421, 'ewc': 1.8242046654224395}
+2026-11-01 22:21:09,639 task=2019 epoch=48 train=1006.871057 val_mae=11.981107 loss_components={'mse': 1005.1054595947265, 'ewc': 1.7655976623296739}
+2026-11-01 22:21:11,783 task=2019 epoch=49 train=1007.446312 val_mae=12.607061 loss_components={'mse': 1005.6715194702149, 'ewc': 1.7747949987649918}
+2026-11-01 22:21:13,928 task=2019 epoch=50 train=1005.261948 val_mae=13.217821 loss_components={'mse': 1003.4879943847657, 'ewc': 1.773951107263565}
+2026-11-01 22:21:15,965 task=2019 epoch=51 train=1012.141725 val_mae=11.816037 loss_components={'mse': 1010.124153137207, 'ewc': 2.0175743460655213}
+2026-11-01 22:21:18,129 task=2019 epoch=52 train=1007.409657 val_mae=12.232993 loss_components={'mse': 1005.5824340820312, 'ewc': 1.8272267401218414}
+2026-11-01 22:21:20,263 task=2019 epoch=53 train=1002.513261 val_mae=12.379786 loss_components={'mse': 1000.7212890625, 'ewc': 1.7919734567403793}
+2026-11-01 22:21:22,315 task=2019 epoch=54 train=1006.280460 val_mae=12.611638 loss_components={'mse': 1004.4936492919921, 'ewc': 1.7868109703063966}
+2026-11-01 22:21:24,870 task=2019 epoch=55 train=1006.596655 val_mae=12.225801 loss_components={'mse': 1004.6685607910156, 'ewc': 1.9281008690595627}
+2026-11-01 22:21:27,437 task=2019 epoch=56 train=1009.224297 val_mae=11.891155 loss_components={'mse': 1007.3262023925781, 'ewc': 1.8980935782194137}
+2026-11-01 22:21:29,590 task=2019 epoch=57 train=1005.153136 val_mae=12.324532 loss_components={'mse': 1003.140364074707, 'ewc': 2.0127658784389495}
+2026-11-01 22:21:31,718 task=2019 epoch=58 train=1007.537329 val_mae=12.405514 loss_components={'mse': 1005.395132446289, 'ewc': 2.1421960651874543}
+2026-11-01 22:21:33,928 task=2019 epoch=59 train=1007.340988 val_mae=12.598493 loss_components={'mse': 1005.2250839233399, 'ewc': 2.115897324681282}
+2026-11-01 22:21:36,119 task=2019 epoch=60 train=1005.292735 val_mae=12.078387 loss_components={'mse': 1003.2870071411132, 'ewc': 2.005727416276932}
+2026-11-01 22:21:38,234 task=2019 epoch=61 train=1008.091095 val_mae=12.047955 loss_components={'mse': 1006.154330444336, 'ewc': 1.9367557406425475}
+2026-11-01 22:21:40,424 task=2019 epoch=62 train=1006.687135 val_mae=12.131364 loss_components={'mse': 1004.6631317138672, 'ewc': 2.0240059405565263}
+2026-11-01 22:21:42,519 task=2019 epoch=63 train=1008.665689 val_mae=12.850720 loss_components={'mse': 1006.4113800048829, 'ewc': 2.2543104708194734}
+2026-11-01 22:21:44,636 task=2019 epoch=64 train=1007.842409 val_mae=12.243307 loss_components={'mse': 1005.7608489990234, 'ewc': 2.0815544962882995}
+2026-11-01 22:21:46,843 task=2019 epoch=65 train=1004.244672 val_mae=12.034928 loss_components={'mse': 1002.2812530517579, 'ewc': 1.9634235352277756}
+2026-11-01 22:21:49,083 task=2019 epoch=66 train=1001.853783 val_mae=11.981630 loss_components={'mse': 999.9070236206055, 'ewc': 1.9467588454484939}
+2026-11-01 22:21:51,282 task=2019 epoch=67 train=1004.247458 val_mae=12.598611 loss_components={'mse': 1002.3232070922852, 'ewc': 1.9242418378591537}
+2026-11-01 22:21:53,419 task=2019 epoch=68 train=1004.064247 val_mae=12.055159 loss_components={'mse': 1002.1130920410156, 'ewc': 1.951153776049614}
+2026-11-01 22:21:55,568 task=2019 epoch=69 train=1008.463438 val_mae=12.822572 loss_components={'mse': 1006.3415542602539, 'ewc': 2.1218879997730253}
+2026-11-01 22:21:57,754 task=2019 epoch=70 train=1006.734335 val_mae=12.287505 loss_components={'mse': 1004.7373886108398, 'ewc': 1.9969482213258742}
+2026-11-01 22:22:00,173 task=2019 epoch=71 train=1002.767249 val_mae=13.019756 loss_components={'mse': 1000.7551925659179, 'ewc': 2.012052607536316}
+2026-11-01 22:22:02,669 task=2019 epoch=72 train=1005.508572 val_mae=12.268643 loss_components={'mse': 1003.4450881958007, 'ewc': 2.06348078250885}
+2026-11-01 22:22:05,079 task=2019 epoch=73 train=1004.944640 val_mae=12.099818 loss_components={'mse': 1002.8538528442383, 'ewc': 2.090785503387451}
+2026-11-01 22:22:07,254 task=2019 epoch=74 train=1007.586902 val_mae=12.186642 loss_components={'mse': 1005.3431243896484, 'ewc': 2.2437781244516373}
+2026-11-01 22:22:09,471 task=2019 epoch=75 train=1003.791682 val_mae=12.626040 loss_components={'mse': 1001.5725616455078, 'ewc': 2.219125485420227}
+2026-11-01 22:22:11,647 task=2019 epoch=76 train=1003.910715 val_mae=12.310845 loss_components={'mse': 1001.851658630371, 'ewc': 2.059061676263809}
+2026-11-01 22:22:13,887 task=2019 epoch=77 train=1004.334647 val_mae=12.250714 loss_components={'mse': 1002.2984298706054, 'ewc': 2.036218652129173}
+2026-11-01 22:22:16,315 task=2019 epoch=78 train=1005.710753 val_mae=13.262978 loss_components={'mse': 1003.6244262695312, 'ewc': 2.0863300204277038}
+2026-11-01 22:22:18,800 task=2019 epoch=79 train=1006.301721 val_mae=12.207360 loss_components={'mse': 1004.0591812133789, 'ewc': 2.242540779709816}
+2026-11-01 22:22:21,462 task=2019 epoch=80 train=1006.907288 val_mae=11.952878 loss_components={'mse': 1004.8200302124023, 'ewc': 2.0872546076774596}
+2026-11-01 22:22:24,135 task=2019 epoch=81 train=1004.856387 val_mae=12.503079 loss_components={'mse': 1002.80634765625, 'ewc': 2.0500364184379576}
+2026-11-01 22:22:26,612 task=2019 epoch=82 train=1003.826125 val_mae=12.380223 loss_components={'mse': 1001.4785995483398, 'ewc': 2.3475338399410246}
+2026-11-01 22:22:29,173 test task=2019 prefix=3 {'MAE': 11.581642254421858, 'RMSE': 19.85080862056746, 'MAPE': 17.146592277835502}
+2026-11-01 22:22:29,173 test task=2019 prefix=6 {'MAE': 15.22666017801775, 'RMSE': 25.519329982246976, 'MAPE': 23.263390730562005}
+2026-11-01 22:22:29,173 test task=2019 prefix=12 {'MAE': 19.093410096855298, 'RMSE': 30.990619796739086, 'MAPE': 30.184410267596217}
+2026-11-01 22:22:29,173 test task=2019 prefix=Avg {'MAE': 14.877120795132333, 'RMSE': 24.727402429908413, 'MAPE': 22.865623992370185}
+2026-11-01 22:22:29,183 COMPLETED {'baseline': 'TS', 'dataset': 'AIR', 'variant': 'raw', 'run': '/root/autodl-tmp/autodl_psrag_trend/runs_baselines/TS/AIR/raw/20261101_221004_seed42_20bada', 'smoke': False, 'tasks': ['2016', '2017', '2018', '2019'], 'average': {'3': {'MAE': 13.289680916895945, 'RMSE': 23.180540455535713, 'MAPE': 17.7336648452536}, '6': {'MAE': 17.37852715421716, 'RMSE': 29.633994740447605, 'MAPE': 23.650459797924853}, '12': {'MAE': 21.68314151659134, 'RMSE': 35.9664754561239, 'MAPE': 30.24831809422839}, 'Avg': {'MAE': 16.95853878222711, 'RMSE': 28.763194889595564, 'MAPE': 23.18395263715678}}, 'protocol': {'split': 'chronological_per_task', 'rates': [0.6, 0.2, 0.2], 'targets': 'source', 'input_preprocessing': 'source_x', 'normalization_scope': None, 'validation': 'masked_MAE_batch_mean', 'test': 'global_masked_prefix_metrics', 'old_task_backtesting': False, 'method_training_loss': 'upstream_specific'}, 'fidelity_status': 'official_network_and_incremental_algorithm_train_only_detection'}

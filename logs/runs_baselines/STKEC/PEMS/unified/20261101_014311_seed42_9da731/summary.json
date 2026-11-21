@@ -1,0 +1,54 @@
+{
+  "baseline": "STKEC",
+  "dataset": "PEMS",
+  "variant": "unified",
+  "run": "/root/autodl-tmp/autodl_psrag_trend/runs_baselines/STKEC/PEMS/unified/20261101_014311_seed42_9da731",
+  "smoke": false,
+  "tasks": [
+    "2011",
+    "2012",
+    "2013",
+    "2014",
+    "2015",
+    "2016",
+    "2017"
+  ],
+  "average": {
+    "3": {
+      "MAE": 12.616198254781745,
+      "RMSE": 20.3959615551227,
+      "MAPE": 17.361795054718524
+    },
+    "6": {
+      "MAE": 13.732741465313811,
+      "RMSE": 22.455986932454753,
+      "MAPE": 18.519618225767307
+    },
+    "12": {
+      "MAE": 15.99056726391172,
+      "RMSE": 26.310759879597338,
+      "MAPE": 21.538459004246505
+    },
+    "Avg": {
+      "MAE": 13.896957644574567,
+      "RMSE": 22.6727721274243,
+      "MAPE": 18.845273325654112
+    }
+  },
+  "protocol": {
+    "split": "chronological_per_task",
+    "rates": [
+      0.6,
+      0.2,
+      0.2
+    ],
+    "targets": "source",
+    "input_preprocessing": "standardized_x",
+    "normalization_scope": "split",
+    "validation": "masked_MAE_batch_mean",
+    "test": "global_masked_prefix_metrics",
+    "old_task_backtesting": false,
+    "method_training_loss": "upstream_specific"
+  },
+  "fidelity_status": "pinned_official_predictor_repaired_preprocessing_and_cluster_supervision"
+}

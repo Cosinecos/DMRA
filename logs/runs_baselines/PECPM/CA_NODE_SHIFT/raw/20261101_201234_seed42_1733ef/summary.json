@@ -1,0 +1,51 @@
+{
+  "baseline": "PECPM",
+  "dataset": "CA_NODE_SHIFT",
+  "variant": "raw",
+  "run": "/root/autodl-tmp/autodl_psrag_trend/runs_baselines/PECPM/CA_NODE_SHIFT/raw/20261101_201234_seed42_1733ef",
+  "smoke": false,
+  "tasks": [
+    "0",
+    "1",
+    "2",
+    "3"
+  ],
+  "average": {
+    "3": {
+      "MAE": 18.080629900650468,
+      "RMSE": 27.907757637359815,
+      "MAPE": 11.766800817239709
+    },
+    "6": {
+      "MAE": 19.671650518138616,
+      "RMSE": 30.42590098810004,
+      "MAPE": 12.652286732029001
+    },
+    "12": {
+      "MAE": 22.52084091966744,
+      "RMSE": 34.848264776251355,
+      "MAPE": 14.342736755457299
+    },
+    "Avg": {
+      "MAE": 19.805058494800008,
+      "RMSE": 30.60705690801431,
+      "MAPE": 12.759273259061121
+    }
+  },
+  "protocol": {
+    "split": "chronological_per_task",
+    "rates": [
+      0.6,
+      0.2,
+      0.2
+    ],
+    "targets": "source",
+    "input_preprocessing": "source_x",
+    "normalization_scope": null,
+    "validation": "masked_MAE_batch_mean",
+    "test": "global_masked_prefix_metrics",
+    "old_task_backtesting": false,
+    "method_training_loss": "upstream_specific"
+  },
+  "fidelity_status": "adapted_missing_official_preprocessing"
+}

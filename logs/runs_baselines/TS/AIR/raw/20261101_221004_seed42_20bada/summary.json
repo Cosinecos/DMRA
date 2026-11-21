@@ -1,0 +1,51 @@
+{
+  "baseline": "TS",
+  "dataset": "AIR",
+  "variant": "raw",
+  "run": "/root/autodl-tmp/autodl_psrag_trend/runs_baselines/TS/AIR/raw/20261101_221004_seed42_20bada",
+  "smoke": false,
+  "tasks": [
+    "2016",
+    "2017",
+    "2018",
+    "2019"
+  ],
+  "average": {
+    "3": {
+      "MAE": 13.289680916895945,
+      "RMSE": 23.180540455535713,
+      "MAPE": 17.7336648452536
+    },
+    "6": {
+      "MAE": 17.37852715421716,
+      "RMSE": 29.633994740447605,
+      "MAPE": 23.650459797924853
+    },
+    "12": {
+      "MAE": 21.68314151659134,
+      "RMSE": 35.9664754561239,
+      "MAPE": 30.24831809422839
+    },
+    "Avg": {
+      "MAE": 16.95853878222711,
+      "RMSE": 28.763194889595564,
+      "MAPE": 23.18395263715678
+    }
+  },
+  "protocol": {
+    "split": "chronological_per_task",
+    "rates": [
+      0.6,
+      0.2,
+      0.2
+    ],
+    "targets": "source",
+    "input_preprocessing": "source_x",
+    "normalization_scope": null,
+    "validation": "masked_MAE_batch_mean",
+    "test": "global_masked_prefix_metrics",
+    "old_task_backtesting": false,
+    "method_training_loss": "upstream_specific"
+  },
+  "fidelity_status": "official_network_and_incremental_algorithm_train_only_detection"
+}

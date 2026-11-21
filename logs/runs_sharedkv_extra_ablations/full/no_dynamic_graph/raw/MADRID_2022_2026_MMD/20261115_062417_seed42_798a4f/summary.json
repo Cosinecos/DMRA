@@ -1,0 +1,83 @@
+{
+  "model": "PSRAG_REFINE_V6_STANDARD_GCN_DYN_FRETS_LORA_TREND_QKNORM_WEEK_SHARED_KV_GCN_ADAPTER_LORA_EXTRA_ABLATION_NO_DYNAMIC_GRAPH",
+  "ablation": "no_dynamic_graph",
+  "protocol": "full",
+  "dataset": "MADRID_2022_2026_MMD",
+  "variant": "raw",
+  "tasks": [
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+    "2026"
+  ],
+  "average": {
+    "3": {
+      "MAE": 36.520906247278454,
+      "RMSE": 83.49722414341814,
+      "MAPE": 24.409440119594723
+    },
+    "6": {
+      "MAE": 38.545736110763514,
+      "RMSE": 92.77849452772017,
+      "MAPE": 24.86659154608015
+    },
+    "12": {
+      "MAE": 41.61659369278941,
+      "RMSE": 107.7568921291194,
+      "MAPE": 25.723359091826477
+    },
+    "Avg": {
+      "MAE": 38.605189548957625,
+      "RMSE": 93.44701850762007,
+      "MAPE": 24.919407235779225
+    }
+  },
+  "run": "/root/autodl-tmp/autodl_psrag_trend/runs_sharedkv_extra_ablations/full/no_dynamic_graph/raw/MADRID_2022_2026_MMD/20261115_062417_seed42_798a4f",
+  "smoke": false,
+  "architecture": {
+    "embedding_variant": "sharedkv_extra_ablation",
+    "embedding_design_version": 1,
+    "sharedkv_ablation": "no_dynamic_graph",
+    "ablation_description": "Physical graph propagation only; node embeddings remain in all other paths",
+    "source_design": "PSRAG_REFINE_V6_STANDARD_GCN_DYN_FRETS_LORA_TREND_QKNORM_WEEK_SHARED_KV_GCN_ADAPTER_LORA",
+    "hidden_dim": 192,
+    "learnable_node_bank": true,
+    "node_bank_replacement": "parameter_table",
+    "pattern_branch": true,
+    "bank_shared_key_value_shape": [
+      64,
+      192
+    ],
+    "bank_key_value_tied": true,
+    "bank_retrieval": "cosine_shared_key_value_raw_value",
+    "bank_temperature": 0.3,
+    "bank_qk_norm_eps": 1e-08,
+    "bank_temperature_trainable": false,
+    "seasonal_branch": true,
+    "calendar_embeddings_registered": true,
+    "week_interaction_rank": 16,
+    "week_interaction_parameters": 4720,
+    "node_free_season": null,
+    "dynamic_graph": false,
+    "graph_propagation": "physical_only",
+    "node_removal_dynamic_graph_coupling": false,
+    "scale_head_input_dim": 386,
+    "scale_head_removed": false,
+    "scale_head_present": true,
+    "future_statistics": "original_future_statistics_head_or_explicit_fixed_stats_flag",
+    "use_lora": true,
+    "lora_rank": 4,
+    "annual_mlp_branches": [
+      "residual",
+      "pattern"
+    ],
+    "gcn_adapter_rank": 16,
+    "gcn_adapter_base_parameters": 6144,
+    "gcn_adapter_lora_rank": 4,
+    "use_gcn_adapter_lora": true,
+    "gcn_adapter_annual_parameters": 1664,
+    "lifecycle": "first_task_full_base_later_shared_parameters_and_current_annual_lora_only",
+    "base_adapter_retained": true
+  }
+}

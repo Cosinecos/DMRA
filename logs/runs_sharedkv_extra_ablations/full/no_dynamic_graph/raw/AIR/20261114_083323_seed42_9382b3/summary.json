@@ -1,0 +1,82 @@
+{
+  "model": "PSRAG_REFINE_V6_STANDARD_GCN_DYN_FRETS_LORA_TREND_QKNORM_WEEK_SHARED_KV_GCN_ADAPTER_LORA_EXTRA_ABLATION_NO_DYNAMIC_GRAPH",
+  "ablation": "no_dynamic_graph",
+  "protocol": "full",
+  "dataset": "AIR",
+  "variant": "raw",
+  "tasks": [
+    "2016",
+    "2017",
+    "2018",
+    "2019"
+  ],
+  "average": {
+    "3": {
+      "MAE": 12.691688751297676,
+      "RMSE": 22.68987031639506,
+      "MAPE": 17.182841635733276
+    },
+    "6": {
+      "MAE": 16.74669554228605,
+      "RMSE": 29.136575739994118,
+      "MAPE": 22.84473866247572
+    },
+    "12": {
+      "MAE": 21.078947139572584,
+      "RMSE": 35.52455172233557,
+      "MAPE": 29.02153682351103
+    },
+    "Avg": {
+      "MAE": 16.34752897193013,
+      "RMSE": 28.288001428275027,
+      "MAPE": 22.346007309012062
+    }
+  },
+  "run": "/root/autodl-tmp/autodl_psrag_trend/runs_sharedkv_extra_ablations/full/no_dynamic_graph/raw/AIR/20261114_083323_seed42_9382b3",
+  "smoke": false,
+  "architecture": {
+    "embedding_variant": "sharedkv_extra_ablation",
+    "embedding_design_version": 1,
+    "sharedkv_ablation": "no_dynamic_graph",
+    "ablation_description": "Physical graph propagation only; node embeddings remain in all other paths",
+    "source_design": "PSRAG_REFINE_V6_STANDARD_GCN_DYN_FRETS_LORA_TREND_QKNORM_WEEK_SHARED_KV_GCN_ADAPTER_LORA",
+    "hidden_dim": 192,
+    "learnable_node_bank": true,
+    "node_bank_replacement": "parameter_table",
+    "pattern_branch": true,
+    "bank_shared_key_value_shape": [
+      64,
+      192
+    ],
+    "bank_key_value_tied": true,
+    "bank_retrieval": "cosine_shared_key_value_raw_value",
+    "bank_temperature": 0.3,
+    "bank_qk_norm_eps": 1e-08,
+    "bank_temperature_trainable": false,
+    "seasonal_branch": true,
+    "calendar_embeddings_registered": true,
+    "week_interaction_rank": 16,
+    "week_interaction_parameters": 3568,
+    "node_free_season": null,
+    "dynamic_graph": false,
+    "graph_propagation": "physical_only",
+    "node_removal_dynamic_graph_coupling": false,
+    "scale_head_input_dim": 386,
+    "scale_head_removed": false,
+    "scale_head_present": true,
+    "future_statistics": "original_future_statistics_head_or_explicit_fixed_stats_flag",
+    "use_lora": true,
+    "lora_rank": 4,
+    "annual_mlp_branches": [
+      "residual",
+      "pattern"
+    ],
+    "gcn_adapter_rank": 16,
+    "gcn_adapter_base_parameters": 6144,
+    "gcn_adapter_lora_rank": 4,
+    "use_gcn_adapter_lora": true,
+    "gcn_adapter_annual_parameters": 1664,
+    "lifecycle": "first_task_full_base_later_shared_parameters_and_current_annual_lora_only",
+    "base_adapter_retained": true
+  }
+}

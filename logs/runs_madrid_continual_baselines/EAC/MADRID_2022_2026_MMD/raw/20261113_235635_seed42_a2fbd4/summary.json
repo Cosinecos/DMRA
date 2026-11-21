@@ -1,0 +1,57 @@
+{
+  "model": "EAC",
+  "dataset": "MADRID_2022_2026_MMD",
+  "variant": "raw",
+  "run": "/root/autodl-tmp/autodl_psrag_trend/runs_madrid_continual_baselines/EAC/MADRID_2022_2026_MMD/raw/20261113_235635_seed42_a2fbd4",
+  "smoke": false,
+  "tasks": [
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+    "2026"
+  ],
+  "average": {
+    "3": {
+      "MAE": 42.45195309637409,
+      "RMSE": 86.18452954363883,
+      "MAPE": 33.407461425284865
+    },
+    "6": {
+      "MAE": 50.162758298988,
+      "RMSE": 102.82878701367451,
+      "MAPE": 37.493263221433814
+    },
+    "12": {
+      "MAE": 63.38441024317475,
+      "RMSE": 129.21008232226777,
+      "MAPE": 43.641094513703685
+    },
+    "Avg": {
+      "MAE": 50.887490156115355,
+      "RMSE": 103.7540539639363,
+      "MAPE": 37.475527973656106
+    }
+  },
+  "manifest_sha256": "e84655386b662ab5d82e275d5accea8067a0ac2f22ef96c20ef523fc17554ec5",
+  "protocol": {
+    "name": "psrag_madrid_full_continual_60_20_20_v1",
+    "split": "chronological_per_task",
+    "rates": [
+      0.6,
+      0.2,
+      0.2
+    ],
+    "training_fraction_of_entire_task": 0.6,
+    "strategy": "native_continual_weight_inheritance",
+    "model_reinitialized_each_stage": false,
+    "validation": "global_observed_MAE",
+    "test": "global_observed_prefix_metrics",
+    "targets": "source",
+    "input_preprocessing": "source_x",
+    "normalization_scope": "train",
+    "method_training_loss": "upstream_specific",
+    "old_task_backtesting": false,
+    "storage": "zero_copy_sliding_window_views_no_window_cache"
+  }
+}

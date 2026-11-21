@@ -1,0 +1,51 @@
+{
+  "baseline": "EAC",
+  "dataset": "AIR",
+  "variant": "raw",
+  "run": "/root/autodl-tmp/autodl_psrag_trend/runs_baselines/EAC/AIR/raw/20261031_200924_seed42_7f02f8",
+  "smoke": false,
+  "tasks": [
+    "2016",
+    "2017",
+    "2018",
+    "2019"
+  ],
+  "average": {
+    "3": {
+      "MAE": 13.097345969545959,
+      "RMSE": 22.857426139643177,
+      "MAPE": 17.99989339755946
+    },
+    "6": {
+      "MAE": 17.27465316071575,
+      "RMSE": 29.338988222871667,
+      "MAPE": 24.20596398236546
+    },
+    "12": {
+      "MAE": 21.633943619730086,
+      "RMSE": 35.72987731856644,
+      "MAPE": 30.86760575380215
+    },
+    "Avg": {
+      "MAE": 16.823781285702392,
+      "RMSE": 28.462528853597654,
+      "MAPE": 23.63691280901212
+    }
+  },
+  "protocol": {
+    "split": "chronological_per_task",
+    "rates": [
+      0.6,
+      0.2,
+      0.2
+    ],
+    "targets": "source",
+    "input_preprocessing": "source_x",
+    "normalization_scope": null,
+    "validation": "masked_MAE_batch_mean",
+    "test": "global_masked_prefix_metrics",
+    "old_task_backtesting": false,
+    "method_training_loss": "upstream_specific"
+  },
+  "fidelity_status": "pinned_official_predictor_and_native_low_rank_prompt_tuning"
+}
