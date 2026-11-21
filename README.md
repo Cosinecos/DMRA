@@ -66,11 +66,11 @@ bash run_baseline.sh all all 0 42
 
 ## Full-data results
 
-Mean test errors for DMRA and the continual baselines with released full-data training records (seed 42). Each dataset has equal-weight stages. Horizons 3, 6, and 12 cover all steps up to that horizon. Within each stage, Avg. averages the twelve prefix scores. Lower values indicate smaller errors.
+Horizons 3, 6, and 12 cover all steps up to that horizon. Within each stage, Avg. averages the twelve prefix scores. Lower values indicate smaller errors.
 
-[![Full-data MAE, RMSE, and MAPE on five datasets for TS, STKEC, PECPM, EAC, STBP, and DMRA](figures/full_data_results.png)](figures/full_data_results.png)
+[![Table 2 from the manuscript. Full-data forecasting results for eleven methods on PEMS, AIR, CA-S, CA-M, and Madrid.](figures/full_data_results.png)](figures/full_data_results.png)
 
-[Download the values behind the figure](results/full.csv) · [Training logs](https://github.com/Cosinecos/DMRA/releases/download/v1.0.0/dmra-training-logs.zip)
+The manuscript uses illustrative values for the four conventional baselines, STRAP, and all standard deviations. [Measured results](results/full.csv) · [Training logs](https://github.com/Cosinecos/DMRA/releases/download/v1.0.0/dmra-training-logs.zip)
 
 ```bash
 curl -fL --retry 3 -O https://github.com/Cosinecos/DMRA/releases/download/v1.0.0/dmra-training-logs.zip
@@ -99,5 +99,5 @@ bash run_ablation.sh all all raw 0 42
 
 ## Acknowledgments
 
-We thank the authors of the continual forecasting baselines and the providers of the traffic and air-quality observations. The experimental interfaces build on the released benchmark implementations. [STBP](https://github.com/Aoyu-Liu/STBP) · [Upstream implementation credits](continual/README.md)
+We thank the authors of [TrafficStream (TS)](https://github.com/AprLie/TrafficStream), [STKEC](https://github.com/UnderReview24/STKEC), [PECPM](https://github.com/UnderReview24/PECPM), [EAC](https://github.com/Onedean/EAC), [STRAP](https://github.com/HoweyZ/STRAP), and [STBP](https://github.com/Aoyu-Liu/STBP) for sharing the implementations used in our continual forecasting experiments. We also thank the providers of the traffic and air-quality data.
 
