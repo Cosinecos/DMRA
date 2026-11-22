@@ -32,9 +32,6 @@ def parser():
     result = argparse.ArgumentParser(description=__doc__)
     result.add_argument("--model", default="STBP", help="STBP/STRAP/EAC/PECPM/STKEC/TS, or all")
     result.add_argument("--dataset", default="PEMS", help="one of four legacy datasets, or all")
-    result.add_argument("--variant", choices=("unified", "raw", "both"), default="unified",
-                        help="unified: standardize X only; raw: source X; both: paired runs")
-    result.add_argument("--normalization-scope", choices=("split", "train"), default="split")
     result.add_argument("--gpuid", type=int, default=0, help="-1 explicitly selects CPU")
     result.add_argument("--seed", type=int, default=42)
     result.add_argument("--epochs", "--epoch", dest="epoch", type=int)
@@ -62,12 +59,12 @@ def project_path(value):
     return path if path.is_absolute() else ROOT / path
 
 
-def configuration(cli, model, dataset, variant):
+def configuration(cli, model, dataset):
     supplied = json.loads((HERE / "conf" / f"{dataset}.json").read_text(encoding="utf-8-sig"))
     config = {name: supplied[name] for name in DATA_FIELDS if name in supplied}
-    config.update(baseline=model, method=model, dataset=dataset, variant=variant,
+    config.update(baseline=model, method=model, dataset=dataset, variant="raw",
                   seed=cli.seed, gpuid=cli.gpuid, num_workers=cli.num_workers,
-                  normalize_x=variant == "unified", normalization_scope=cli.normalization_scope,
+                  normalize_x=False, normalization_scope="split",
                   target_scale="source", train_rate=.6, val_rate=.2, test_rate=.2,
                   val_test_mix=False, pems_days=31, steps_per_day=supplied.get("steps_per_day", 288),
                   x_len=12, y_len=12, epoch=200, batch_size=supplied["batch_size"],
@@ -116,8 +113,8 @@ def configuration(cli, model, dataset, variant):
         if key in {"lr", "batch_size"}:
             config[key + "_schedule"] = None
     # A run label must always match the data protocol actually executed.
-    config.update(baseline=model, method=model, dataset=dataset, variant=variant,
-                  normalize_x=variant == "unified", target_scale="source", smoke=cli.smoke)
+    config.update(baseline=model, method=model, dataset=dataset, variant="raw",
+                  normalize_x=False, target_scale="source", smoke=cli.smoke)
     if config["normalization_scope"] not in {"split", "train"}:
         raise ValueError("normalization_scope must be split or train")
     if cli.smoke:
@@ -132,8 +129,7 @@ def configuration(cli, model, dataset, variant):
         raise ValueError("Baseline comparisons require chronological validation/test splits")
     config["output_root"] = str(cli.output_dir.resolve())
     config["protocol"] = {"split": "chronological_per_task", "rates": [config[k] for k in ("train_rate", "val_rate", "test_rate")],
-                          "targets": "source", "input_preprocessing": "standardized_x" if variant == "unified" else "source_x",
-                          "normalization_scope": config["normalization_scope"] if variant == "unified" else None,
+                          "targets": "source", "input_preprocessing": "source_x", "normalization_scope": None,
                           "validation": "masked_MAE_batch_mean", "test": "global_masked_prefix_metrics",
                           "old_task_backtesting": False, "method_training_loss": "upstream_specific"}
     return config
@@ -247,9 +243,7 @@ def main():
     datasets = DATASETS if dataset == "ALL" else (dataset,)
     if any(item not in DATASETS for item in datasets):
         raise ValueError(f"Unknown dataset; choose {DATASETS}")
-    variants = ("unified", "raw") if cli.variant == "both" else (cli.variant,)
-    configs = [configuration(cli, model, dataset, variant)
-               for model in models for dataset in datasets for variant in variants]
+    configs = [configuration(cli, model, dataset) for model in models for dataset in datasets]
     if cli.plan:
         print(json.dumps({"runs": len(configs), "configurations": configs}, ensure_ascii=False, indent=2))
         return

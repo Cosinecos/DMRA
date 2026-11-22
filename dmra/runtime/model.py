@@ -5,7 +5,6 @@ its original implementation so saved model_state_dict checkpoints remain usable.
 """
 
 import math
-import time
 
 import torch
 import torch.nn as nn
@@ -316,12 +315,7 @@ class FlowPatternTrendExtractor(nn.Module):
 
 
 class ForecastBackbone(nn.Module):
-    """Season + bank trend + two residual predictors, with cumulative task LoRA.
-
-    ``use_residual_norm=False`` bypasses residual statistics, the scale head and
-    scale restoration together. Inputs retain the scale supplied by the caller.
-    The scale-head parameters stay registered for checkpoint compatibility.
-    """
+    """Season, bank trend, and two residual predictors with cumulative task LoRA."""
 
     def __init__(self, args):
         super().__init__()
@@ -396,16 +390,12 @@ class ForecastBackbone(nn.Module):
         self._lora_years_added = set()
         self._trend_lora_added = set()
         self._static_graph_cache = {}
-        self.reset_v6_profile()
 
     def _flag(self, name, default=False):
         value = getattr(self.args, name, default)
         if not isinstance(value, bool):
             raise TypeError("{} must be a bool, got {!r}. Parse configuration flags before constructing the model.".format(name, value))
         return value
-
-    def _ablation_enabled(self, name):
-        return self._flag(name)
 
     def count_parameters(self):
         total = sum(parameter.numel() for parameter in self.parameters())
@@ -439,19 +429,14 @@ class ForecastBackbone(nn.Module):
             self.num_nodes = new_num_nodes
             self._static_graph_cache = {}
 
-        # A fresh capacity-matched model recreates the entire adapter structure.
-        # All its weights are newly initialized and remain trainable.
         year = int(self.args.year)
-        if self._flag("use_lora", True) and year > int(self.args.begin_year):
-            years = (range(int(self.args.begin_year) + 1, year + 1)
-                     if self._flag("retrain_match_capacity", False) else (year,))
-            for adapter_year in years:
-                if adapter_year not in self._lora_years_added:
-                    self.lora_mlp_branch.add_year(adapter_year)
-                    self._lora_years_added.add(adapter_year)
-                if adapter_year not in self._trend_lora_added:
-                    self.trend_branch.add_year(adapter_year)
-                    self._trend_lora_added.add(adapter_year)
+        if year > int(self.args.begin_year):
+            if year not in self._lora_years_added:
+                self.lora_mlp_branch.add_year(year)
+                self._lora_years_added.add(year)
+            if year not in self._trend_lora_added:
+                self.trend_branch.add_year(year)
+                self._trend_lora_added.add(year)
 
     def configure_incremental_training(self):
         for parameter in self.parameters():
@@ -483,11 +468,6 @@ class ForecastBackbone(nn.Module):
         seasonal = seasonal + self.season_time_bias(time_feature).squeeze(-1).unsqueeze(1)
         return seasonal
 
-    def _prior_graph(self, adj, dtype):
-        graph = adj.to(dtype=dtype)
-        degree = graph.sum(dim=-1, keepdim=True).clamp_min(self.res_norm_eps)
-        return graph / degree
-
     def _dynamic_topk_graph(self, num_nodes, dtype):
         node_context = F.normalize(self._node_context(num_nodes), dim=-1)
         node_sim = (node_context @ node_context.transpose(0, 1)).to(dtype=dtype)
@@ -500,9 +480,6 @@ class ForecastBackbone(nn.Module):
         return node_sim.clamp_min(0.0)
 
     def _fused_adj(self, adj, num_nodes, dtype):
-        # In the original Dyn subclass this ablation flag was ignored.
-        if self._ablation_enabled("ablate_v6_node_graph"):
-            return self._prior_graph(adj, dtype)
         prior = adj.to(dtype=dtype)
         sim = self._dynamic_topk_graph(num_nodes, dtype)
         scale = self.node_graph_scale.clamp_min(0.0).to(dtype=dtype)
@@ -526,135 +503,29 @@ class ForecastBackbone(nn.Module):
         return feature
 
     def forward_dense(self, x, x_tod, x_dow, y_tod, y_dow, adj):
-        profile_total = self._profile_begin()
-        if profile_total is not None:
-            self._v6_profile_batches += 1
         num_nodes = adj.shape[0]
         node_context = self._node_context(num_nodes)
-        if self._ablation_enabled("ablate_v6_time_features"):
-            x_tod = torch.zeros_like(x_tod)
-            x_dow = torch.zeros_like(x_dow)
-            y_tod = torch.zeros_like(y_tod)
-            y_dow = torch.zeros_like(y_dow)
-
-        token = self._profile_begin()
-        if self._ablation_enabled("ablate_v6_season"):
-            x_season = torch.zeros_like(x)
-        else:
-            x_season = self._seasonal_decode(node_context, x_tod, x_dow)
-        self._profile_end("season_x", token)
-        token = self._profile_begin()
-        if self._ablation_enabled("ablate_v6_season"):
-            y_season = x.new_zeros(x.shape[0], num_nodes, self.output_len)
-        else:
-            y_season = self._seasonal_decode(node_context, y_tod, y_dow)
-        self._profile_end("season_y", token)
-
-        token = self._profile_begin()
+        x_season = self._seasonal_decode(node_context, x_tod, x_dow)
+        y_season = self._seasonal_decode(node_context, y_tod, y_dow)
         p_hist, p_future = self.trend_branch(x, node_context)
-        self._profile_end("trend_branch", token)
-        use_norm = self._flag("use_residual_norm", True)
-        token = self._profile_begin()
-        residual = x - x_season - p_hist
-        if use_norm:
-            res_mean = residual.mean(dim=-1, keepdim=True)
-            res_std = residual.std(dim=-1, keepdim=True, unbiased=False).clamp_min(self.res_norm_eps)
-            residual_input = (residual - res_mean) / res_std
-        else:
-            residual_input = residual
-        self._profile_end("residual_norm" if use_norm else "residual", token)
 
-        token = self._profile_begin()
-        residual_input = self.freq_filter(residual_input)
-        self._profile_end("freq_filter", token)
-        backbone_token = self._profile_begin()
-        token = self._profile_begin()
+        residual = x - x_season - p_hist
+        res_mean = residual.mean(dim=-1, keepdim=True)
+        res_std = residual.std(dim=-1, keepdim=True, unbiased=False).clamp_min(self.res_norm_eps)
+        residual_input = self.freq_filter((residual - res_mean) / res_std)
+
         fused_adj = self._fused_adj(adj, num_nodes, residual_input.dtype)
-        self._profile_end("fused_adj", token)
         fused_feature = self.standard_gcn_backbone(residual_input, fused_adj)
         fused_feature = self._adapt_gcn_feature(fused_feature)
-        self._profile_end("standard_gcn_backbone", backbone_token)
-        token = self._profile_begin()
         z_a = self.residual_head(self.output_dropout(fused_feature))
-        self._profile_end("residual_head", token)
-        token = self._profile_begin()
         z_b = self.lora_mlp_branch(residual_input, node_context)
-        self._profile_end("lora_mlp_branch", token)
         alpha = torch.sigmoid(self.branch_alpha_raw)
         residual_prediction = alpha * z_a + (1.0 - alpha) * z_b
 
-        if use_norm:
-            token = self._profile_begin()
-            node_context_expanded = node_context.unsqueeze(0).expand(x.shape[0], -1, -1)
-            scale_input = torch.cat([fused_feature, node_context_expanded, res_mean, res_std], dim=-1)
-            if self._ablation_enabled("ablate_v6_scale_head"):
-                future_res_mean = res_mean
-                future_res_std = res_std
-            else:
-                scale_stat = self.scale_head(scale_input)
-                future_res_mean = scale_stat[..., :1]
-                future_res_std = F.softplus(scale_stat[..., 1:]) + self.res_norm_eps
-            self._profile_end("scale_head", token)
-            token = self._profile_begin()
-            y_residual = residual_prediction * future_res_std + future_res_mean
-            self._profile_end("restore", token)
-        else:
-            y_residual = residual_prediction
-
-        token = self._profile_begin()
-        prediction = y_season + y_residual + p_future
-        self._profile_end("compose", token)
-        self._profile_end("forward_total", profile_total)
-        self._profile_flush()
-        return prediction
-
-    def _profile_enabled(self):
-        return self._ablation_enabled("profile_v6_parts") and self._ablation_enabled("profile_v6_active")
-
-    def _profile_uses_cuda(self):
-        return str(getattr(self.args, "device", "")).startswith("cuda") and torch.cuda.is_available()
-
-    def reset_v6_profile(self):
-        self._v6_profile_stats = {}
-        self._v6_profile_batches = 0
-        self._v6_profile_pending = []
-
-    def _profile_begin(self):
-        if not self._profile_enabled():
-            return None
-        if self._profile_uses_cuda():
-            start = torch.cuda.Event(enable_timing=True)
-            end = torch.cuda.Event(enable_timing=True)
-            start.record()
-            return ("cuda", start, end)
-        return ("cpu", time.perf_counter())
-
-    def _profile_end(self, name, token):
-        if token is None:
-            return
-        if token[0] == "cuda":
-            _, start, end = token
-            end.record()
-            self._v6_profile_pending.append((name, start, end))
-        else:
-            _, start = token
-            self._v6_profile_stats[name] = self._v6_profile_stats.get(name, 0.0) + (time.perf_counter() - start)
-
-    def _profile_flush(self):
-        if not self._v6_profile_pending:
-            return
-        torch.cuda.synchronize()
-        for name, start, end in self._v6_profile_pending:
-            elapsed = start.elapsed_time(end) / 1000.0
-            self._v6_profile_stats[name] = self._v6_profile_stats.get(name, 0.0) + elapsed
-        self._v6_profile_pending = []
-
-    def log_v6_profile(self, logger, epoch=None):
-        self._profile_flush()
-        if not self._v6_profile_stats:
-            logger.info("[v6_profile] epoch=%s no data collected", epoch)
-            return
-        batches = max(self._v6_profile_batches, 1)
-        logger.info("[v6_profile] epoch=%s batches=%s", epoch, batches)
-        for name, total in sorted(self._v6_profile_stats.items()):
-            logger.info("[v6_profile] %-18s total=%.6fs avg=%.3fms", name, total, total * 1000.0 / batches)
+        node_context_expanded = node_context.unsqueeze(0).expand(x.shape[0], -1, -1)
+        scale_input = torch.cat([fused_feature, node_context_expanded, res_mean, res_std], dim=-1)
+        scale_stat = self.scale_head(scale_input)
+        future_res_mean = scale_stat[..., :1]
+        future_res_std = F.softplus(scale_stat[..., 1:]) + self.res_norm_eps
+        y_residual = residual_prediction * future_res_std + future_res_mean
+        return y_season + y_residual + p_future

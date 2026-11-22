@@ -294,7 +294,7 @@ def run_task(inputs, args):
     train_loader = _loader(inputs, "train", args, shuffle=True)
     val_loader = _loader(inputs, "val", args)
     teacher = None
-    if args.init and args.year > args.begin_year:
+    if args.year > args.begin_year:
         model, _ = load_best_model(args)
         if needs_teacher(args):
             teacher = copy.deepcopy(model).to(args.device).eval()
@@ -305,31 +305,15 @@ def run_task(inputs, args):
     else:
         model = model_class(args.embedding_variant)(args).to(args.device)
         model.expand_adaptive_params(args.graph_size, args.adj)
-    if hasattr(model, "fit_state_calibration"):
-        if not (args.init and args.year > args.begin_year):
-            # Input windows are exactly those seen by the predictor. No label,
-            # validation/test statistics, or later-year values enter this fit.
-            model.fit_state_calibration(inputs["train_x"].transpose(0, 2, 1),
-                                        chunk_size=args.state_calibration_chunk_size)
-        args.logger.info("state_calibration=training_windows frozen_across_incremental_tasks=%s center=%s scale=%s",
-                         bool(args.init), model.trend_branch.state_center.detach().cpu().tolist(),
-                         model.trend_branch.state_scale.detach().cpu().tolist())
     model.count_parameters()
-    args.logger.info("teacher=%s residual_norm=%s normalize_x=%s normalization_scope=%s lora_enabled=%s lora_years=%s retrain_match_capacity=%s",
-                     teacher is not None, args.use_residual_norm, args.normalize_x, args.normalization_scope,
-                     getattr(args, "use_lora", True), sorted(model._lora_years_added),
-                     getattr(args, "retrain_match_capacity", False))
+    args.logger.info("teacher=%s normalize_x=%s normalization_scope=%s lora_years=%s",
+                     teacher is not None, args.normalize_x, args.normalization_scope,
+                     sorted(model._lora_years_added))
     optimizer = model.build_optimizer(args.lr, incremental=teacher is not None)
     best_value, best_path, counter = float("inf"), None, 0
     started = time.perf_counter()
     for epoch in range(args.epoch):
         model.train()
-        profile = args.profile_v6_parts and epoch == args.profile_v6_epoch
-        args.profile_v6_active = profile
-        if profile:
-            model.reset_v6_profile()
-        if teacher is not None:
-            teacher.args.profile_v6_active = False
         training, component_sums = [], {}
         for batch_index, batch in enumerate(train_loader):
             batch = batch.to(args.device)
@@ -349,9 +333,6 @@ def run_task(inputs, args):
             training.append(float(loss.detach()))
             for name, value in parts.items():
                 component_sums[name] = component_sums.get(name, 0.0) + float(value.detach())
-        if profile:
-            model.log_v6_profile(args.logger, epoch)
-        args.profile_v6_active = False
         model.eval()
         validation = []
         with torch.no_grad():

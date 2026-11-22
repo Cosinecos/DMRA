@@ -61,13 +61,7 @@ class _MadridRegistryMixin:
         graph = adj.to(dtype=dtype) * (active[:, None] & active[None, :]).to(dtype)
         return graph + torch.diag((~active).to(dtype))
 
-    def _prior_graph(self, adj, dtype):
-        graph = self._masked_physical(adj, dtype)
-        return graph / graph.sum(-1, keepdim=True).clamp_min(self.res_norm_eps)
-
     def _fused_adj(self, adj, num_nodes, dtype):
-        if self._ablation_enabled("ablate_v6_node_graph"):
-            return self._prior_graph(adj, dtype)
         prior = self._masked_physical(adj, dtype)
         dynamic = self._dynamic_topk_graph(num_nodes, dtype)
         fused = prior + self.node_graph_scale.clamp_min(0).to(dtype) * dynamic

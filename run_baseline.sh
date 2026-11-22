@@ -52,11 +52,11 @@ for method in "${models[@]}"; do
     if [[ $method == STBP && ( $ds == PEMS || $ds == AIR ) ]]; then batch=64; lr=0.01; fi
     opts=(--gpuid "$gpu" --seed "$seed" --epochs 200 --batch-size "$batch" --lr "$lr")
     if [[ $ds == MADRID && $method == STBP ]]; then
-      "$python_bin" continual/main_madrid_stbp.py "${opts[@]}" --set patience=30 --normalize-x false --output-dir runs/madrid_stbp/raw "$@"
+      "$python_bin" continual/main_madrid_stbp.py "${opts[@]}" --set patience=30 --output-dir runs/madrid_stbp/raw "$@"
     elif [[ $ds == MADRID ]]; then
-      "$python_bin" continual/main_madrid_continual_baselines.py --model "$method" "${opts[@]}" --patience 30 --variant raw --output-dir runs/madrid_continual "$@"
+      "$python_bin" continual/main_madrid_continual_baselines.py --model "$method" "${opts[@]}" --patience 30 --output-dir runs/madrid_continual "$@"
     else
-      "$python_bin" continual/baseline_main.py --model "$method" --dataset "$ds" "${opts[@]}" --set patience=30 --variant raw --output-dir runs/baselines "$@"
+      "$python_bin" continual/baseline_main.py --model "$method" --dataset "$ds" "${opts[@]}" --set patience=30 --output-dir runs/baselines "$@"
     fi
   done
 done

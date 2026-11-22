@@ -21,8 +21,6 @@ METADATA_VERSION = 1
 MODEL_CLASS = "ForecastBackbone"
 LOSS_FLAGS = ("use_mae_loss", "use_freq_loss", "use_bank_ortho_loss",
               "use_node_stability_loss", "use_distillation_loss")
-ABLATION_FLAGS = ("ablate_v6_time_features", "ablate_v6_season",
-                  "ablate_v6_node_graph", "ablate_v6_scale_head")
 
 
 def _bool(value):
@@ -37,17 +35,12 @@ def _bool(value):
 
 def _switches(args):
     result = {"normalize_x": _bool(getattr(args, "normalize_x", False)),
-              "use_residual_norm": _bool(getattr(args, "use_residual_norm", True)),
-              "use_lora": _bool(getattr(args, "use_lora", True)),
-              "use_gcn_adapter_lora": _bool(getattr(args, "use_gcn_adapter_lora", True)),
-              "retrain_match_capacity": _bool(getattr(args, "retrain_match_capacity", False)),
+              "use_residual_norm": True, "use_lora": True, "use_gcn_adapter_lora": True,
               "normalization_scope": str(getattr(args, "normalization_scope", "split")).lower(),
-              "init": _bool(getattr(args, "init", True)),
+              "init": True,
               "learnable_node_graph_scale": _bool(getattr(args, "learnable_node_graph_scale", True))}
     for name in LOSS_FLAGS:
         result[name] = _bool(getattr(args, name, True))
-    names = set(ABLATION_FLAGS) | {key for key in vars(args) if key.startswith("ablate_")}
-    result.update({name: _bool(getattr(args, name, False)) for name in sorted(names)})
     return result
 
 
@@ -132,13 +125,10 @@ def _validate_metadata(metadata, args):
     saved = dict(metadata["switches"])
     # Checkpoints written before this control always enabled annual adapters.
     saved.setdefault("use_lora", True)
-    saved.setdefault("retrain_match_capacity", False)
     current = _switches(args)
     missing = set(current) - set(saved)
-    # Future unused ablation flags default to False; all named core switches are mandatory.
-    required = set(current) - {name for name in current if name.startswith("ablate_") and name not in ABLATION_FLAGS}
-    if missing & required:
-        raise ValueError(f"Checkpoint switch metadata is incomplete: {sorted(missing & required)}")
+    if missing:
+        raise ValueError(f"Checkpoint switch metadata is incomplete: {sorted(missing)}")
     mismatches = {key: (saved.get(key, False), current.get(key, False))
                   for key in set(saved) | set(current)
                   if saved.get(key, False) != current.get(key, False)}

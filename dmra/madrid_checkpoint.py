@@ -36,10 +36,8 @@ def embedding_settings(args):
 
 
 def protocol(args):
-    return dict(version=1, dataset="MADRID_2022_2026_MMD",
-                data_manifest_sha256=str(args.data_manifest_sha256),
-                selection_result_sha256=str(args.selection_result_sha256),
-                reference_anchor_sha256=str(args.reference_anchor_sha256),
+    return dict(version=2, dataset="MADRID_2022_2026_MMD",
+                stream_sha256=args.stream_sha256,
                 rates=[float(getattr(args, name)) for name in ("train_rate", "val_rate", "test_rate")],
                 window_mode="smoke_8_4_4" if getattr(args, "smoke", False) else "full_windows",
                 calendar="actual_madrid_selected_month_wall_clock_15min",

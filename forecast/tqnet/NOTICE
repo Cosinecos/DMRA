@@ -1,0 +1,8 @@
+TQNet: Temporal Query Network for Efficient Multivariate Time Series Forecasting
+ICML 2025. Authors: Shengsheng Lin, Haojun Chen, Haijie Wu, Chunyun Qiu, Weiwei Lin.
+Official repository: https://github.com/ACAT-SCUT/TQNet
+Pinned commit: 15e19cb23483ed52398566c4baa959168cfffa57
+Official core source: models/TQNet.py; licensed by its authors under Apache-2.0.
+The packaged core preserves the official default forward computation with temporal queries and channel aggregation enabled.
+The parent __init__.py wrapper supplies the shared data interface and the calendar phase.
+The LICENSE file reproduces the standard Apache License 2.0 text present in the official repository, with formatting preserved from the same standard license.

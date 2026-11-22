@@ -97,8 +97,6 @@ def validate_embedding_config(config):
         positive_rank(config.get(key,default),key)
     positive_number(config.get("bank_temperature",.3),"bank_temperature")
     positive_number(config.get("bank_qk_norm_eps",1e-8),"bank_qk_norm_eps")
-    if not isinstance(config.get("use_gcn_adapter_lora",True),bool):
-        raise ValueError("use_gcn_adapter_lora must be a bool")
 
 
 def embedding_architecture(args):
@@ -107,9 +105,6 @@ def embedding_architecture(args):
     week = positive_rank(getattr(args,"week_interaction_rank",16),"week_interaction_rank")
     bottleneck = positive_rank(getattr(args,"gcn_adapter_rank",16),"gcn_adapter_rank")
     adapter_rank = positive_rank(getattr(args,"gcn_adapter_lora_rank",4),"gcn_adapter_lora_rank")
-    flag = getattr(args,"use_gcn_adapter_lora",True)
-    if not isinstance(flag,bool):
-        raise ValueError("use_gcn_adapter_lora must be a bool")
     return dict(
         embedding_variant=VARIANT, embedding_design_version=1,
         composition="qknorm_new_week_embeddings_shared_key_value_gcn_adapter_annual_lora",
@@ -128,7 +123,7 @@ def embedding_architecture(args):
         week_interaction_parameters=week*(int(getattr(args,"steps_per_day",288))+7+hidden),
         week_interaction_initialization="random_u_v_zero_output_projection_preserve_rng",
         week_interaction_adaptation="same_three_modules_trainable_every_task",
-        gcn_adapter_rank=bottleneck,gcn_adapter_lora_rank=adapter_rank,use_gcn_adapter_lora=flag,
+        gcn_adapter_rank=bottleneck,gcn_adapter_lora_rank=adapter_rank,use_gcn_adapter_lora=True,
         gcn_adapter_hidden_dim=hidden,gcn_adapter_base_parameters=2*hidden*bottleneck,
         gcn_adapter_annual_parameters=2*adapter_rank*(hidden+bottleneck),
         gcn_adapter_position="after_backbone_LayerNorm_before_residual_and_scale_heads",

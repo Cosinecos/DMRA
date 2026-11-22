@@ -12,11 +12,16 @@ import numpy as np
 import torch
 
 from madrid_runtime import main as core
-from main_madrid_shift import DATASET, ROOT, check_data, task_records, selection_assets, sha256
-from data_madrid_shift import load_madrid_shift_source, generate_madrid_shift_samples, load_cached_madrid_shift_inputs, ensure_node_prefix
+from data_madrid_shift import (
+    ensure_node_prefix, file_hash, generate_madrid_shift_samples, load_cached_madrid_shift_inputs, load_madrid_stage,
+)
 from checkpoint_madrid_stbp import protocol
 from model_madrid_stbp import METHOD
 from trainer_madrid_stbp import run_task
+
+
+ROOT = Path(__file__).resolve().parent.parent
+DATASET = 'MADRID_2022_2026_MMD'
 
 
 def parser():
@@ -29,8 +34,6 @@ def parser():
     result.add_argument('--epochs','--epoch',dest='epoch',type=int)
     result.add_argument('--batch-size','--batch_size',dest='batch_size',type=int)
     result.add_argument('--lr',type=float)
-    result.add_argument('--normalize-x',type=core.boolean)
-    result.add_argument('--normalization-scope',choices=('split','train'))
     result.add_argument('--init',type=core.boolean)
     result.add_argument('--train',type=core.boolean)
     result.add_argument('--data-process',dest='data_process',type=core.boolean)
@@ -60,27 +63,28 @@ def configuration(cli):
         raise ValueError('Madrid STBP learning rate must be finite and positive')
     if not 2022<=cfg['begin_year']<=cfg['end_year']<=2026:
         raise ValueError('Madrid STBP task years must lie in2022-2026')
-    if cfg.get('pred_dump'):
-        raise ValueError('Legacy prediction dump does not carry Madrid observation masks')
-    if not cfg['use_mae_loss'] or float(cfg['lambda_mae'])!=1 or any(cfg[k] for k in ('use_freq_loss','use_bank_ortho_loss','use_node_stability_loss','use_distillation_loss')) or any(float(cfg[k])!=0 for k in ('lambda_freq','lambda_bank_ortho','lambda_u','lambda_dist')):
-        raise ValueError('Madrid STBP uses its native prediction MAE only; PSRAG auxiliary objectives are unsupported')
-    if cfg['use_lora'] or cfg['use_residual_norm']:
-        raise ValueError('Madrid STBP has no PSRAG LoRA or residual normalization branch')
     return cfg
 
 
+def task_sources(config):
+    raw_dir = core.project_path(config['raw_data_path'])
+    graph_dir = core.project_path(config['graph_path'])
+    previous_ids = None
+    for year in range(config['begin_year'], config['end_year'] + 1):
+        raw_path = raw_dir / f'{year}.npz'
+        graph_path = graph_dir / f'{year}_adj.npz'
+        source, graph, label = load_madrid_stage(raw_path, graph_path, year, config['train_rate'])
+        if previous_ids is not None:
+            ensure_node_prefix(previous_ids, source['node_ids'])
+        previous_ids = source['node_ids']
+        yield year, raw_path, source, graph, label
+
+
 def run(config):
-    check_data(config)
     args=SimpleNamespace(**config)
     for field in ('raw_data_path','graph_path','save_data_path','model_path'):
         setattr(args,field,str(core.project_path(getattr(args,field))))
-    manifest_path=Path(args.raw_data_path).parent/'manifest.json'
-    manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
-    records=task_records(manifest);assets=selection_assets(manifest_path.parent,manifest)
-    args.data_manifest_sha256=sha256(manifest_path)
-    args.selection_result_sha256=assets['result_sha256']
-    args.reference_anchor_sha256=assets['anchor_sha256']
-    args.selected_months={year:record['month'] for year,record in records.items()}
+    args.selected_months={}
     if args.gpuid>=0:
         if not torch.cuda.is_available() or args.gpuid>=torch.cuda.device_count():
             raise RuntimeError('Requested CUDA device unavailable; use --gpuid -1 for CPU')
@@ -96,19 +100,15 @@ def run(config):
     args.logger=logging.getLogger(args.path);args.logger.setLevel(logging.INFO);args.logger.propagate=False
     for handler in (logging.StreamHandler(),logging.FileHandler(Path(args.path)/'train.log',encoding='utf-8')):
         handler.setFormatter(logging.Formatter('%(asctime)s %(message)s'));args.logger.addHandler(handler)
-    cfg=dict(config,data_manifest_sha256=args.data_manifest_sha256,protocol=protocol(args))
+    cfg=dict(config,protocol=protocol(args))
     (Path(args.path)/'config.json').write_text(json.dumps(cfg,indent=2)+'\n',encoding='utf-8')
     args.logger.info('baseline=STBP device=%s run=%s settings=%s',args.device,args.path,cfg)
-    results={};previous_ids=None;args.graph_size_list=[]
+    results={};args.graph_size_list=[]
     try:
-        for year in range(args.begin_year,args.end_year+1):
-            args.year=year;args.task_month=records[year]['month'];args.task_label=records[year]['label']
-            raw_path=Path(args.raw_data_path)/f'{year}.npz'
-            source=load_madrid_shift_source(raw_path)
-            args.source_sha256=sha256(raw_path);args.expected_node_ids=source['node_ids'].tolist()
-            if previous_ids is not None:ensure_node_prefix(previous_ids,source['node_ids'])
-            previous_ids=source['node_ids'].copy()
-            with np.load(Path(args.graph_path)/f'{year}_adj.npz',allow_pickle=False) as archive:graph=archive['x']
+        for year, raw_path, source, graph, label in task_sources(config):
+            args.year=year;args.task_month=int(label[-2:]);args.task_label=label
+            args.selected_months[year]=args.task_month
+            args.source_sha256=file_hash(raw_path);args.expected_node_ids=source['node_ids'].tolist()
             args.graph_size=len(source['node_ids']);args.graph_size_list.append(args.graph_size)
             args.expected_source_steps=len(source['x'])
             args.expected_source_first_timestamp=str(source['timestamps'][0]);args.expected_source_last_timestamp=str(source['timestamps'][-1])
@@ -143,7 +143,9 @@ def run(config):
 def main():
     cli=parser().parse_args();cfg=configuration(cli)
     if cli.check_data:
-        print(json.dumps(dict(status='passed',baseline='STBP',dataset=DATASET,tasks=check_data(cfg)),indent=2));return
+        tasks = [dict(year=year, label=label, steps=len(source['x']), nodes=len(source['node_ids']))
+                 for year, _, source, _, label in task_sources(cfg)]
+        print(json.dumps(dict(status='passed',baseline='STBP',dataset=DATASET,tasks=tasks),indent=2));return
     print(json.dumps(dict(status='passed',runs=[run(cfg)]),indent=2))
 
 

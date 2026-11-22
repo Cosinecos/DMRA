@@ -68,6 +68,22 @@ def long_term_labels(training_data, steps_per_day, cluster_count):
     return np.asarray(labels, dtype=np.int64)
 
 
+class MadridEWC(EWC):
+    def _update_fisher_params(self, loader, lossfunc, device):
+        # Preserve the upstream sum of squared gradients while passing the
+        # observation mask carried by each Madrid batch to the loss.
+        names, parameters = zip(*self.model.named_parameters())
+        fisher = [torch.zeros_like(parameter) for parameter in parameters]
+        for data in loader:
+            data = data.to(device, non_blocking=True)
+            pred, _ = self.model(data, self.adj)
+            loss = lossfunc(pred, data.y, valid=data.y_valid)
+            for estimate, grad in zip(fisher, torch.autograd.grad(loss, parameters)):
+                estimate.add_(grad.detach().square())
+        for name, estimate in zip(names, fisher):
+            self.register_buffer(name.replace('.', '__') + '_estimated_fisher', estimate)
+
+
 class Adapter(BaseAdapter):
     def __init__(self, args):
         super().__init__(args)
@@ -104,7 +120,7 @@ class Adapter(BaseAdapter):
         if continuing and args.ewc:
             # Official STKEC estimates Fisher on current-task full training data
             # using the previous best model before adapting this year's subgraph.
-            self.ewc = EWC(self.model, ctx.adj, args.ewc_lambda, args.ewc_strategy)
+            self.ewc = MadridEWC(self.model, ctx.adj, args.ewc_lambda, args.ewc_strategy)
             self.ewc.register_ewc_params(make_loader(ctx.inputs, "train", args), self._loss, args.device)
         if continuing and args.strategy == "incremental":
             old_count = ctx.previous_raw_adj.shape[0]

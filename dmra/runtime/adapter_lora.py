@@ -79,15 +79,11 @@ class GCNAnnualLoRAAdapter(nn.Module):
         self.up.freeze_all_except(year)
 
 
-def expected_years(args, enabled):
+def expected_years(args):
     begin, saved = int(args.begin_year), int(args.year)
     if saved < begin:
         raise RuntimeError("Saved LoRA task precedes begin_year")
-    if not enabled or saved == begin:
-        return set()
-    if args.init or args.retrain_match_capacity:
-        return set(range(begin+1, saved+1))
-    return {saved}
+    return set(range(begin + 1, saved + 1))
 
 
 class GraphAdapterBackbone(ForecastBackbone):
@@ -101,18 +97,12 @@ class GraphAdapterBackbone(ForecastBackbone):
     def _adapt_gcn_feature(self, hidden):
         return self.gcn_adapter(hidden)
 
-    def _adapter_lora_enabled(self):
-        return self._flag("use_lora", True) and self._flag("use_gcn_adapter_lora", True)
-
     def expand_adaptive_params(self, new_num_nodes, adj=None):
         super().expand_adaptive_params(new_num_nodes, adj)
         year, begin = int(self.args.year), int(self.args.begin_year)
-        if self._adapter_lora_enabled() and year > begin:
-            years = range(begin+1, year+1) if self._flag("retrain_match_capacity", False) else (year,)
-            for key in years:
-                if key not in self._adapter_lora_years_added:
-                    self.gcn_adapter.add_year(key)
-                    self._adapter_lora_years_added.add(key)
+        if year > begin and year not in self._adapter_lora_years_added:
+            self.gcn_adapter.add_year(year)
+            self._adapter_lora_years_added.add(year)
 
     def configure_incremental_training(self):
         super().configure_incremental_training()
@@ -122,21 +112,20 @@ class GraphAdapterBackbone(ForecastBackbone):
     def _lora_groups(self):
         mlp = [(name,module) for name,module in self.named_modules() if isinstance(module,CumulativeLoRALinear)]
         adapter = [("gcn_adapter.down", self.gcn_adapter.down), ("gcn_adapter.up",self.gcn_adapter.up)]
-        return ((mlp, ("lora_A","lora_B","lora_db"), self._flag("use_lora",True)),
-                (adapter, ("lora_A","lora_B"), self._adapter_lora_enabled()))
+        return ((mlp, ("lora_A", "lora_B", "lora_db")), (adapter, ("lora_A", "lora_B")))
 
     def saved_lora_years(self):
-        for layers, fields, enabled in self._lora_groups():
-            expected = expected_years(self.args,enabled)
+        expected = expected_years(self.args)
+        for layers, fields in self._lora_groups():
             for name,module in layers:
                 for field in fields:
                     if set(getattr(module,field)) != {str(y) for y in expected}:
                         raise RuntimeError("Incomplete annual LoRA structure in "+name+"."+field)
-        return sorted(expected_years(self.args,self._flag("use_lora",True)))
+        return sorted(expected)
 
     def restore_lora_slots(self, state):
-        for layers, fields, enabled in self._lora_groups():
-            expected = expected_years(self.args,enabled)
+        expected = expected_years(self.args)
+        for layers, fields in self._lora_groups():
             for name,module in layers:
                 for field in fields:
                     prefix = name+"."+field+"."
@@ -155,8 +144,7 @@ class GraphAdapterBackbone(ForecastBackbone):
                             raise RuntimeError("Annual LoRA tensor shape differs in "+prefix+str(year))
                 for year in sorted(expected):
                     module.add_year(year)
-        original = expected_years(self.args,self._flag("use_lora",True))
-        self._lora_years_added = set(original)
-        self._trend_lora_added = set(original)
-        self._adapter_lora_years_added = expected_years(self.args,self._adapter_lora_enabled())
-        return sorted(original)
+        self._lora_years_added = set(expected)
+        self._trend_lora_added = set(expected)
+        self._adapter_lora_years_added = set(expected)
+        return sorted(expected)

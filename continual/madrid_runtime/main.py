@@ -14,22 +14,11 @@ METHOD = "STBP_MADRID_2022_2026_MMD"
 
 DEFAULTS = {
     "seed": 42, "gpuid": 0, "num_workers": 0 if os.name == "nt" else 4,
-    "normalize_x": False, "normalization_scope": "split", "use_residual_norm": True,
-    "use_mae_loss": True, "use_freq_loss": True, "use_bank_ortho_loss": True,
-    "use_node_stability_loss": True, "use_distillation_loss": True,
-    "lambda_mae": 1.0, "lambda_freq": 0.0, "lambda_bank_ortho": 0.0,
-    "lambda_u": 0.0, "lambda_dist": 0.0, "freq_remove_dc": True,
-    "ablate_v6_scale_head": False, "ablate_v6_season": False,
-    "ablate_v6_time_features": False, "ablate_v6_node_graph": False,
-    "learnable_node_graph_scale": True, "steps_per_day": 288, "pems_days": 31,
+    "normalize_x": False, "normalization_scope": "split", "steps_per_day": 96,
     "train_rate": .6, "val_rate": .2, "test_rate": .2, "val_test_mix": False,
     "cache_data": True, "data_process": 1, "init": True, "train": 1,
-    "use_lora": True, "retrain_match_capacity": False,
     "load_first_year": 0, "first_year_model_path": "", "checkpoint_path": "",
-    "profile_v6_parts": False, "profile_v6_epoch": -1,
-    "pred_dump": False, "pred_dump_interval": 10, "pred_dump_samples": 2,
-    "pred_dump_nodes": 5, "pred_dump_plots": True,
-    "smoke": False, "patience": 30, "paral": 0, "res_norm_eps": 1e-5,
+    "smoke": False, "patience": 30,
     "model": {"in_channel": 12, "out_channel": 12, "hidden_channel": 192},
 }
 
@@ -79,8 +68,7 @@ def configuration(cli, dataset):
         config[name] = boolean(config[name])
     for name in ("data_process", "init", "train", "load_first_year"):
         config[name] = boolean(config[name])
-    if config["retrain_match_capacity"] and (config["init"] or not config["use_lora"]):
-        raise ValueError("retrain_match_capacity requires --init false and --lora true")
+    config["normalize_x"] = False
     config["method"] = METHOD
     config["dataset"] = supplied.get("dataset", dataset)
     config["smoke"] = bool(cli.smoke)
@@ -94,9 +82,6 @@ def configuration(cli, dataset):
         raise ValueError("batch_size/epoch must be positive and num_workers must be nonnegative")
     if abs(sum(float(config[k]) for k in ("train_rate", "val_rate", "test_rate")) - 1) > 1e-6:
         raise ValueError("train_rate + val_rate + test_rate must equal 1")
-    for name in ("lambda_mae", "lambda_freq", "lambda_bank_ortho", "lambda_u", "lambda_dist"):
-        if float(config[name]) < 0:
-            raise ValueError(f"{name} must be nonnegative")
     if config["end_year"] < config["begin_year"]:
         raise ValueError("end_year must not precede begin_year")
     effective_padding = (int(config["standard_gcn_tcn_kernel_size"]) - 1) * int(config["standard_gcn_tcn_dilation"])

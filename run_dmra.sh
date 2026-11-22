@@ -37,8 +37,10 @@ for arg in "$@"; do
     fi
 done
 "${PYTHON_BIN:-python}" prepare_data.py
+workers=4
+if [[ ${OS:-} == Windows_NT ]]; then workers=0; fi
 for name in "${names[@]}"; do
     module=dmra.train
     if [[ $name == MADRID_2022_2026_MMD ]]; then module=dmra.train_madrid; fi
-    "${PYTHON_BIN:-python}" -u -m "$module" --dataset "$name" --gpuid "$gpu" --seed "$seed" --num-workers "${NUM_WORKERS:-4}" "$@"
+    "${PYTHON_BIN:-python}" -u -m "$module" --dataset "$name" --gpuid "$gpu" --seed "$seed" --num-workers "${NUM_WORKERS:-$workers}" "$@"
 done

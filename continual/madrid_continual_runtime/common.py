@@ -212,12 +212,12 @@ def evaluate(adapter,loader,args):
 
 def checkpoint_identity(args,ctx):
     semantic={k:v for k,v in args.config_identity.items()
-              if k not in {'output_root','output_dir','manifest_path','gpuid','num_workers','max_tasks'}}
+              if k not in {'output_root','output_dir','gpuid','num_workers','max_tasks'}}
     encoded=json.dumps(semantic,sort_keys=True,separators=(',',':')).encode()
     ids=np.asarray(ctx.node_ids,dtype=np.int64);active=np.asarray(ctx.active_nodes,dtype=bool)
     return dict(format_version=1,model=args.baseline,dataset=args.dataset,variant=args.variant,year=int(args.year),
                 nodes=int(args.graph_size),config_sha256=hashlib.sha256(encoded).hexdigest(),
-                manifest_sha256=str(ctx.manifest_sha256),plan_sha256=str(ctx.plan_sha256),
+                plan_sha256=str(ctx.plan_sha256),
                 node_ids_sha256=hashlib.sha256(ids.tobytes()).hexdigest(),
                 active_nodes_sha256=hashlib.sha256(active.tobytes()).hexdigest(),
                 graph_sha256=str(ctx.metadata['graph_sha256']),
@@ -285,7 +285,7 @@ def fit_task(adapter,ctx):
     return dict(metrics=metrics,epochs=epoch+1,best_epoch=best_epoch,best_val_mae=best,reloaded_val_mae=reloaded,
                 checkpoint=checkpoint.relative_to(Path(args.path)).as_posix(),parameters=total,trainable_parameters=trainable,
                 lr=args.lr,batch_size=args.batch_size,seconds=round(time.perf_counter()-started,3),history=history,
-                manifest_sha256=ctx.manifest_sha256,plan_sha256=ctx.plan_sha256,
+                plan_sha256=ctx.plan_sha256,
                 strategy='native_continual_weight_inheritance', inherited_model_object=inherited_model,
                 training_fraction_of_entire_task=.6, preprocessing=ctx.metadata,
                 samples={split:len(ctx.inputs[split+'_x']) for split in ('train','val','test')})

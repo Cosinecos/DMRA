@@ -137,7 +137,7 @@ def run_task(inputs,args):
         # Registry mismatches must fail, not silently evaluate a different cohort.
         model.set_task_nodes(inputs["node_ids"],inputs["active_nodes"])
         return dict(metrics=evaluate(model,args,loaders["test"],True),epochs=0)
-    if args.init and args.year>args.begin_year:
+    if args.year>args.begin_year:
         model,_=load_best_model(args)
         if needs_teacher(args):
             teacher=copy.deepcopy(model).eval()
@@ -151,16 +151,15 @@ def run_task(inputs,args):
         model.expand_adaptive_params(args.graph_size,args.adj)
         model.set_task_nodes(inputs["node_ids"],inputs["active_nodes"])
     model.count_parameters()
-    args.logger.info("calendar=actual zero_labels=valid graph_active=%s/%s lora_years=%s residual_norm=%s fixed_stats=%s normalize_x=%s",int(model.task_graph_active.sum()),model.num_nodes,sorted(model._lora_years_added),args.use_residual_norm,args.ablate_v6_scale_head,args.normalize_x)
+    args.logger.info("calendar=actual zero_labels=valid graph_active=%s/%s lora_years=%s normalize_x=%s",
+                     int(model.task_graph_active.sum()), model.num_nodes,
+                     sorted(model._lora_years_added), args.normalize_x)
     optimizer=model.build_optimizer(args.lr,incremental=teacher is not None)
     best,best_path,counter=float("inf"),None,0
     started=time.perf_counter()
     for epoch in range(args.epoch):
         model.train()
         totals,parts_sum=[],{}
-        args.profile_v6_active=bool(args.profile_v6_parts and epoch==args.profile_v6_epoch)
-        if args.profile_v6_active:
-            model.reset_v6_profile()
         for batch_index,batch in enumerate(loaders["train"]):
             batch=batch.to(args.device)
             label_free_objective=(_enabled(args,"use_bank_ortho_loss","lambda_bank_ortho") or
@@ -187,9 +186,6 @@ def run_task(inputs,args):
                 parts_sum[k]=parts_sum.get(k,0)+float(v.detach())
         if not totals:
             raise RuntimeError("Madrid training has no observed labels or active label-free objective")
-        if args.profile_v6_active:
-            model.log_v6_profile(args.logger,epoch)
-        args.profile_v6_active=False
         val=evaluate(model,args,loaders["val"])[str(args.y_len)]["MAE"]
         args.logger.info("task=%s epoch=%s train=%.6f val_mae=%.6f loss_components=%s",args.year,epoch,np.mean(totals),val,{k:v/len(totals) for k,v in parts_sum.items()})
         if val<best:

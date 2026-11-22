@@ -11,8 +11,9 @@ or target touches those four slots has its complete target mask disabled.
 """
 from __future__ import annotations
 
-import json
 import calendar
+import hashlib
+import json
 from pathlib import Path
 import re
 
@@ -161,6 +162,38 @@ def load_madrid_shift_source(path):
         if METADATA_KEY in archive:
             result[METADATA_KEY] = archive[METADATA_KEY].copy()
     return result
+
+
+def file_hash(path):
+    digest = hashlib.sha256()
+    with Path(path).open('rb') as stream:
+        for block in iter(lambda: stream.read(1024 * 1024), b''):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def load_madrid_stage(raw_path, graph_path, year, train_rate):
+    source = load_madrid_shift_source(raw_path)
+    clock = source['timestamps']
+    label = str(clock[0].astype('datetime64[M]'))
+    clock_year, month = map(int, label.split('-'))
+    if (clock_year != year or clock[0] != np.datetime64(f'{label}-01')
+            or len(clock) != calendar.monthrange(year, month)[1] * 96):
+        raise ValueError(f'Madrid stage {year} must cover a complete calendar month in that year')
+    node_ids = source['node_ids']
+    with np.load(graph_path, allow_pickle=False) as archive:
+        graph = np.asarray(archive['x'], dtype=np.float32)
+        if 'node_ids' not in archive or not np.array_equal(archive['node_ids'], node_ids):
+            raise ValueError(f'Madrid graph and source node registries differ for {year}')
+    if graph.shape != (len(node_ids), len(node_ids)) or not np.isfinite(graph).all() or (graph < 0).any():
+        raise ValueError(f'Madrid graph shape or weights are invalid for {year}')
+    active = source['active_nodes']
+    train_stop = int(len(clock) * train_rate)
+    if not np.array_equal(active, source['valid'][:train_stop].any(0)):
+        raise ValueError(f'Madrid active nodes must be derived from the training observations in {year}')
+    if graph[np.ix_(active, ~active)].any() or graph[np.ix_(~active, active)].any():
+        raise ValueError(f'Madrid graph connects active and inactive nodes in {year}')
+    return source, graph, label
 
 
 def _forward_fill(values, valid, train_stop):

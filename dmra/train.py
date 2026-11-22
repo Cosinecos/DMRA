@@ -29,21 +29,16 @@ DEFAULTS = {
     "week_interaction_rank": 16,
     "gcn_adapter_rank": 16,
     "gcn_adapter_lora_rank": 4,
-    "use_gcn_adapter_lora": True,
     "seed": 42, "gpuid": 0, "num_workers": 0 if os.name == "nt" else 4,
-    "normalize_x": False, "normalization_scope": "split", "use_residual_norm": True,
+    "normalize_x": False, "normalization_scope": "split",
     "use_mae_loss": True, "use_freq_loss": True, "use_bank_ortho_loss": True,
     "use_node_stability_loss": True, "use_distillation_loss": True,
     "lambda_mae": 1.0, "lambda_freq": 0.0, "lambda_bank_ortho": 0.0,
     "lambda_u": 0.0, "lambda_dist": 0.0, "freq_remove_dc": True,
-    "ablate_v6_scale_head": False, "ablate_v6_season": False,
-    "ablate_v6_time_features": False, "ablate_v6_node_graph": False,
     "learnable_node_graph_scale": True, "steps_per_day": 288, "pems_days": 31,
     "train_rate": .6, "val_rate": .2, "test_rate": .2, "val_test_mix": False,
-    "cache_data": False, "data_process": 1, "init": True, "train": 1,
-    "use_lora": True, "retrain_match_capacity": False,
+    "cache_data": False, "data_process": 1, "train": 1,
     "load_first_year": 0, "first_year_model_path": "", "checkpoint_path": "",
-    "profile_v6_parts": False, "profile_v6_epoch": -1,
     "pred_dump": False, "pred_dump_interval": 10, "pred_dump_samples": 2,
     "pred_dump_nodes": 5, "pred_dump_plots": True,
     "smoke": False, "patience": 30, "paral": 0, "res_norm_eps": 1e-5,
@@ -68,7 +63,6 @@ def parser():
     result.add_argument("--conf", type=Path, help="JSON config; CLI options override it")
     result.add_argument("--gcn-adapter-rank", type=int, help="positive bottleneck width; default16")
     result.add_argument("--gcn-adapter-lora-rank", type=int, help="annual Adapter matrix LoRA rank; default4")
-    result.add_argument("--gcn-adapter-lora", dest="use_gcn_adapter_lora", type=boolean, help="enable Adapter annual LoRA; base Adapter stays frozen in incremental tasks")
     result.add_argument("--bank-temperature", type=float, help="fixed positive cosine retrieval temperature; default0.3")
     result.add_argument("--bank-qk-norm-eps", type=float, help="positive Q/K normalization epsilon; default1e-8")
     result.add_argument("--week-interaction-rank", type=int, help="new TOD/DOW interaction embedding rank; default16")
@@ -79,8 +73,6 @@ def parser():
     result.add_argument("--batch-size", "--batch_size", dest="batch_size", type=int)
     result.add_argument("--normalize-x", dest="normalize_x", type=boolean)
     result.add_argument("--normalization-scope", choices=("split", "train"))
-    result.add_argument("--residual-norm", dest="use_residual_norm", type=boolean)
-    result.add_argument("--fixed-stats", dest="ablate_v6_scale_head", type=boolean)
     for option, field in (("mae-loss", "use_mae_loss"), ("freq-loss", "use_freq_loss"),
                           ("bank-ortho-loss", "use_bank_ortho_loss"),
                           ("node-stability-loss", "use_node_stability_loss"),
@@ -88,11 +80,6 @@ def parser():
         result.add_argument("--" + option, dest=field, type=boolean)
     result.add_argument("--data-process", "--data_process", dest="data_process", type=boolean)
     result.add_argument("--train", type=boolean)
-    result.add_argument("--init", type=boolean)
-    result.add_argument("--lora", dest="use_lora", type=boolean,
-                        help="add annual LoRA adapters; use false with --init false for retraining without LoRA")
-    result.add_argument("--retrain-match-capacity", type=boolean,
-                        help="with --init false --lora true, freshly create all LoRA years to match incremental model size")
     result.add_argument("--load-first-year", "--load_first_year", dest="load_first_year", type=boolean)
     result.add_argument("--first-year-model-path", "--first_year_model_path", dest="first_year_model_path")
     result.add_argument("--output-dir", type=Path, help="override result root; data are never written here")
@@ -136,10 +123,8 @@ def configuration(cli, dataset):
         target[path[-1]] = value
     for name in BOOL_FIELDS:
         config[name] = boolean(config[name])
-    for name in ("data_process", "init", "train", "load_first_year"):
+    for name in ("data_process", "train", "load_first_year"):
         config[name] = boolean(config[name])
-    if config["retrain_match_capacity"] and (config["init"] or not config["use_lora"]):
-        raise ValueError("retrain_match_capacity requires --init false and --lora true")
     validate_embedding_config(config)
     config["method"] = method_for(config["embedding_variant"])
     config["dataset"] = supplied.get("dataset", dataset)
@@ -208,8 +193,6 @@ def run(config):
     args.methods = {args.method: model_class(args.embedding_variant)}
     (Path(args.path) / "config.json").write_text(json.dumps(config, indent=2) + "\n", encoding="utf-8")
     args.logger.info("device=%s run=%s settings=%s", args.device, args.path, config)
-    if not args.use_residual_norm:
-        args.logger.info("Residual normalization and restoration are BOTH bypassed; scale_head is not called")
     args.logger.info("embedding=%s bank_retrieval=cosine_shared_key_value week_interaction=new_embeddings gcn_terminal_adapter=true adapter_annual_matrix_lora=true calendar=task_relative_phase; explicit natural weekday alignment is not changed", args.embedding_variant)
     results = {}
     args.graph_size_list = []
