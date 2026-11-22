@@ -2,6 +2,12 @@
 
 Dual Memories and Residual Adaptation for Continual Spatio-Temporal Forecasting.
 
+## Model
+
+![DMRA architecture, showing the shared node bank and the trend, periodic, and residual branches](figures/framework.png)
+
+[Vector version of the architecture](figures/framework.pdf)
+
 ## Setup
 
 Use Python 3.11 in a virtual environment and run the commands from the repository root in Bash (Git Bash on Windows). This example installs PyTorch for CUDA 12.1.
@@ -40,3 +46,13 @@ Historical main-experiment logs are in [`logs/`](logs/). The repository contains
 PEMS and AIR follow the [EAC benchmarks](https://github.com/Onedean/EAC). The California streams are derived from [LargeST](https://github.com/liuxu77/LargeST).
 
 Madrid data are adapted from Ayuntamiento de Madrid traffic intensity and measurement-point coordinates under CC BY 4.0. [Traffic data](https://datos.madrid.es/dataset/208627-0-transporte-ptomedida-historico) · [Measurement points](https://datos.madrid.es/dataset/202468-0-intensidad-trafico) · [License](https://creativecommons.org/licenses/by/4.0/)
+
+## Full-data results
+
+Horizons 3, 6, and 12 cover all steps up to that horizon. Within each stage, Avg. averages the twelve prefix scores. Lower values indicate smaller errors.
+
+[![Table 2 from the manuscript. Full-data forecasting results for eleven methods on PEMS, AIR, CA-S, CA-M, and Madrid.](figures/full_data_results.png)](figures/full_data_results.png)
+
+## Acknowledgments
+
+We thank the authors of [TrafficStream (TS)](https://github.com/AprLie/TrafficStream), [STKEC](https://github.com/UnderReview24/STKEC), [PECPM](https://github.com/UnderReview24/PECPM), [EAC](https://github.com/Onedean/EAC), [STRAP](https://github.com/HoweyZ/STRAP), and [STBP](https://github.com/Aoyu-Liu/STBP) for sharing the implementations used in our continual forecasting experiments. We also thank the providers of the traffic and air-quality data.
