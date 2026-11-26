@@ -53,6 +53,12 @@ Horizons 3, 6, and 12 cover all steps up to that horizon. Within each stage, Avg
 
 [![Table 2 from the manuscript. Full-data forecasting results for eleven methods on PEMS, AIR, CA-S, CA-M, and Madrid.](figures/full_data_results.png)](figures/full_data_results.png)
 
+## Few-shot results
+
+Under the 25% few-shot protocol, only the earliest 25% of each stage is used for training.
+
+[![Table 3 from the manuscript. Few-shot forecasting results for seven methods on PEMS and CA-S.](figures/fewshot_results.png)](figures/fewshot_results.png)
+
 ## Acknowledgments
 
 We thank the authors of [TrafficStream (TS)](https://github.com/AprLie/TrafficStream), [STKEC](https://github.com/UnderReview24/STKEC), [PECPM](https://github.com/UnderReview24/PECPM), [EAC](https://github.com/Onedean/EAC), [STRAP](https://github.com/HoweyZ/STRAP), and [STBP](https://github.com/Aoyu-Liu/STBP) for sharing the implementations used in our continual forecasting experiments. We also thank the providers of the traffic and air-quality data.
